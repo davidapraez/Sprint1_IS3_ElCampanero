@@ -1,0 +1,93 @@
+.color_predeterminado_pane{
+	-fx-background-color: #FA2C56;
+	-fx-background-radius: 5;
+}
+
+/* Estilo para las letras de los formularios */
+.estilo_letras1{
+-fx-font-weight: bold;
+-fx-font-family:"Segoe UI Black";
+-fx-font-size:15px;
+-fx-fill:#FFFFFF
+}
+
+
+.combo-boxregistroavion
+{
+    -fx-background-color : #C4BCBD;
+    -fx-text-fill: -fx-text-base-color;
+	-fx-font-weight: bold;
+	-fx-font-family:"Segoe UI Black";
+	-fx-font-size:12px
+
+
+}
+.combo-boxregistroavion:hover
+{
+    -fx-background-color : #C4BCBD;
+    -fx-text-fill: -fx-text-base-color;
+	-fx-font-weight: bold;
+	-fx-font-family:"Segoe UI Black";
+	-fx-font-size:12px
+	
+	}
+
+.panemoradofondo
+{
+	-fx-background-color: #393351;
+}
+
+.combo-boxregistroavion:pressed
+{
+    -fx-background-color : #C4BCBD;
+    -fx-text-fill: -fx-text-base-color;
+	-fx-font-weight: bold;
+	-fx-font-family:"Segoe UI Black";
+	-fx-font-size:12px
+
+
+}
+.button
+{
+-fx-background-color : #393351;
+-fx-background-radius :  30 0 0 30;
+}
+.button:hover
+{
+-fx-background-color : #524A7B ;
+-fx-background-radius :  30 0 0 30;
+}
+.button:pressed
+{
+-fx-background-color : #2F2B43 ;
+-fx-background-radius :  30 0 0 30;
+}
+.button_menu_aeropuerto2{
+-fx-background-color : #B7B9BC;
+-fx-text-fill: white;
+-fx-font-weight: bold;
+-fx-background-radius :  0 0 0 0;
+
+}
+.button_menu_aeropuerto2:hover
+{
+-fx-background-color : #D8CBD3;
+-fx-text-fill: white;
+-fx-font-weight: bold;
+-fx-background-radius :  0 0 0 0;
+
+
+}
+.button_menu_aeropuerto2:pressed
+{
+-fx-background-color : #6B6F75 ;
+-fx-text-fill: white;
+-fx-font-weight: bold;
+-fx-background-radius :  0 0 0 0;
+
+
+}
+
+
+
+

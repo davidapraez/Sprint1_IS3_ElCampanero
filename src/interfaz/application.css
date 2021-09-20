@@ -1,0 +1,102 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.sbtnIniciarsesion{
+	-fx-background-color: #10AAF2;
+	-fx-color:#fff;
+	-fx-border-color: #1B1D1E;
+	-fx-border-width: 2;
+	-fx-border-style: solid, segments(1, 1);
+	-fx-border-radius: 2;
+	-fx-font-weight: bold;
+	-fx-border-color: white, white;
+	-fx-font-size:18px;
+	-fx-font-family:"Segoe UI Black";
+
+	
+}
+
+.sbtnIniciarsesion:hover{
+	-fx-background-color: #10AAF2;
+	-fx-color:#fff;
+	-fx-border-color: #1B1D1E;
+	-fx-border-width: 2;
+	-fx-border-style: solid, segments(1, 1);
+	-fx-border-radius: 2;
+	-fx-font-weight: bold;
+	-fx-border-color: white, white;
+	-fx-font-size:18px;
+	-fx-font-family:"Segoe UI Black";
+}
+.sbtnIniciarsesion:focused{
+	-fx-background-color: #10AAF2;
+	-fx-color:#fff;
+	-fx-border-color: #1B1D1E;
+	-fx-border-width: 2;
+	-fx-border-style: solid, segments(1, 1);
+	-fx-border-radius: 2;
+	-fx-font-weight: bold;
+	-fx-border-color: white, white;
+	-fx-font-size:18px;
+	-fx-font-family:"Segoe UI Black";
+}
+
+ /* .button:focused {
+	-fx-background-color: #10AAF2;
+	-fx-color:#fff;
+	-fx-border-color: #1B1D1E;
+	-fx-border-width: 2;
+	-fx-border-style: solid, segments(1, 1);
+	-fx-border-radius: 2;
+	-fx-font-weight: bold;
+	-fx-border-color: white, white;
+}*/
+
+.bordes_menu_aeropuerto{
+	-fx-border-color: white, white;
+	-fx-border-color: #1B1D1E;
+	-fx-border-style: solid, segments(1, 1);
+}
+
+.button_menu_aeropuerto{
+-fx-background-color : #B7B9BC;
+-fx-border-color: #1B1D1E;
+-fx-border-width: 2;
+}
+.button_menu_aeropuerto:hover
+{
+-fx-background-color : #D8CBD3;
+-fx-border-color: #1B1D1E;
+-fx-border-width: 2;
+
+}
+.button_menu_aeropuerto:pressed
+{
+-fx-background-color : #6B6F75 ;
+-fx-border-color: #1B1D1E;
+-fx-border-width: 2;
+
+}
+.vbox_menu_aeropuerto{
+	-fx-background-color :  #6BD5EC;
+}
+
+/********************************** */
+.button_menu_aeropuerto2{
+-fx-background-color : #B7B9BC;
+-fx-text-fill: white;
+-fx-font-weight: bold;
+}
+.button_menu_aeropuerto2:hover
+{
+-fx-background-color : #D8CBD3;
+-fx-text-fill: white;
+-fx-font-weight: bold;
+
+}
+.button_menu_aeropuerto2:pressed
+{
+-fx-background-color : #6B6F75 ;
+-fx-text-fill: white;
+-fx-font-weight: bold;
+
+}

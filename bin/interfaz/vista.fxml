@@ -1,0 +1,2238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.controlador">
+	<children>
+		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;">
+         <children>
+            <ImageView fitHeight="507.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../imagenes/aeropuerto3.jpg" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="455.0" layoutY="52.0" prefHeight="404.0" prefWidth="331.0" style="-fx-background-color: #080808;" stylesheets="@../Estilos/estilos_login.css">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="3.0" layoutY="2.0" opacity="0.91" prefHeight="400.0" prefWidth="325.0" spacing="20.0" style="-fx-background-color: #3271a8;">
+                     <children>
+                        <Text fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Aeropuerto el campanero" textAlignment="CENTER" wrappingWidth="325.0">
+                           <font>
+                              <Font name="Stencil" size="23.0" />
+                           </font>
+                        </Text>
+                        <ComboBox fx:id="cmbxLogin" onAction="#cbxElegirTipoUsuario" prefHeight="34.0" prefWidth="250.0" promptText="Elige un tipo de usuario" styleClass="combo_1" stylesheets="@../Estilos/estilos_login.css" />
+      
+      								<TextField fx:id="txfNomusuario" alignment="TOP_LEFT" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Usuario" styleClass="text_field_1" stylesheets="@../Estilos/estilos_login.css">
+      									<font>
+      										<Font name="Segoe UI Black" size="15.0" />
+      									</font>
+      								</TextField>
+      								<PasswordField fx:id="psfContras" alignment="TOP_LEFT" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Contraseña" styleClass="text_field_1" stylesheets="@../Estilos/estilos_login.css">
+      									<font>
+      										<Font name="Segoe UI Black" size="15.0" />
+      									</font>
+      								</PasswordField>
+      								<Button fx:id="btnIniciarsesion" alignment="CENTER" contentDisplay="TOP" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#iniciarsesion" prefHeight="38.0" prefWidth="250.0" styleClass="button_1" stylesheets="@../Estilos/estilos_login.css" text="Iniciar Sesion" textAlignment="CENTER" textFill="#dad6d6">
+      									<font>
+      										<Font name="Segoe UI Black" size="15.0" />
+      									</font>
+      								</Button>
+                        <Hyperlink fx:id="hiperOlvidoSucontrase" text="Olvido su contraseña?" textFill="#fffdfd">
+                           <font>
+                              <Font name="Serif Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="-10.0" />
+                           </VBox.margin>
+                        </Hyperlink>
+                     </children>
+                     <padding>
+                        <Insets top="50.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+		</AnchorPane>
+      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;" visible="false">
+         <children>
+            <AnchorPane prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #393351;">
+               <children>
+                  <VBox layoutY="149.0" prefHeight="351.0" prefWidth="250.0">
+                     <children>
+                        <Button fx:id="btnAgendaAeropuerto" alignment="BASELINE_LEFT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AgendaAeropuerto" prefHeight="50.0" prefWidth="250.0" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Agenda" textFill="#f2f2f2">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes_menuaeropuerto/airplane_mode_on_48px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnHangarAeropuerto" alignment="BASELINE_LEFT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#HangarAeropuerto" prefHeight="50.0" prefWidth="250.0" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Hangar" textFill="#f2f2f2">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes_menuaeropuerto/hangar_48px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnRegistrosAeropuerto" alignment="BASELINE_LEFT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#RegistroAeropuerto" prefHeight="50.0" prefWidth="250.0" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Registros" textFill="#f2f2f2">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/C:/Users/Rosa/eclipse-workspace/SoftwareAeropuertoElCampaneros/src/imagenes_menuaerolinea/registration_40px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCerrrarSesionAeropuerto" alignment="BASELINE_LEFT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cerrarSesionAeropuerto" prefHeight="50.0" prefWidth="250.0" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Cerrar sesión" textFill="#f2f2f2">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes_menuaeropuerto/export_40px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSalirAeropuerto" alignment="BASELINE_LEFT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#salirAeropuerto" prefHeight="50.0" prefWidth="250.0" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Salir" textFill="#f2f2f2">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes_menuaeropuerto/shutdown_40px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <Pane layoutY="53.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="51.0" layoutY="12.0" text="Menu aeropuerto" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <Pane fx:id="pneAgenda" layoutX="249.0" layoutY="3.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+               <children>
+                  <Pane layoutX="75.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="button221" layoutY="11.0" mnemonicParsing="false" onAction="#btnAeropuertoAgendaAgendarVuelos" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="0.36190476190476195" startX="0.580952380952381">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#cc3ce5" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/planner_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="19.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agenda de vuelos" wrappingWidth="131.8447265625">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="320.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="buttonSolicitudesAeropuerto" layoutY="11.0" mnemonicParsing="false" onAction="#btnAeropuertoAgendaSolicitudesCambio" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <LinearGradient endX="0.9285714285714286" endY="0.6000000000000001" startX="0.580952380952381">
+                                 <stops>
+                                    <Stop color="#fcfcfc" />
+                                    <Stop color="#fcfcfc" offset="0.007662835249042145" />
+                                    <Stop color="#329752" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/request_service_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="41.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solicitudes" wrappingWidth="80.0">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="76.0" layoutY="14.0" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="95.0" layoutY="8.0" text="Manejo de agenda" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="pneHangar" layoutX="250.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+               <children>
+                  <Pane layoutX="85.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="buttonAeropuertoRegistrarEntrada" layoutY="11.0" mnemonicParsing="false" onAction="#btnAeropuertoHangarRegistrarLlegada" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <LinearGradient endX="0.9285714285714286" endY="0.6000000000000001" startX="0.580952380952381">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#4c5cba" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/watch_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="29.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar entrada" wrappingWidth="112.0">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="85.0" layoutY="293.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="button2212" layoutX="4.0" layoutY="8.0" mnemonicParsing="false" onAction="#btnAeropuertoHangarFacturarSalida" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="0.44285714285714284" startX="0.719047619047619">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#c9cd51" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/refund_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="33.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar salida" wrappingWidth="96.99999999999989">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="316.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="button223111" layoutY="11.0" mnemonicParsing="false" onAction="#btnAeropuertoHangarRegistrosDeHangar" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#287c44" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/todo_list_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Facturas realizadas" wrappingWidth="135.0">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="85.0" layoutY="14.0" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="107.0" layoutY="4.0" text="Manejo de hangar">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <textFill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </textFill>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="pneAeropuertoRegistros" layoutX="250.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+               <children>
+                  <Pane layoutX="76.0" layoutY="29.0" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="99.0" layoutY="4.0" text="Manejo de registros" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="32.0" layoutY="80.0" prefHeight="154.0" prefWidth="132.0">
+                     <children>
+                        <Button fx:id="button2211" layoutY="30.0" mnemonicParsing="false" onAction="#btnAeropuertoRegistrosRegistrarEmpleado" prefHeight="118.0" prefWidth="132.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="65.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#16571d" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="29.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/add_user_group_woman_man_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="8.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar empleado" wrappingWidth="131.8447265625">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="32.0" layoutY="250.0" prefHeight="154.0" prefWidth="132.0">
+                     <children>
+                        <Button fx:id="button22111" layoutY="30.0" mnemonicParsing="false" onAction="#btnModificarEmpleadobtnAeropuertoRegistrosModificarEmpleadoAeropuerto" prefHeight="118.0" prefWidth="132.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="65.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#253f6e" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="60.0" fitWidth="66.0" layoutX="36.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/find_user_male_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="8.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adm. empleados" wrappingWidth="115.19999999999982">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="210.0" layoutY="80.0" prefHeight="154.0" prefWidth="132.0">
+                     <children>
+                        <Button fx:id="button22113" layoutY="30.0" mnemonicParsing="false" onAction="#btnAeropuertoRegistrosRegistrarAerolinea" prefHeight="118.0" prefWidth="132.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="65.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#257040" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="60.0" fitWidth="52.0" layoutX="39.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/check_file_64px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="6.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar aerolinea" wrappingWidth="140.0">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="210.0" layoutY="250.0" prefHeight="154.0" prefWidth="132.0">
+                     <children>
+                        <Button fx:id="button22114" layoutY="30.0" mnemonicParsing="false" onAction="#btnAeropuertoRegistrosModificarAerolinea" prefHeight="118.0" prefWidth="132.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="65.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#25686e" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="36.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/edit_property_40px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="14.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adm. Aerolineas" wrappingWidth="131.8447265625">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="388.0" layoutY="80.0" prefHeight="154.0" prefWidth="132.0">
+                     <children>
+                        <Button fx:id="button221131" layoutY="30.0" mnemonicParsing="false" onAction="#btnAeropuertoRegistrosRegistrarHangar" prefHeight="118.0" prefWidth="132.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="65.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#6b6e25" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="60.0" fitWidth="52.0" layoutX="39.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/hangar_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="14.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar hangar" wrappingWidth="140.0">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="388.0" layoutY="250.0" prefHeight="154.0" prefWidth="132.0">
+                     <children>
+                        <Button fx:id="button2211311" layoutY="30.0" mnemonicParsing="false" onAction="#btnAeropuertoRegistrosModificarHangar" prefHeight="118.0" prefWidth="132.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="65.0" layoutY="85.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#48256e" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="60.0" fitWidth="52.0" layoutX="39.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Imagenes_menuaeropuerto/to_do_100px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="25.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adm. hangar" wrappingWidth="122.8447265625">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+      		<AnchorPane fx:id="anpMenusAgenda" layoutX="249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
+               <children>
+                  <Pane fx:id="paneAgendaVuelos" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="474.0" prefWidth="513.0" spacing="10.0" style="-fx-background-color: #2F2B43;">
+                           <children>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                                 <children>
+                                    <Label layoutX="116.0" layoutY="4.0" prefHeight="32.0" prefWidth="169.0" text="Agenda de vuelos" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tbleviewAgendaVuelos" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="500.0">
+                                <columns>
+                                    <TableColumn fx:id="nroIdvuelo" prefWidth="52.0" text="N°" />
+                                    <TableColumn fx:id="colidvuelo" prefWidth="133.0" text="Id-vuelo" />
+                                  <TableColumn fx:id="colfechavuelo" prefWidth="95.0" text="Fecha" />
+                                  <TableColumn fx:id="colhoravuelo" prefWidth="106.0" text="Hora" />
+                                    <TableColumn fx:id="coltipovuelo" prefWidth="126.0" text="Llegada/Salida" />
+                                </columns>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TableView>
+                              <HBox maxWidth="-Infinity" prefHeight="34.0" prefWidth="500.0" spacing="20.0">
+                                 <children>
+                                    <TextField fx:id="txfAgendaVuelos1" prefHeight="30.0" prefWidth="338.0" promptText="ID-Vuelo" />
+                                    <Button fx:id="btnModificarAgendaVuelos1" mnemonicParsing="false" onAction="#btnModificarAgendaVuelos" prefHeight="20.0" prefWidth="71.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" />
+                                    <Button fx:id="btnEliminarAgendaVuelos1" mnemonicParsing="false" onAction="#btnEliminarAgendaVuelos" prefHeight="20.0" prefWidth="63.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Eliminar" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar8" onAction="#hiperlinkRegresarAgendaVuelos">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                     </children></Pane>
+                  <Pane fx:id="paneModificarAgenda" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="11.0" prefHeight="465.0" prefWidth="513.0" style="-fx-background-color: #2F2B43;">
+                           <children>
+                              <Pane maxWidth="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                                 <children>
+                                    <Label layoutX="110.0" layoutY="5.0" prefHeight="30.0" prefWidth="180.0" text="Modificar Agenda" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tbleviewModificarVuelos" prefHeight="340.0" prefWidth="513.0">
+                                 <columns>
+                                    <TableColumn prefWidth="62.0" text="N°" />
+                                    <TableColumn prefWidth="85.0" text="Id-vuelo" />
+                                    <TableColumn prefWidth="107.0" text="Fecha" />
+                                    <TableColumn prefWidth="107.0" text="Hora" />
+                                    <TableColumn prefWidth="151.0" text="Llegada/Salida" />
+                                 </columns>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </TableView>
+                              <HBox prefHeight="63.0" prefWidth="513.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="txfVueloSeleccionadoModificar" prefHeight="25.0" prefWidth="188.0" promptText="Id-Vuelo seleccionado" />
+                                    <DatePicker fx:id="datepickFechaModificarVuelos" promptText="dd/mm/yyyy" />
+                                    <Spinner fx:id="spinnerHoraModificaVuelo" editable="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" top="15.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="513.0" spacing="50.0">
+                                 <children>
+                                    <Button fx:id="btnModificarVuelos1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnAeropuertoModificarVuelos" prefHeight="34.0" prefWidth="115.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" />
+                                    <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar7" onAction="#hiperLinkRegresarModificarVuelo" prefHeight="48.0" prefWidth="78.0" text="Regresar">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Hyperlink>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children></Pane>
+                  <Pane fx:id="paneSolicitudesCambio" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="24.0" prefHeight="465.0" prefWidth="513.0" style="-fx-background-color: #2F2B43;">
+                           <children>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                                 <children>
+                                    <Label layoutX="96.0" layoutY="3.0" prefHeight="27.0" prefWidth="209.0" text="Solicitudes de vuelos" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tbleviewSolicitudesvuelo" prefHeight="337.0" prefWidth="513.0">
+                                 <columns>
+                                    <TableColumn prefWidth="47.0" text="N°" />
+                                    <TableColumn prefWidth="73.0" text="ID-Vuelo" />
+                                    <TableColumn prefWidth="81.0" text="Fecha" />
+                                    <TableColumn text="Hora" />
+                                    <TableColumn prefWidth="109.0" text="Llegada/Salida" />
+                                    <TableColumn prefWidth="122.0" text="Agregar/Modificar" />
+                                 </columns>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </TableView>
+                              <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="513.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="idVueloMenusAgenda" prefHeight="25.0" prefWidth="309.0" promptText="Id-vuelo" />
+                                    <Button fx:id="idButtonModificarSolicitudesVuelos" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnAgregarSolicitudesdeVuelos" prefHeight="24.0" prefWidth="92.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Agregar" />
+                                    <Button fx:id="btnModificarSolicitudesVuelos1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#modificarSolicitudesVuelos" prefHeight="24.0" prefWidth="92.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" />
+                                 </children>
+                              </HBox>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar6" onAction="#btnRegresarSolicitudesVuelos" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                     </children></Pane>
+               </children>
+      		</AnchorPane>
+            <AnchorPane fx:id="anpMenusHangar" layoutX="250.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
+               <children>
+                  <Pane fx:id="paneRegistrarLlegada" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="474.0" prefWidth="525.0" spacing="15.0">
+                           <children>
+                              <Pane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                                 <children>
+                                    <Label layoutX="107.0" layoutY="5.0" prefHeight="30.0" prefWidth="186.0" text="Gestionar Hangares" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tbleviewGestionarhangares1" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="299.0" prefWidth="507.0">
+                                <columns>
+                                  <TableColumn prefWidth="65.0" text="ID-Hangar" />
+                                    <TableColumn prefWidth="107.0" text="Disponibilidad" />
+                                    <TableColumn prefWidth="121.0" text="Id-Avion" />
+                                    <TableColumn prefWidth="132.0" text="Id-Aerolinea" />
+                                    <TableColumn prefWidth="99.0" text="Fecha Entrada" />
+                                </columns>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TableView>
+                              <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="507.0" spacing="20.0">
+                                 <children>
+                                    <TextField fx:id="idAvionHangar1" prefHeight="25.0" prefWidth="250.0" promptText="Id-Avion" />
+                                    <TextField fx:id="idHangarLlegada1" prefHeight="25.0" prefWidth="250.0" promptText="ID-Hangar" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="507.0" spacing="20.0">
+                                 <children>
+                                    <DatePicker fx:id="datepickRegistroHangar1" prefHeight="25.0" prefWidth="250.0" promptText="dd/mm/yyyy" />
+                                    <Spinner fx:id="spinnerHoraHangares1" prefHeight="25.0" prefWidth="250.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="507.0" spacing="80.0">
+                                 <children>
+                                    <Button fx:id="idRegistrarAvionHangar" mnemonicParsing="false" onAction="#btnRegistrarHangar1" prefHeight="27.0" prefWidth="89.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Registrar" />
+                                    <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar1" onAction="#hiperlinkRegresarHangar" prefHeight="30.0" prefWidth="64.0" text="Regresar">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Hyperlink>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneRegistrarFacturaHangar" layoutX="-1.0" layoutY="1.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="474.0" prefWidth="525.0" spacing="15.0">
+                           <children>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                                 <children>
+                                    <Label layoutX="160.0" layoutY="5.0" prefHeight="30.0" prefWidth="80.0" text="Facturar" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Pane>
+                              <TableView fx:id="tbleViewFacturaHangares" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="507.0">
+                                 <columns>
+                                    <TableColumn prefWidth="65.0" text="ID-Hangar" />
+                                    <TableColumn prefWidth="99.0" text="Disponibilidad" />
+                                    <TableColumn prefWidth="79.0" text="Id-Avion" />
+                                    <TableColumn prefWidth="89.0" text="Id-Aerolinea" />
+                                    <TableColumn prefWidth="93.0" text="Fecha Entrada" />
+                                    <TableColumn prefWidth="99.0" text="Costo-Hora" />
+                                 </columns>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TableView>
+                              <HBox alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="507.0" spacing="20.0">
+                                 <children>
+                                    <TextField fx:id="txfHangarFacturar" prefHeight="25.0" prefWidth="361.0" promptText="ID-Hangar" />
+                                    <Button fx:id="btnFacturarHangar1" mnemonicParsing="false" onAction="#btnFacturarVueloEnHangares" prefHeight="27.0" prefWidth="147.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Facturar" />
+                                 </children>
+                              </HBox>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar4" onAction="#hiperlinkRegresarFacturarHangar" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneFacturasRealizadasHnagar" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="24.0" layoutY="18.0" prefHeight="465.0" prefWidth="507.0" spacing="15.0">
+                           <children>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                                 <children>
+                                    <Label layoutX="160.0" layoutY="-1.0" prefHeight="30.0" prefWidth="80.0" text="Facturas" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tbleViewVisualizarFacturasHangar" prefHeight="383.0" prefWidth="507.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="N° Factura" />
+                                  <TableColumn prefWidth="87.0" text="Id-Hangar" />
+                                    <TableColumn prefWidth="142.0" text="Id-Aerolinea" />
+                                    <TableColumn prefWidth="86.0" text="Id-Avion" />
+                                    <TableColumn prefWidth="116.0" text="Facturado" />
+                                </columns>
+                              </TableView>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar5" onAction="#hiperlinkRegresarVisualizarFacturasHangares" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anprMenusRegistros" layoutX="250.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
+               <children>
+                  <Pane fx:id="paneRegistrarEmpleado" prefHeight="500.0" prefWidth="551.0" stylesheets="@application.css" visible="false">
+                     <children>
+                  				<VBox alignment="TOP_CENTER" layoutX="51.0" layoutY="34.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="449.0" spacing="20.0" style="-fx-background-color: #393351;">
+                  					<children>
+                  						<Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Registrar Empleado" textAlignment="CENTER" wrappingWidth="257.779296875">
+                  							<font>
+                  								<Font name="Baskerville Old Face" size="32.0" />
+                  							</font>
+                  							<effect>
+                  								<DropShadow />
+                  							</effect>
+                  						</Text>
+                  						<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                  							<children>
+                  								<TextField fx:id="txfRegistrarEmpleadoNombres" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Primer nombre" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                  									<font>
+                  										<Font name="Segoe UI Bold" size="16.0" />
+                  									</font>
+                  								</TextField>
+                  								<TextField fx:id="txfRegistrarEmpleadoApellido" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Primer apellido" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                  									<font>
+                  										<Font name="Segoe UI Bold" size="16.0" />
+                  									</font>
+                  								</TextField>
+                  							</children>
+                  							<VBox.margin>
+                  								<Insets top="15.0" />
+                  							</VBox.margin>
+                  						</HBox>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfRegistrarEmpleadoCedula" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Cedula" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfRegistrarEmpleadoUsuario" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Usuario" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0">
+                                 <children>
+                                    <PasswordField id="bordes_menu_aeropuerto" fx:id="passwordfRegistrarEmpleadoContrasena" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="357.0" promptText="Contraseña" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </PasswordField>
+                                    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#mostrarcontrasena1" prefHeight="29.0" prefWidth="45.0" text=" ">
+                                       <graphic>
+                                          <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Imagenes_menuaeropuerto/invisible_30px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                  						<TextField id="bordes_menu_aeropuerto" fx:id="txfRegistrarEmpleadoCorreo" focusTraversable="false" layoutX="10.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Correo" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                  							<font>
+                  								<Font name="Segoe UI Bold" size="16.0" />
+                  							</font>
+                  						</TextField>
+            								<Button fx:id="btnRegistrarEmpleadoGuardar" mnemonicParsing="false" onAction="#guardarEmpleado" prefHeight="30.0" prefWidth="241.0" styleClass="button_menu_aeropuerto" stylesheets="@application.css" text="Guardar">
+            									<font>
+            										<Font name="Verdana Bold" size="14.0" />
+            									</font>
+            								</Button>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar2" onAction="#hiperlinkRegistrarEmpleadoRegresar" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                  					</children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                  				</VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneModificarEmpleado" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox fx:id="vbxModificarUsuarioTableView" alignment="CENTER" layoutX="22.0" layoutY="24.0" prefHeight="452.0" prefWidth="507.0" spacing="10.0" visible="false">
+                           <children>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                                 <children>
+                                    <Label layoutX="87.0" layoutY="3.0" prefHeight="30.0" prefWidth="227.0" text="Administrar Empleados" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tableviewModificarEmpleadosAeropuerto" prefHeight="331.0" prefWidth="507.0">
+                                 <columns>
+                                    <TableColumn fx:id="numero_usuarios_aeropuerto" prefWidth="24.0" text="#" />
+                                    <TableColumn fx:id="usuario_usuarios_aeropuerto" prefWidth="61.0" text="Usuario" />
+                                    <TableColumn fx:id="cedula_usuarios_aeropuerto" prefWidth="81.0" text="Cedula" />
+                                    <TableColumn fx:id="nombre_usuarios_aeropuerto" prefWidth="72.0" text="Nombre" />
+                                    <TableColumn fx:id="apellido_usuarios_aeropuerto" prefWidth="107.0" text="Apellido" />
+                                    <TableColumn fx:id="correo_usuarios_aeropuerto" prefWidth="161.0" text="Correo" />
+                                 </columns></TableView>
+                              <HBox prefHeight="35.0" prefWidth="507.0" spacing="30.0">
+                                 <children>
+                                    <TextField fx:id="txfAdministrarUsuariosCedula" prefHeight="30.0" prefWidth="264.0" promptText="Cedula" />
+                                    <Button fx:id="btnAdministrarUsuarioModificar" mnemonicParsing="false" onAction="#btnModificarUsuarioAeropuerto" prefHeight="30.0" prefWidth="100.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" />
+                                    <Button fx:id="btnAdministrarUsuarioEliminar" mnemonicParsing="false" onAction="#btnEliminarUsuarioAeropuerto" prefHeight="30.0" prefWidth="100.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Eliminar" />
+                                 </children>
+                              </HBox>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar" onAction="#hiperlinkregresarAdministrarUsuario" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="vbxMenus_aeropuerto_ModificarEmpleado" alignment="TOP_CENTER" layoutX="61.0" layoutY="34.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="429.0" spacing="20.0" style="-fx-background-color: #393351;" visible="false">
+                           <children>
+                              <Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Modificar Empleado" textAlignment="CENTER" wrappingWidth="269.779296875">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Text>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <TextField fx:id="txfModificarEmpleadoNombre" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Primer nombre" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="txfModificarEmpleadoApellido" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Primer apellido" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfModificarEmpleadoCedula" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Cedula" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfUsuarioModificarEmpleado" focusTraversable="false" layoutX="10.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Usuario" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0">
+                                 <children>
+                                    <PasswordField id="bordes_menu_aeropuerto" fx:id="txfModificarEmpleadoContrasena" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="357.0" promptText="Contraseña" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </PasswordField>
+                                    <Button fx:id="btnModificarEmpleadoMostrarContrasena" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="29.0" prefWidth="45.0" text=" ">
+                                       <graphic>
+                                          <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Imagenes_menuaeropuerto/invisible_30px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfModificarEmpleadoCorreo" focusTraversable="false" layoutX="10.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Correo" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="btnGuardarModificarEmpleado" mnemonicParsing="false" onAction="#btnModificarVueloGuardarEmpleado1" prefHeight="30.0" prefWidth="241.0" styleClass="button_menu_aeropuerto" stylesheets="@application.css" text="Guardar">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Hyperlink fx:id="hiperlinkModificarEmpleadoRegresar" onAction="#hiperlinkRegresarModificarempleado" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneRegistrarAerolinea" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="61.0" layoutY="42.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="429.0" spacing="20.0" style="-fx-background-color: #393351;">
+                           <children>
+                              <Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Registrar Aerolinea" textAlignment="CENTER" wrappingWidth="257.779296875">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Text>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfIdaerolinea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Id Aerolinea" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="txfRegistrarAerolineaNombreAerolinea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Nombre de aerolinea" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfRegistrarUsuarioRegistrarAerolinea" focusTraversable="false" layoutX="10.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Usuario" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0">
+                                 <children>
+                                    <PasswordField id="bordes_menu_aeropuerto" fx:id="txfRegistrarAerolineaContrasena" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="357.0" promptText="Contraseña" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </PasswordField>
+                                    <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="29.0" prefWidth="45.0" text=" ">
+                                       <graphic>
+                                          <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Imagenes_menuaeropuerto/invisible_30px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfCorreoRegistrarAerolinea" focusTraversable="false" layoutX="10.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Correo" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="btnRegistrarAerolineaGuardar" mnemonicParsing="false" onAction="#btnGuardarRegistrodeAerolinea" prefHeight="30.0" prefWidth="241.0" styleClass="button_menu_aeropuerto" stylesheets="@application.css" text="Guardar">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar22" onAction="#hiperlinkRegistrarAerolineaRegresar" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneModificarAerolinea" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox fx:id="vbxModificarUsuarioTableView1" alignment="CENTER" layoutX="22.0" layoutY="24.0" prefHeight="474.0" prefWidth="507.0" spacing="10.0" visible="false">
+                           <children>
+                              <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                                 <children>
+                                    <Label layoutX="87.0" layoutY="5.0" prefHeight="30.0" prefWidth="227.0" text="Administrar Aerolineas" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tblevModificaraero" prefHeight="350.0" prefWidth="454.0">
+                                 <columns>
+                                    <TableColumn fx:id="numero_aerolinea" prefWidth="36.0" text="#" />
+                                    <TableColumn fx:id="column_id_aerolinea" prefWidth="101.0" text="Id-Aerolinea" />
+                                    <TableColumn fx:id="column_usuario_aerolinea" prefWidth="104.0" text="Usuario" />
+                                    <TableColumn fx:id="column_nombre_aerolinea" prefWidth="121.0" text="Nombre" />
+                                    <TableColumn fx:id="column_correo_aerolinea" prefWidth="144.0" text="Correo" />
+                                 </columns>
+                              </TableView>
+                              <HBox prefHeight="37.0" prefWidth="507.0" spacing="40.0">
+                                 <children>
+                                    <TextField fx:id="txfAdministraraerolinea1" prefHeight="32.0" prefWidth="227.0" promptText="ID-Aerolinea" />
+                                    <Button fx:id="btnModificarAerolinea" mnemonicParsing="false" onAction="#ModificarAerolinea" prefHeight="30.0" prefWidth="100.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" textFill="WHITE" />
+                                    <Button fx:id="btnEliminarAerolinea" mnemonicParsing="false" onAction="#EliminarAerolineas" prefHeight="30.0" prefWidth="100.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Eliminar" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar3" onAction="#regresarAdministrarAerolineas" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="-10.0" />
+                                 </VBox.margin>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="vbxMenus_aeropuerto_ModificarEmpleado1" alignment="TOP_CENTER" layoutX="61.0" layoutY="50.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="429.0" spacing="20.0" style="-fx-background-color: #393351;" visible="false">
+                           <children>
+                              <Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Modificar Aerolinea" textAlignment="CENTER" wrappingWidth="269.779296875">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Text>
+                              <TextField fx:id="txfidaerolineaeste" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Id Aerolinea" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="txfModificarNombreAerolineaeste" focusTraversable="false" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Nombre de aerolinea" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfModificarUsuarioAerolinea" focusTraversable="false" layoutX="10.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Usuario" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0">
+                                 <children>
+                                    <PasswordField id="bordes_menu_aeropuerto" fx:id="passwfieldModificarUsuarioAerolinea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="357.0" promptText="Contraseña" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </PasswordField>
+                                    <Button fx:id="btnMostrarContraseñaModificar" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="29.0" prefWidth="45.0" text=" ">
+                                       <graphic>
+                                          <ImageView fx:id="btnModificarAerolineamostrar" fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Imagenes_menuaeropuerto/invisible_30px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfModificaraeroCorreo" focusTraversable="false" layoutX="10.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Correo" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="btnGuardarMofdificaraerolinea" mnemonicParsing="false" onAction="#guardarModificarAerolinea" prefHeight="30.0" prefWidth="241.0" styleClass="button_menu_aeropuerto" stylesheets="@application.css" text="Guardar">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar211" onAction="#regresarModificarAerolinea" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneRegistrarHangar" layoutY="1.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="61.0" layoutY="50.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="429.0" spacing="20.0" style="-fx-background-color: #393351;">
+                           <children>
+                              <Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Registrar Hangar" textAlignment="CENTER" wrappingWidth="257.779296875">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Text>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfidhangar" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Id Hangar" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfUbicacionHangar" focusTraversable="false" layoutX="10.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Ubicacion" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfCpacidadMetrosHangar" focusTraversable="false" layoutX="10.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Capacidad estimada en metros cuadrados" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="btnGuardarRegistroHangar" mnemonicParsing="false" onAction="#guardarHangar" prefHeight="30.0" prefWidth="241.0" styleClass="button_menu_aeropuerto" stylesheets="@application.css" text="Guardar">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar221" onAction="#registroHangarregresar" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneModificarHangar" layoutY="1.0" prefHeight="474.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox fx:id="vbxModificarUsuarioTableView11" alignment="CENTER" layoutX="22.0" layoutY="24.0" prefHeight="474.0" prefWidth="507.0" spacing="10.0">
+                           <children>
+                              <Pane maxWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                                 <children>
+                                    <Label layoutX="87.0" layoutY="5.0" prefHeight="30.0" prefWidth="227.0" text="Administrar Hangares" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tbleviewAdministrarHangar" prefHeight="334.0" prefWidth="389.0">
+                                 <columns>
+                                    <TableColumn fx:id="numeroHangar" prefWidth="41.0" text="#" />
+                                    <TableColumn fx:id="idhangar" prefWidth="164.0" text="Id-Hangar" />
+                                    <TableColumn fx:id="ubicacionhangar" prefWidth="174.0" text="Ubicacion" />
+                                    <TableColumn fx:id="capacidadhangar" prefWidth="127.0" text="Cpacidad mts^2" />
+                                 </columns>
+                              </TableView>
+                              <HBox prefHeight="37.0" prefWidth="507.0" spacing="40.0">
+                                 <children>
+                                    <TextField fx:id="idhangarAdministrarhangar" prefHeight="32.0" prefWidth="368.0" promptText="ID-Hangar" />
+                                    <Button fx:id="btnEliminarHangar" mnemonicParsing="false" onAction="#eliminarhangar" prefHeight="30.0" prefWidth="100.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Eliminar" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar31" onAction="#hiperlinkEliminarhangar" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="-10.0" />
+                                 </VBox.margin>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anpMenuAerolinea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;" visible="false">
+         <children>
+            <AnchorPane prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #393351;" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+               <children>
+                  <VBox layoutY="149.0" prefHeight="351.0" prefWidth="250.0">
+                     <children>
+                        <Button fx:id="buttonAerolinea1" alignment="BASELINE_LEFT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnVuelo" prefHeight="50.0" prefWidth="250.0" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Vuelo" textFill="#f2f2f2">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes_menuaeropuerto/airplane_mode_on_48px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="buttonAerolineaRegistros1" alignment="BASELINE_LEFT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnAerolineaRegistros" prefHeight="50.0" prefWidth="250.0" text="Registros" textFill="#fcfcfc">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/C:/Users/Rosa/eclipse-workspace/SoftwareAeropuertoElCampaneros/src/imagenes_menuaerolinea/registration_40px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCerrarSesionAerolinea" alignment="BASELINE_LEFT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#cerrarsesionaerolinea" prefHeight="50.0" prefWidth="250.0" text="Cerrar Sesion" textFill="#fcfcfc">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes_menuaeropuerto/export_40px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSalirAerolinea" alignment="BASELINE_LEFT" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#saliraerolinea" prefHeight="50.0" prefWidth="250.0" text="Salir" textFill="#fcfcfc">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Imagenes_menuaeropuerto/shutdown_40px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <Pane layoutY="53.0" prefHeight="60.0" prefWidth="250.0" styleClass="color_predeterminado_pane" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                     <children>
+                        <Label layoutX="59.0" layoutY="17.0" text="Menu aerolinea" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <Pane fx:id="pneProgramarVuelo" layoutX="250.0" prefHeight="500.0" prefWidth="551.0">
+               <children>
+                  <Pane layoutX="75.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="btnProgramarVueloAerolinea" layoutY="11.0" mnemonicParsing="false" onAction="#btnAerolineaVueloProgramarVuelo" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#3b83e8" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes_menuaerolinea/airplane_departure_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="23.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Programar vuelo" wrappingWidth="122.8447265625">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="322.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="btnAerolineaSolicitudesAprobadas" layoutY="11.0" mnemonicParsing="false" onAction="#btnAerolineaVueloAgendarVuelo" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#a44c90" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes_menuaerolinea/schedule_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="51.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agenda" wrappingWidth="60.0">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="78.0" layoutY="14.0" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="130.0" layoutY="17.0" text="Gestionar vuelos" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="pneConsultas" layoutX="250.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+               <children>
+                  <Pane layoutX="75.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="btnConsultarDisponibilidadVuelos" layoutY="11.0" mnemonicParsing="false" onAction="#ConsultaAerolineaVuelos" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#680a8f" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes_menuaerolinea/event_accepted_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="19.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buscar disponibilidad" wrappingWidth="131.8447265625">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="322.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="btnConsultarAgenda" layoutY="11.0" mnemonicParsing="false" onAction="#consultaragendaaerolinea" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#4d63a3" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes_menuaerolinea/to_do_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="25.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consultar agenda" wrappingWidth="131.8447265625">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="76.0" layoutY="20.0" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="116.0" layoutY="17.0" text="Gestionar Consultas" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="pneRegistros" layoutX="250.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+               <children>
+                  <Pane layoutX="75.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="btnRegistrarAvion" layoutY="11.0" mnemonicParsing="false" onAction="#registraravionaerolinea" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#673ce5" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes_menuaerolinea/aircraft_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="23.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar avion" wrappingWidth="122.8447265625">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="322.0" layoutY="285.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="btnModificarpiloto" layoutY="11.0" mnemonicParsing="false" onAction="#modificarpilota" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="#fcfcfc" />
+                                    <Stop color="#fcfcfc" offset="0.007662835249042145" />
+                                    <Stop color="#942828" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes_menuaerolinea/denied_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="23.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrar pilotos" wrappingWidth="122.8447265625">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="75.0" layoutY="285.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="btnEliminaravion" layoutY="11.0" mnemonicParsing="false" onAction="#eliminaravion" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5111111111111111" centerY="0.49047619047619045" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#51403f" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes_menuaerolinea/delete_bin_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="19.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrar aviones" wrappingWidth="131.8447265625">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="322.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
+                     <children>
+                        <Button fx:id="btnRegistrarpiloto" layoutY="11.0" mnemonicParsing="false" onAction="#registrarpiloto" prefHeight="154.0" prefWidth="162.0" styleClass="button2" stylesheets="@../Estilos/estilo_menu_aeropuerto.css" />
+                        <Circle layoutX="81.0" layoutY="85.0" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#3f6572" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Circle>
+                        <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="45.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes_menuaerolinea/add_user_male_skin_type_7_48px.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#1ca2d7" layoutX="25.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar piloto" wrappingWidth="113.0">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="76.0" layoutY="20.0" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="130.0" layoutY="17.0" text="Gestionar registros" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <AnchorPane fx:id="anpMenusVuelos" layoutX="250.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
+               <children>
+                  <Pane fx:id="paneAerolineaAgendarVuelo" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="30.0" prefHeight="458.0" prefWidth="513.0" spacing="20.0" style="-fx-background-color: #2F2B43;">
+                           <children>
+                              <Pane prefHeight="45.0" prefWidth="513.0" styleClass="color_predeterminado_pane" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                                 <children>
+                                    <Label layoutX="177.0" layoutY="4.0" prefHeight="32.0" prefWidth="160.0" text="Programar vuelo" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <HBox prefHeight="28.0" prefWidth="513.0" spacing="10.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de vuelo" wrappingWidth="103.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <ComboBox fx:id="cbxRipodevuelo" onAction="#tipodevueloaerolinea" prefHeight="25.0" prefWidth="125.0" promptText="Selecciona" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="34.0" prefWidth="513.0" spacing="40.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Id-Avion " wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="txfIdavionagendarvuelo" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="125.0" promptText="Digite Id-Avion" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="29.0" prefWidth="513.0" spacing="4.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Id-Piloto" wrappingWidth="108.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="txfIdpilotaagendavuelos" alignment="TOP_LEFT" minWidth="-Infinity" prefHeight="25.0" prefWidth="125.0" promptText="Id-Piloto" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Requiere copiloto?" wrappingWidth="146.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="33.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <CheckBox fx:id="cbxcopiloto2" mnemonicParsing="false" onAction="#requierecopiloto2" text="CheckBox" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="29.0" prefWidth="513.0" spacing="4.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Id-Copiloto" wrappingWidth="108.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="txfIdcopilotoAgendavuelo" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="125.0" promptText="Id-Copiloto" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="27.0" prefWidth="513.0" spacing="40.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <DatePicker fx:id="datepickFechaAgenda" prefHeight="25.0" prefWidth="125.0" promptText="dd/mm/yyyy" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="23.0" prefWidth="513.0" spacing="40.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora" wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Spinner fx:id="spinnerHoraagendavuelo" editable="true" prefHeight="25.0" prefWidth="165.0" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Minutos" wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Spinner fx:id="spinnerHoraagendavuelo2" editable="true" prefHeight="25.0" prefWidth="165.0" />
+                                 </children>
+                              </HBox>
+                              <Button fx:id="btnSolicitaragendamientoAgendavuelo" mnemonicParsing="false" onAction="#solicitaragendaaerolinea" prefHeight="30.0" prefWidth="165.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Solicitar agendamiento">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></Button>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar811" onAction="#hiperlinkAgendarVueloAerolinea" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneSolicitudesAerolinea" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="474.0" prefWidth="513.0" spacing="10.0" style="-fx-background-color: #2F2B43;">
+                           <children>
+                              <Pane prefHeight="29.0" prefWidth="513.0" styleClass="color_predeterminado_pane" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                                 <children>
+                                    <Label layoutX="171.0" layoutY="-1.0" prefHeight="30.0" prefWidth="171.0" text="Agenda de vuelos" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tblevieSolicitudesaprobados" prefHeight="344.0" prefWidth="513.0">
+                                 <columns>
+                                    <TableColumn fx:id="numsolicitudes" prefWidth="35.0" text="N°" />
+                                    <TableColumn fx:id="idvuelosoli" prefWidth="107.0" text="Id-vuelo" />
+                                    <TableColumn fx:id="fechasoli" prefWidth="127.0" text="Fecha" />
+                                    <TableColumn fx:id="horasoli" prefWidth="109.0" text="Hora" />
+                                    <TableColumn fx:id="tipovuelosoli" prefWidth="134.0" text="Llegada/Salida" />
+                                 </columns>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TableView>
+                              <HBox prefHeight="20.0" prefWidth="513.0" spacing="20.0">
+                                 <children>
+                                    <TextField fx:id="txfvueloSolicitudesAprobadas" prefHeight="20.0" prefWidth="338.0" promptText="ID-Vuelo" />
+                                    <Button fx:id="btnModificarSolicitudesAprobadas" mnemonicParsing="false" onAction="#modificarsolicitudesaprobadas" prefHeight="20.0" prefWidth="71.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" />
+                                    <Button fx:id="btnEliminarsolicitudesaprobadas" mnemonicParsing="false" onAction="#eliminarvuelosaprobadas" prefHeight="20.0" prefWidth="63.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Eliminar" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar81" onAction="#hiperlinkSolicitudesRegresar" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneModificarVueloAerolinea" layoutY="7.0" prefHeight="444.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="30.0" prefHeight="407.0" prefWidth="513.0" spacing="20.0" style="-fx-background-color: #2F2B43;">
+                           <children>
+                              <Pane prefHeight="35.0" prefWidth="513.0" styleClass="color_predeterminado_pane" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                                 <children>
+                                    <Label layoutX="177.0" prefHeight="32.0" prefWidth="160.0" text="Modificar vuelo" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <HBox prefHeight="28.0" prefWidth="513.0" spacing="10.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de vuelo" wrappingWidth="103.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <ComboBox fx:id="cbxTipodevueloModificarVuelo" onAction="#tipodevueloaerolinea" prefHeight="25.0" prefWidth="125.0" promptText="Selecciona" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="34.0" prefWidth="513.0" spacing="40.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Id-Avion " wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="txfIdavionagendarvuelo1" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="125.0" promptText="Digite Id-Avion" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="29.0" prefWidth="513.0" spacing="4.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Id-Piloto" wrappingWidth="108.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="txfIdpilotaagendavuelos1" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="125.0" promptText="Id-Piloto" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Requiere copiloto?" wrappingWidth="146.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="33.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <CheckBox fx:id="chkboxCopiloto1" mnemonicParsing="false" onAction="#requierecopiloto1" text="CheckBox" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="29.0" prefWidth="513.0" spacing="4.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Id-Copiloto" wrappingWidth="108.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="txfIdcopilotoAgendavuelo1" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="125.0" promptText="Id-Copiloto" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="27.0" prefWidth="513.0" spacing="40.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <DatePicker fx:id="datepickFechaAgenda1" prefHeight="25.0" prefWidth="125.0" promptText="dd/mm/yyyy" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="23.0" prefWidth="513.0" spacing="40.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora" wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Spinner fx:id="spinnerHoraagendavuelo1" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="125.0" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Minutos" wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Spinner fx:id="spinnerHoraagendavuelo21" editable="true" prefHeight="25.0" prefWidth="165.0" />
+                                 </children>
+                              </HBox>
+                              <Button fx:id="btnSolicitaragendamientoAgendavuelo1" mnemonicParsing="false" onAction="#solicitaragendaaerolinea" prefHeight="30.0" prefWidth="165.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Solicitar agendamiento">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Button>
+                              <Hyperlink fx:id="hiperlinkRegresar1" onAction="#Regresar1" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anpMenuRegistros" layoutX="251.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
+               <children>
+                  <Pane fx:id="paneAerolineaRegistrarPiloto" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox alignment="TOP_CENTER" layoutX="51.0" layoutY="34.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="449.0" spacing="20.0" styleClass="panemoradofondo" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                           <children>
+                              <Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Registrar Piloto" textAlignment="CENTER" wrappingWidth="199.779296875">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Text>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <TextField fx:id="txfNombrepiloto" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Primer nombre" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="txfApellidoPiloto" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Primer apellido" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfCedulaPiloto" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Cedula" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfLicenciaPiloto" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Licencia" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0">
+                                 <children>
+                                    <TextField fx:id="txfHorasVueloAcum" prefHeight="25.0" prefWidth="401.0" promptText="Horas de vuelo acumuladas" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="397.0" spacing="40.0">
+                                 <children>
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfCorreo3" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="187.0" promptText="Ultima revision medica" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                    <DatePicker fx:id="dtepickRevisionmedica" prefHeight="30.0" prefWidth="172.0" promptText="dd/mm/yyyy" />
+                                 </children>
+                              </HBox>
+                              <Button fx:id="btnguardarpiloto" mnemonicParsing="false" onAction="#guardarpiloto" prefHeight="30.0" prefWidth="241.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Guardar">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar23" onAction="#regresarRegistropiloto" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneAerolineaModificarPiloto" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox fx:id="vbxListaPilotos" alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="458.0" prefWidth="513.0" spacing="10.0" stylesheets="@../Estilos/estilos_menuaerolinea.css" visible="false">
+                           <children>
+                              <Pane prefHeight="29.0" prefWidth="513.0" styleClass="color_predeterminado_pane" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                                 <children>
+                                    <Label layoutX="183.0" layoutY="-1.0" prefHeight="30.0" prefWidth="147.0" text="Lista de pilotos" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tblecolumListapilotos" prefHeight="344.0" prefWidth="513.0">
+                                 <columns>
+                                    <TableColumn fx:id="idnumeropiloto" prefWidth="35.0" text="N°" />
+                                    <TableColumn fx:id="idcedulapiloto" prefWidth="105.0" text="Cedula" />
+                                    <TableColumn fx:id="idnombrepiloto" prefWidth="103.0" text="Nombre" />
+                                    <TableColumn fx:id="idapellidopiloto" prefWidth="102.0" text="Apellido" />
+                                    <TableColumn fx:id="idrevisionmedica" prefWidth="167.0" text="Fecha de revision medica" />
+                                 </columns>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TableView>
+                              <HBox prefHeight="20.0" prefWidth="513.0" spacing="20.0">
+                                 <children>
+                                    <TextField fx:id="txfIdpiloto" prefHeight="20.0" prefWidth="338.0" promptText="ID-Piloto" />
+                                    <Button fx:id="btnModificarpiloto" mnemonicParsing="false" onAction="#modificarpilotolista" prefHeight="20.0" prefWidth="71.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" />
+                                    <Button fx:id="btnEliminarpiloto" mnemonicParsing="false" onAction="#eliminarpiloto" prefHeight="20.0" prefWidth="63.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Eliminar" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <Hyperlink fx:id="hiperlinkRegresarListapilotos" onAction="#regresarlistapilotos" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="vbxModificarPiloto" alignment="TOP_CENTER" layoutX="54.0" layoutY="34.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="449.0" spacing="20.0" styleClass="panemoradofondo" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                           <children>
+                              <Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Modificar Piloto" textAlignment="CENTER" wrappingWidth="214.779296875">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Text>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <TextField fx:id="txfNombrePilotoModificar" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Primer nombre" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="txfApellidoModificarpiloto" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Primer apellido" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfCedulaModificarPiloto" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Cedula" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfLicenciaModificarPiloto" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Licencia" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0">
+                                 <children>
+                                    <TextField fx:id="txfHoravuelosacumuladosModificar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Horas de vuelo acumuladas" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="397.0" spacing="40.0">
+                                 <children>
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfUltimarevisionmedica" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="187.0" promptText="Ultima revision medica" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                    <DatePicker fx:id="datepickerModificarVuelo" prefHeight="30.0" prefWidth="172.0" promptText="dd/mm/yyyy" />
+                                 </children>
+                              </HBox>
+                              <Button fx:id="btnGuardarModificarPiloto" mnemonicParsing="false" onAction="#guardarmodificarpiloto" prefHeight="30.0" prefWidth="241.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Guardar">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Hyperlink fx:id="hiperlinkRegresarModificarPiloto" onAction="#Regresar2" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneRegistrarAvion" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox fx:id="vbxModificarPiloto1" alignment="TOP_CENTER" layoutX="51.0" layoutY="24.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="449.0" spacing="15.0" styleClass="panemoradofondo" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                           <children>
+                              <Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Registrar avion" textAlignment="CENTER" wrappingWidth="196.779296875">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Text>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <ComboBox fx:id="cbxTipoavionRegistroAvion" prefHeight="33.0" prefWidth="135.0" promptText="tipo de avion" styleClass="combo-boxregistroavion" visibleRowCount="12" />
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfIdavionregistroavion" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="225.0" promptText="Id-Avion" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfCapacidadCargaNumeroPuestos" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Capacidad de carga/Numero de puestos" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0">
+                                 <children>
+                                    <TextField fx:id="txfModeloavion121" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Modelo de avion" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfTipopropulsion121" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Tipo de propulsion" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfNumeromotores1222" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Numero de motores" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfPesonominalavion1222" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="peso nominal del avion en toneladas" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="btnGuardaravion" mnemonicParsing="false" onAction="#guardaravion" prefHeight="30.0" prefWidth="241.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Guardar">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Hyperlink fx:id="hiperlinkRegresarRegistroavion" onAction="#regresarRegistroavion" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneModificaravion" layoutX="-1.0" layoutY="-1.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+                     <children>
+                        <VBox fx:id="vbxAdministrarAviones" alignment="TOP_CENTER" layoutX="19.0" layoutY="24.0" prefHeight="465.0" prefWidth="513.0" spacing="10.0" style="-fx-background-color: #2F2B43;">
+                           <children>
+                              <Pane prefHeight="29.0" prefWidth="513.0" styleClass="color_predeterminado_pane" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                                 <children>
+                                    <Label layoutX="177.0" layoutY="-1.0" prefHeight="30.0" prefWidth="160.0" text="Lista de aviones" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <TableView fx:id="tbleviewListaaviones" prefHeight="344.0" prefWidth="513.0">
+                                 <columns>
+                                    <TableColumn fx:id="numeroavion" prefWidth="35.0" text="N°" />
+                                    <TableColumn fx:id="columidavion" prefWidth="105.0" text="Id-Avion" />
+                                    <TableColumn fx:id="columntipoavion" prefWidth="103.0" text="Tipo de avion" />
+                                    <TableColumn fx:id="columnmodeloavion" prefWidth="141.0" text="Modelo" />
+                                    <TableColumn fx:id="columnpropulsion" prefWidth="128.0" text="Tipo de propulsion" />
+                                 </columns>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TableView>
+                              <HBox prefHeight="20.0" prefWidth="513.0" spacing="20.0">
+                                 <children>
+                                    <TextField fx:id="txfIdpilotorlistaaviones" prefHeight="20.0" prefWidth="338.0" promptText="ID-Avion" />
+                                    <Button fx:id="bntmodificaraviones" mnemonicParsing="false" onAction="#modificaravion" prefHeight="20.0" prefWidth="71.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" />
+                                    <Button fx:id="btnEliminaravion" mnemonicParsing="false" onAction="#eliminaravion2" prefHeight="20.0" prefWidth="63.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Eliminar" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar8111" onAction="#hiperlinkRegresarlistaaviones" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="vbxModificaravion" alignment="TOP_CENTER" layoutX="54.0" layoutY="24.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="449.0" spacing="20.0" styleClass="panemoradofondo" stylesheets="@../Estilos/estilos_menuaerolinea.css" visible="false">
+                           <children>
+                              <Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Modificar avion" textAlignment="CENTER" wrappingWidth="201.779296875">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Text>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <ComboBox fx:id="cbxTipoavionmodificar" prefHeight="31.0" prefWidth="168.0" promptText="tipo de avion" styleClass="combo-boxregistroavion" stylesheets="@../Estilos/estilos_menuaerolinea.css" />
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfIdavionmodificar" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="225.0" promptText="Id-Avion" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <TextField id="bordes_menu_aeropuerto" fx:id="txfCpacidadcargapuestos" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Capacidad de carga/Numero de puestos" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0">
+                                 <children>
+                                    <TextField fx:id="txfModeloavion129" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="401.0" promptText="Modelo de Avion" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfTipopropulsion116" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Tipo de propulsion" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfNumeromotoresmodifcaarvion" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="Numero de motores" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" spacing="40.0">
+                                 <children>
+                                    <TextField id="bordes_menu_aeropuerto" fx:id="txfPesonominalavion1128" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" promptText="peso nominal del avion en toneladas" styleClass="bordes_menu_aeropuerto" stylesheets="@application.css">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="16.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="btnGuardarModificaravion1" mnemonicParsing="false" onAction="#guardar_modificaravion" prefHeight="30.0" prefWidth="241.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Guardar">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Hyperlink fx:id="hiperlinkRegresarModificaravion" onAction="#hiperlinkModificaravionregresar" text="Regresar">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+	</children>
+</AnchorPane>

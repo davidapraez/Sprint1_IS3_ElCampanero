@@ -1,0 +1,60 @@
+
+/*Boton para iniciar sesion */
+.button_1{
+-fx-background-color :  #2c35de;
+-fx-text-fill: white;
+-fx-font-weight: bold;
+-fx-font-family:"Segoe UI Black";
+-fx-font-size:15px;
+-fx-border-color: #0c0d0d;
+}
+.button_1:hover
+{
+-fx-background-color : #F2A2A2;
+-fx-text-fill: white;
+-fx-font-weight: bold;
+-fx-font-family:"Segoe UI Black";
+-fx-font-size:15px;
+
+}
+.button_1:pressed
+{
+-fx-background-color : #840A0A ;
+-fx-text-fill: white;
+-fx-font-weight: bold;
+-fx-font-family:"Segoe UI Black";
+-fx-font-size:15px;
+
+}
+
+.anchorpane_login{
+	-fx-background-color : #840A0A;
+	}
+	
+
+
+/*Combobox  */
+
+.combo_1{
+
+-fx-background-color: #2a9aeb;
+-fx-prompt-text-fill:white;
+-fx-border-color: #0c0d0d;
+-fx-text-fill: -fx-text-base-color;
+-fx-font-weight: bold;
+-fx-font-family:"Segoe UI Black";
+-fx-font-size:15px;
+-fx-background-radius: 5, 5, 4, 3;
+}
+
+/*Text Field */
+.text_field_1{
+-fx-background-color : #2a9aeb;
+-fx-prompt-text-fill: #FFFFFF;
+-fx-font-weight: bold;
+-fx-border-color: #0c0d0d;
+-fx-font-family:"Segoe UI Black";
+-fx-font-size:15px;
+}
+
+
