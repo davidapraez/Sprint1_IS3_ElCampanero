@@ -29,7 +29,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.controlador">
 	<children>
-		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;">
+		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;" visible="false">
          <children>
             <ImageView fitHeight="507.0" fitWidth="800.0" pickOnBounds="true">
                <image>
@@ -1238,7 +1238,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anpMenuAerolinea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;" visible="false">
+      <AnchorPane fx:id="anpMenuAerolinea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;">
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #393351;" stylesheets="@../Estilos/estilos_menuaerolinea.css">
                <children>
@@ -1579,7 +1579,7 @@
                <children>
                   <Pane fx:id="paneAerolineaAgendarVuelo" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
-                        <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="30.0" prefHeight="458.0" prefWidth="513.0" spacing="20.0" style="-fx-background-color: #2F2B43;">
+                        <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="30.0" prefHeight="465.0" prefWidth="513.0" spacing="15.0" style="-fx-background-color: #2F2B43;">
                            <children>
                               <Pane prefHeight="45.0" prefWidth="513.0" styleClass="color_predeterminado_pane" stylesheets="@../Estilos/estilos_menuaerolinea.css">
                                  <children>
@@ -1590,20 +1590,59 @@
                                     </Label>
                                  </children>
                               </Pane>
-                              <HBox prefHeight="28.0" prefWidth="513.0" spacing="10.0">
+                              <HBox fx:id="spinnerFecha1" prefHeight="27.0" prefWidth="513.0" spacing="40.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <DatePicker fx:id="datepickFechaAgenda" prefHeight="25.0" prefWidth="125.0" promptText="dd/mm/yyyy" />
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="spinnerHoravuelo1" prefHeight="23.0" prefWidth="513.0" spacing="40.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora" wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Spinner fx:id="spinnerHoraagendavuelo" editable="true" prefHeight="26.0" prefWidth="125.0" />
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="spinnerMinutos" prefHeight="26.0" prefWidth="514.0" spacing="40.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Minutos" wrappingWidth="71.134765625">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Spinner fx:id="spinnerHoraagendavuelo2" editable="true" prefHeight="26.0" prefWidth="125.0" />
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="btnDisponibilidad" alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="514.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#btnComprobardisponib" text="Comprobar disponibilidad">
+                                       <HBox.margin>
+                                          <Insets left="200.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hbxTipovuelo1" disable="true" prefHeight="28.0" prefWidth="513.0" spacing="10.0">
                                  <children>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de vuelo" wrappingWidth="103.134765625">
                                        <font>
                                           <Font name="Segoe UI Black" size="15.0" />
                                        </font>
                                     </Text>
-                                    <ComboBox fx:id="cbxRipodevuelo" onAction="#tipodevueloaerolinea" prefHeight="25.0" prefWidth="125.0" promptText="Selecciona" />
+                                    <ComboBox fx:id="cbxRipodevuelo" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#tipodevueloaerolinea" prefHeight="25.0" prefWidth="125.0" promptText="Selecciona" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="34.0" prefWidth="513.0" spacing="40.0">
+                              <HBox fx:id="hbxIdavion1" disable="true" prefHeight="34.0" prefWidth="513.0" spacing="40.0">
                                  <children>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Id-Avion " wrappingWidth="71.134765625">
                                        <font>
@@ -1613,7 +1652,7 @@
                                     <TextField fx:id="txfIdavionagendarvuelo" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="125.0" promptText="Digite Id-Avion" />
                                  </children>
                               </HBox>
-                              <HBox prefHeight="29.0" prefWidth="513.0" spacing="4.0">
+                              <HBox fx:id="hbxIdpiloto1" disable="true" prefHeight="29.0" prefWidth="513.0" spacing="4.0">
                                  <children>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Id-Piloto" wrappingWidth="108.134765625">
                                        <font>
@@ -1632,7 +1671,7 @@
                                     <CheckBox fx:id="cbxcopiloto2" mnemonicParsing="false" onAction="#requierecopiloto2" text="CheckBox" />
                                  </children>
                               </HBox>
-                              <HBox prefHeight="29.0" prefWidth="513.0" spacing="4.0">
+                              <HBox fx:id="hbxIdcopiloto1" disable="true" prefHeight="29.0" prefWidth="513.0" spacing="4.0">
                                  <children>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Id-Copiloto" wrappingWidth="108.134765625">
                                        <font>
@@ -1642,33 +1681,7 @@
                                     <TextField fx:id="txfIdcopilotoAgendavuelo" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="125.0" promptText="Id-Copiloto" />
                                  </children>
                               </HBox>
-                              <HBox prefHeight="27.0" prefWidth="513.0" spacing="40.0">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" wrappingWidth="71.134765625">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="15.0" />
-                                       </font>
-                                    </Text>
-                                    <DatePicker fx:id="datepickFechaAgenda" prefHeight="25.0" prefWidth="125.0" promptText="dd/mm/yyyy" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="23.0" prefWidth="513.0" spacing="40.0">
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora" wrappingWidth="71.134765625">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="15.0" />
-                                       </font>
-                                    </Text>
-                                    <Spinner fx:id="spinnerHoraagendavuelo" editable="true" prefHeight="25.0" prefWidth="165.0" />
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Minutos" wrappingWidth="71.134765625">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="15.0" />
-                                       </font>
-                                    </Text>
-                                    <Spinner fx:id="spinnerHoraagendavuelo2" editable="true" prefHeight="25.0" prefWidth="165.0" />
-                                 </children>
-                              </HBox>
-                              <Button fx:id="btnSolicitaragendamientoAgendavuelo" mnemonicParsing="false" onAction="#solicitaragendaaerolinea" prefHeight="30.0" prefWidth="165.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Solicitar agendamiento">
+                              <Button fx:id="btnSolicitaragendamientoAgendavuelo" disable="true" mnemonicParsing="false" onAction="#solicitaragendaaerolinea" prefHeight="30.0" prefWidth="165.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Solicitar agendamiento">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin></Button>

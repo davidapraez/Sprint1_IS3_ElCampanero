@@ -41,6 +41,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
@@ -123,6 +124,9 @@ public class controlador {
 
 	@FXML
 	private Hyperlink hiperlinkModificarEmpleadoRegresar;
+	
+
+	
 
 	// REGISTRAR AEROLINEA
 	@FXML
@@ -819,7 +823,29 @@ public class controlador {
 		
 		
 		//
+		spinnerFecha1.setDisable(false);
+		spinnerHoravuelo1.setDisable(false);
+		spinnerMinutos.setDisable(false);
+		btnDisponibilidad.setDisable(false);
+		
+		hbxTipovuelo1.setDisable(true);
+		hbxIdavion1.setDisable(true);
+		hbxIdpiloto1.setDisable(true);
+		hbxIdcopiloto1.setDisable(true);
+		btnSolicitaragendamientoAgendavuelo.setDisable(true);
+		
+		
+		//limpiar antes
+		limpiarprogramarvuelos();
+		
 
+	}
+	
+	public void limpiarprogramarvuelos() {
+		
+		txfIdavionagendarvuelo.clear();
+		txfIdpilotaagendavuelos.clear();
+		txfIdcopilotoAgendavuelo.clear();
 	}
 
 	@FXML
@@ -890,7 +916,77 @@ public class controlador {
 		
 		
 	}
+	
 
+	
+	
+	@FXML
+	void solicitaragendaaerolinea(ActionEvent event) {
+		String tipovuelo=cbxRipodevuelo.getValue();
+		String idavion=txfIdavionagendarvuelo.getText();
+		String idpiloto=txfIdpilotaagendavuelos.getText();
+		String idcopiloto=txfIdcopilotoAgendavuelo.getText();
+		LocalDate fecha=datepickFechaAgenda.getValue();
+		int hora=spinnerHoraagendavuelo.getValue();
+		int minutos=spinnerHoraagendavuelo2.getValue();
+		
+		
+		if(tipovuelo!="" && idavion!="" && idpiloto!="" && fecha!=null) {
+			conexionbd conexion=new conexionbd();
+			if(conexion.programarvueloaerolinea(tipovuelo, idavion, idpiloto, idcopiloto, fecha, hora, minutos)) {
+				limpiarprogramarvuelos();
+				
+			}
+			
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error ");
+			alert.setHeaderText("no se pudo programar el vuelo");
+			alert.setContentText("Debe digitar la informacion correspondiente");
+			alert.showAndWait();
+		}
+	}
+    @FXML
+    private HBox spinnerFecha1,spinnerHoravuelo1,spinnerMinutos,btnDisponibilidad,hbxTipovuelo1,
+    hbxIdavion1,hbxIdpiloto1,hbxIdcopiloto1;
+	
+	
+	
+	@FXML
+	void btnComprobardisponib(ActionEvent event) {
+		//boton a programar
+		
+		LocalDate fechadatepicker=datepickFechaAgenda.getValue();
+		String fecha=fechadatepicker.toString();
+		int hora=spinnerHoraagendavuelo.getValue();
+		int minutos=spinnerHoraagendavuelo2.getValue();
+		
+		conexionbd conexion=new conexionbd();
+		if(!conexion.validarhoravuelo(fecha,hora, minutos)) {
+			spinnerFecha1.setDisable(true);
+			spinnerHoravuelo1.setDisable(true);
+			spinnerMinutos.setDisable(true);
+			btnDisponibilidad.setDisable(true);
+			
+			hbxTipovuelo1.setDisable(false);
+			hbxIdavion1.setDisable(false);
+			hbxIdpiloto1.setDisable(false);
+			hbxIdcopiloto1.setDisable(false);
+			btnSolicitaragendamientoAgendavuelo.setDisable(false);
+			
+			
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error ");
+			alert.setHeaderText("Fecha no disponible");
+			alert.setContentText("Debe escoger otra fecha ");
+			alert.showAndWait();
+		}
+		
+		
+
+	}
+	
 	@FXML
 	void btnAerolineaVueloAgendarVuelo(ActionEvent event) {
 		// 1 capa
@@ -904,6 +1000,8 @@ public class controlador {
 		paneSolicitudesAerolinea.setVisible(true);
 		
 		//Cargar los datos
+		
+		limpiar_agenda_vuelos_aerolinea();
 		cargarvuelos();
 		
 	}
@@ -958,6 +1056,7 @@ public class controlador {
 		paneModificaravion.setVisible(false);
 	}
 
+	
 	@FXML
 	void modificarpilota(ActionEvent event) {
 		pneProgramarVuelo.setVisible(false);
@@ -2375,33 +2474,6 @@ public class controlador {
 	
 
 	
-	
-	@FXML
-	void solicitaragendaaerolinea(ActionEvent event) {
-		String tipovuelo=cbxRipodevuelo.getValue();
-		String idavion=txfIdavionagendarvuelo.getText();
-		String idpiloto=txfIdpilotaagendavuelos.getText();
-		String idcopiloto=txfIdcopilotoAgendavuelo.getText();
-		LocalDate fecha=datepickFechaAgenda.getValue();
-		int hora=spinnerHoraagendavuelo.getValue();
-		int minutos=spinnerHoraagendavuelo2.getValue();
-		
-		if(tipovuelo!="" && idavion!="" && idpiloto!="" && fecha!=null) {
-			conexionbd conexion=new conexionbd();
-			conexion.programarvueloaerolinea(tipovuelo, idavion, idpiloto, idcopiloto, fecha, hora, minutos);
-			
-
-		}else {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
-			alert.setHeaderText("no se pudo programar el vuelo");
-			alert.setContentText("Debe digitar la informacion correspondiente");
-			alert.showAndWait();
-		}
-		
-		
-	}
-	
 	//TIME SPINNER
 	@FXML
 	private Spinner<Integer> spinnerHoraagendavuelo,spinnerHoraagendavuelo2;
@@ -2422,12 +2494,8 @@ public class controlador {
 	
 	@FXML
 	void initialize() {	
-		
 
-		
-		
-		
-		
+				
 		
 		//area de trabajo
 		SpinnerValueFactory<Integer> value=new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
@@ -2640,6 +2708,10 @@ public class controlador {
 
 	public void limpiar_pantalla_pilotos() {
 		tblecolumListapilotos.getItems().clear();
+	}
+	
+	public void limpiar_agenda_vuelos_aerolinea() {
+		tblevieSolicitudesaprobados.getItems().clear();
 	}
 
 	// CLASES SIMPLE STRING PARA MENU AEROPUERTO

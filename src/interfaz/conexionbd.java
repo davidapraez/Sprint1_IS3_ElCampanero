@@ -763,6 +763,8 @@ public class conexionbd {
 				solicitudes.add(new vueloAL(idvuelo,fecha,horas,tipovuelo));
 				
 				
+				
+				
 			}
 			
 			
@@ -931,45 +933,30 @@ public class conexionbd {
 		return numeromayor;
 	}
 	
-	public boolean validarhoravuelo(LocalDate fecha, int hora, int minutos) {
+	public boolean validarhoravuelo(String fecha1, int hora, int minutos) {
 		boolean disponible=false;
-		java.sql.Statement st = conexionbasededatos();
-		String sql="select * from vuelo";
+		//LocalDate fecha = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(fecha1));
 		try {
+			java.sql.Statement st = conexionbasededatos();
+			String sql="SELECT * FROM vuelo WHERE hora ="+"'"+hora+"'"+" AND fecha ="+"'"+fecha1+"'";
 			ResultSet result=st.executeQuery(sql);
 			while(result.next()) {
-				
-				int horasql=Integer.parseInt(result.getString("hora"));
-				int minutosql=Integer.parseInt(result.getString("minutos"));
-				Date fechasql=result.getDate("fecha");
-				LocalDate date = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(fechasql));
-
-				if(fecha==date && hora==horasql ) {
-						disponible=false;
-						System.out.println("la fecha no esta disponible");
-					}else {
-						disponible=true;
-					}
-				}
-				
-
-			
+				disponible = true;
+}
+	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 		return disponible;
 	}
 
 	
-	public void programarvueloaerolinea(String tipovuelo,String idavion,String idpiloo, String copiloto,LocalDate fecha
+	public boolean programarvueloaerolinea(String tipovuelo,String idavion,String idpiloo, String copiloto,LocalDate fecha
 			,int hora, int minutos) {
+		boolean programado=false;
 		java.sql.Statement st = conexionbasededatos();
-		
-		if(validarhoravuelo(fecha,hora,minutos)) {
+		if(!validarhoravuelo(fecha.toString(),hora,minutos)) {
 			int idvuelo=buscaridvuelo()+1;
 			String sql="insert into vuelo (idvuelo,tipo_de_vuelo,fecha,hora,minutos,piloto_cedula,copiloto,id_avion)"+
 			  "values ('"+idvuelo+"','"+tipovuelo+"','"+fecha+"',"+hora+","+minutos+",'"+idpiloo+"','"+copiloto+"','"+idavion+"');";
@@ -977,6 +964,7 @@ public class conexionbd {
 			try {
 				st.execute(sql);
 				st.close();
+				programado=true;
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Informacion ");
 				alert.setHeaderText("Vuelo programado exitosamente");
@@ -996,7 +984,7 @@ public class conexionbd {
 			alert.showAndWait();
 		}
 
-		
+		return programado;
 	}
 	
 
