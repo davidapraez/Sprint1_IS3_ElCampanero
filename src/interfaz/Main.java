@@ -21,6 +21,9 @@ public class Main extends Application {
 			System.out.println("holaa");
 			System.out.println("holaa");
 			System.out.println("holaa");
+			System.out.println("David");
+			System.out.println("Juan");
+			System.out.println("Pablo");
 			
 			
 		} catch (Exception e) {
