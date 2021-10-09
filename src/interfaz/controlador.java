@@ -17,6 +17,7 @@ import clases_AL.aerolineaAL;
 import clases_AL.avionAL;
 import clases_AL.pilotoAL;
 import clases_AL.usuario_aeropuertoAL;
+import clases_AL.vueloAL;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -301,7 +302,7 @@ public class controlador {
 	@FXML
 	private Pane paneModificarVueloAerolinea;
 	@FXML
-	private ComboBox<?> cbxTipodevueloModificarVuelo;
+	private ComboBox<String> cbxTipodevueloModificarVuelo;
 
 	@FXML
 	private TextField txfIdavionagendarvuelo1;
@@ -316,7 +317,7 @@ public class controlador {
 	private DatePicker datepickFechaAgenda1;
 
 	@FXML
-	private Spinner<?> spinnerHoraagendavuelo1;
+	private Spinner<Integer> spinnerHoraagendavuelo1;
 	@FXML
 	private Button btnRegistrarAvion;
 
@@ -520,7 +521,7 @@ public class controlador {
 	private TextField txfUltimarevisionmedica;
 
 	@FXML
-	private DatePicker datepickerModificarVuelo;
+	private DatePicker datepickerModificarVuelo,datepickmodific;
 
 	@FXML
 	private Button btnGuardarModificarPiloto;
@@ -614,6 +615,9 @@ public class controlador {
 
 	@FXML
 	private Spinner<?> spinnerHoraHangares1;
+	
+	@FXML
+	private Spinner<Integer> spinnerHoraagendavuelo21;
 
 	@FXML
 	private Button idRegistrarAvionHangar;
@@ -942,7 +946,7 @@ public class controlador {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error ");
 			alert.setHeaderText("no se pudo programar el vuelo");
-			alert.setContentText("Debe digitar la informacion correspondiente");
+			alert.setContentText("Debe diligenciar todos los campos correspondientes");
 			alert.showAndWait();
 		}
 	}
@@ -1006,24 +1010,7 @@ public class controlador {
 		
 	}
 
-	@FXML
-	void modificarsolicitudesaprobadas(ActionEvent event) {
-		// 1 capa
-		pneProgramarVuelo.setVisible(false);
-		pneConsultas.setVisible(false);
-		pneRegistros.setVisible(false);
-		anpMenusVuelos.setVisible(true);
-		anpMenuRegistros.setVisible(false);
-		// 2 capa
-		paneAerolineaAgendarVuelo.setVisible(false);
-		paneSolicitudesAerolinea.setVisible(false);
-		paneModificarVueloAerolinea.setVisible(true);
-		
-		//Metodos
-		String idvuelo=txfvueloSolicitudesAprobadas.getText();
-		
-		
-	}
+
 
 	@FXML
 	void hiperlinkSolicitudesRegresar(ActionEvent event) {
@@ -1123,7 +1110,7 @@ public class controlador {
 				txfLicenciaModificarPiloto.clear();
 				txfHoravuelosacumuladosModificar.clear();
 				datepickerModificarVuelo.setValue(null);
-				;
+				
 				// cargar los datos en el menu
 
 				txfNombrePilotoModificar.setText(nombre);
@@ -1624,12 +1611,167 @@ public class controlador {
 	}
 
 	// AGENDA AEROPUERTO
+	
+	@FXML
+	void modificarsolicitudesaprobadas(ActionEvent event) {
+		//Metodos
+		String idvuelo=txfvueloSolicitudesAprobadas.getText();
+		if(idvuelo!="") {
+			conexionbd conexion= new conexionbd();
+			if(conexion.verificarvuelo(idvuelo)){
+				//Cambiar de vista
+				// 1 capa
+				pneProgramarVuelo.setVisible(false);
+				pneConsultas.setVisible(false);
+				pneRegistros.setVisible(false);
+				anpMenusVuelos.setVisible(true);
+				anpMenuRegistros.setVisible(false);
+				// 2 capa
+				paneAerolineaAgendarVuelo.setVisible(false);
+				paneSolicitudesAerolinea.setVisible(false);
+				paneModificarVueloAerolinea.setVisible(true);
+				//
+				//darle valor al combo box
+				vueloAL vuelo=conexion.retornarvuelo(idvuelo);
+				cbxTipodevueloModificarVuelo.setValue(vuelo.getTipovuelo());
+				txfIdavionagendarvuelo1.setText(vuelo.getId_avion());
+				txfIdpilotaagendavuelos1.setText(vuelo.getPiloto());
+				txfIdcopilotoAgendavuelo1.setText(vuelo.getCopiloto());
+				LocalDate date = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(vuelo.getFecha()));
+				datepickFechaAgenda1.setValue(date);
+				
+				//
+				SpinnerValueFactory<Integer> value=new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
+				SpinnerValueFactory<Integer> value2=new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
+				spinnerHoraagendavuelo1.setValueFactory(value);
+				value.setValue(Integer.parseInt(vuelo.getHora()));
+				spinnerHoraagendavuelo21.setValueFactory(value2);
+				value2.setValue(Integer.parseInt(vuelo.getMinutos()));
+				
+				
+				
+			}else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText("No se encontro informacion del vuelo digitado");
+				alert.setContentText("Ingrese la informacion correspondiente y luego pulse modificar");
+				alert.showAndWait();
+			}
+			
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("No debe dejar el campo idvuelo vacio");
+			alert.setContentText("Digite un Id de vuelo valido");
+			alert.showAndWait();
+		}
+		
+		
+		
+		
+	}
+	
 
 	@FXML
 	void btnModificarAgendaVuelos(ActionEvent event) {
-		paneAgendaVuelos.setVisible(false);
-		paneModificarAgenda.setVisible(true);
-		paneSolicitudesCambio.setVisible(false);
+		
+		if(txfAgendaVuelos1.getText()!="") {
+			conexionbd conexion=new conexionbd();
+			if(conexion.verificarvuelo(txfAgendaVuelos1.getText())) {
+				paneAgendaVuelos.setVisible(false);
+				paneModificarAgenda.setVisible(true);
+				paneSolicitudesCambio.setVisible(false);
+				//
+				txfVueloSeleccionadoModificar.setText(txfAgendaVuelos1.getText());
+				vueloAL vuelo=conexion.retornarvuelo(txfAgendaVuelos1.getText());
+				Date fecha=vuelo.getFecha();
+				String hora=vuelo.getHora();
+				txfVueloSeleccionadoModificar.setText(txfAgendaVuelos1.getText());
+				//pasar la fecha a localdate
+				//LocalDate fechaNueva = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				//datepickFechaModificarVuelos.setValue(fechaNueva);
+				LocalDate date = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(fecha));
+				datepickFechaModificarVuelos.setValue(date);
+				
+				String[] parts = hora.split(",");
+				String part1 = parts[0];
+				String part2 = parts[1];
+				int horas=Integer.parseInt(part1);
+				int minutos=Integer.parseInt(part2);
+				
+				SpinnerValueFactory<Integer> value=new SpinnerValueFactory.IntegerSpinnerValueFactory(0,23);
+				spinnerHoraModificaVuelo1.setValueFactory(value);
+			
+			
+				SpinnerValueFactory<Integer> value2=new SpinnerValueFactory.IntegerSpinnerValueFactory(0,59);
+				spinnerHoraModificaVuelo11.setValueFactory(value2);
+				//por corregir
+				//construccion
+				
+				
+				limpiarmodificarvueloaero();
+				cargarvuelomodificarvueloaero();
+				
+			}
+			else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Errr");
+				alert.setHeaderText("No se encontro informacion del vuelo digitado");
+				alert.setContentText("Ingrese la informacion correspondiente y luego pulse modificar");
+				alert.showAndWait();
+			}
+			
+		
+		}
+		else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Campos vacios");
+			alert.setHeaderText("Debe digitar el Id del vuelo");
+			alert.setContentText("Ingrese la informacion correspondiente y luego pulse modificar");
+			alert.showAndWait();
+		}
+		
+		
+	}
+	
+	@FXML
+	void btnAeropuertoModificarVuelos(ActionEvent event) {
+		
+		LocalDate fechadatepicker=datepickFechaModificarVuelos.getValue();
+		String fecha=fechadatepicker.toString();
+		int hora=spinnerHoraModificaVuelo1.getValue();
+		int minutos=spinnerHoraModificaVuelo11.getValue();
+		
+		conexionbd conexion=new conexionbd();
+		if(!conexion.validarhoravuelo(fecha,hora, minutos)) {
+			String tipovuelo=txfVueloSeleccionadoModificar.getText();
+			if(tipovuelo!="" && datepickFechaModificarVuelos.getValue()!=null && spinnerHoraModificaVuelo1.getValue()!=null
+					&& spinnerHoraModificaVuelo11.getValue()!=null) {
+				
+				if(conexion.modificarvuelo(tipovuelo,datepickFechaModificarVuelos.getValue(),spinnerHoraModificaVuelo1.getValue(),
+						spinnerHoraModificaVuelo11.getValue())) {
+					conexion.modificarvuelo(tipovuelo,datepickFechaModificarVuelos.getValue(),spinnerHoraModificaVuelo1.getValue(),
+							spinnerHoraModificaVuelo11.getValue());
+				};
+				 
+				limpiarmodificarvueloaero();
+				cargarvuelomodificarvueloaero();
+				
+			}
+			
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error ");
+			alert.setHeaderText("Fecha no disponible");
+			alert.setContentText("Debe escoger otra fecha ");
+			alert.showAndWait();
+		}
+		
+
+	}
+	
+	public controlador() {
+		// TODO Auto-generated constructor stub
 	}
 
 	@FXML
@@ -1637,10 +1779,7 @@ public class controlador {
 
 	}
 
-	@FXML
-	void btnAeropuertoModificarVuelos(ActionEvent event) {
-
-	}
+	
 
 	@FXML
 	void hiperlinkRegresarAgendaVuelos(ActionEvent event) {
@@ -1670,6 +1809,10 @@ public class controlador {
 		paneAgendaVuelos.setVisible(true);
 		paneModificarAgenda.setVisible(false);
 		paneSolicitudesCambio.setVisible(false);
+		
+		limpiarvueloaeropuerto();
+		cargarvueloscomoaeropuerto();
+		
 	}
 
 	@FXML
@@ -2472,17 +2615,21 @@ public class controlador {
 	private TableColumn numeroavion, columidavion, columntipoavion, columnmodeloavion, columnpropulsion;
 	
 	
-
 	
+	//construccion
+	@FXML
+	private TableView<vuelo> tbleviewModificarVuelos1;
+	@FXML
+	private TableColumn numero_vueloma,columdvuelo,columfecha,columhoraaero,columtipodevuelo;
+	
+	//construccion
 	//TIME SPINNER
 	@FXML
-	private Spinner<Integer> spinnerHoraagendavuelo,spinnerHoraagendavuelo2;
+	private Spinner<Integer> spinnerHoraagendavuelo,spinnerHoraagendavuelo2,spinnerHoraModificaVuelo1,spinnerHoraModificaVuelo11;
 	
 	
 	@FXML
 	private TableView<vuelo> tblevieSolicitudesaprobados,tbleviewAgendaVuelos;
-	
-	
 	
 		
 	@FXML
@@ -2502,9 +2649,10 @@ public class controlador {
 		spinnerHoraagendavuelo.setValueFactory(value);
 		
 		SpinnerValueFactory<Integer> value2=new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
+		
 		spinnerHoraagendavuelo2.setValueFactory(value2);
 		
-
+		//Menu aerolinea modificar vuelo
 		
 		
 		
@@ -2523,6 +2671,12 @@ public class controlador {
 		//combo box programar vuelo
 		cbxRipodevuelo.getItems().add("LLegada");
 		cbxRipodevuelo.getItems().add("Salida");
+		
+		//Combo box modificar vuelo
+		cbxTipodevueloModificarVuelo.getItems().add("llegada");
+		cbxTipodevueloModificarVuelo.getItems().add("Salida");
+		
+		
 
 
 		// ******************TABLEVIEW MENU
@@ -2582,6 +2736,16 @@ public class controlador {
 		colfechavuelo.setCellValueFactory(new PropertyValueFactory<>("fecha"));
 		colhoravuelo.setCellValueFactory(new PropertyValueFactory<>("hora"));
 		coltipovuelo.setCellValueFactory(new PropertyValueFactory<>("tipovuelo"));
+		
+		//modificar vuelos
+		//construccion
+		tbleviewModificarVuelos1.setEditable(true);
+		numero_vueloma.setCellValueFactory(new PropertyValueFactory<>("numero"));
+		columdvuelo.setCellValueFactory(new PropertyValueFactory<>("idvuelo"));
+		columfecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+		columhoraaero.setCellValueFactory(new PropertyValueFactory<>("hora"));
+		columtipodevuelo.setCellValueFactory(new PropertyValueFactory<>("tipovuelo"));
+
 
 	}
 
@@ -2601,6 +2765,25 @@ public class controlador {
 					conexion.cargarsolicitudesvuelos().get(i).getTipovuelo()));
 			
 		}
+		
+	}
+	
+	public void cargarvuelomodificarvueloaero() {
+		conexionbd conexion= new conexionbd();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		for (int i = 0; i < conexion.cargarsolicitudesvuelos().size(); i++) {
+			tbleviewModificarVuelos1.getItems().add(new vuelo(
+					(i+1),
+					conexion.cargarsolicitudesvuelos().get(i).getIdvuelo(),
+					sdf.format(conexion.cargarsolicitudesvuelos().get(i).getFecha()),
+					conexion.cargarsolicitudesvuelos().get(i).getHora(),
+					conexion.cargarsolicitudesvuelos().get(i).getTipovuelo()));
+			
+		}
+	}
+	
+	public void limpiarmodificarvueloaero() {
+		tbleviewModificarVuelos1.getItems().clear();
 		
 	}
 	
@@ -2956,3 +3139,4 @@ public class controlador {
 
 	}
 }
+dasd

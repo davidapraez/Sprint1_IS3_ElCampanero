@@ -567,9 +567,9 @@
                      </children></Pane>
                   <Pane fx:id="paneModificarAgenda" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
-                        <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="11.0" prefHeight="465.0" prefWidth="513.0" style="-fx-background-color: #2F2B43;">
+                        <VBox alignment="CENTER" layoutX="19.0" layoutY="11.0" prefHeight="465.0" prefWidth="513.0" style="-fx-background-color: #2F2B43;">
                            <children>
-                              <Pane maxWidth="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
+                              <Pane maxWidth="-Infinity" minHeight="-Infinity" prefHeight="38.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
                                  <children>
                                     <Label layoutX="110.0" layoutY="5.0" prefHeight="30.0" prefWidth="180.0" text="Modificar Agenda" textFill="WHITE">
                                        <font>
@@ -578,26 +578,36 @@
                                     </Label>
                                  </children>
                               </Pane>
-                              <TableView fx:id="tbleviewModificarVuelos" prefHeight="340.0" prefWidth="513.0">
+                              <TableView fx:id="tbleviewModificarVuelos1" prefHeight="341.0" prefWidth="513.0">
                                  <columns>
-                                    <TableColumn prefWidth="62.0" text="N°" />
-                                    <TableColumn prefWidth="85.0" text="Id-vuelo" />
-                                    <TableColumn prefWidth="107.0" text="Fecha" />
-                                    <TableColumn prefWidth="107.0" text="Hora" />
-                                    <TableColumn prefWidth="151.0" text="Llegada/Salida" />
+                                    <TableColumn fx:id="numero_vueloma" prefWidth="62.0" text="N°" />
+                                    <TableColumn fx:id="columdvuelo" prefWidth="85.0" text="Id-vuelo" />
+                                    <TableColumn fx:id="columfecha" prefWidth="107.0" text="Fecha" />
+                                    <TableColumn fx:id="columhoraaero" prefWidth="107.0" text="Hora" />
+                                    <TableColumn fx:id="columtipodevuelo" prefWidth="151.0" text="Llegada/Salida" />
                                  </columns>
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </TableView>
-                              <HBox prefHeight="63.0" prefWidth="513.0" spacing="10.0">
+                              <HBox prefHeight="63.0" prefWidth="513.0" spacing="130.0">
                                  <children>
-                                    <TextField fx:id="txfVueloSeleccionadoModificar" prefHeight="25.0" prefWidth="188.0" promptText="Id-Vuelo seleccionado" />
-                                    <DatePicker fx:id="datepickFechaModificarVuelos" promptText="dd/mm/yyyy" />
-                                    <Spinner fx:id="spinnerHoraModificaVuelo" editable="true" />
+                                    <TextField fx:id="txfVueloSeleccionadoModificar" editable="false" prefHeight="25.0" prefWidth="188.0" promptText="Id-Vuelo seleccionado" />
+                                    <DatePicker fx:id="datepickFechaModificarVuelos" prefHeight="25.0" prefWidth="187.0" promptText="dd/mm/yyyy" />
                                  </children>
                                  <padding>
-                                    <Insets left="10.0" right="10.0" top="15.0" />
+                                    <Insets left="10.0" right="10.0" top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="391.0" prefHeight="63.0" prefWidth="513.0" spacing="10.0">
+                                 <children>
+                                    <TextField editable="false" promptText="Hora" />
+                                    <Spinner fx:id="spinnerHoraModificaVuelo1" editable="true" prefHeight="25.0" prefWidth="123.0" />
+                                    <TextField editable="false" promptText="Minutos" />
+                                    <Spinner fx:id="spinnerHoraModificaVuelo11" editable="true" layoutX="20.0" layoutY="25.0" prefHeight="25.0" prefWidth="118.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" top="5.0" />
                                  </padding>
                               </HBox>
                               <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="513.0" spacing="50.0">
@@ -1311,7 +1321,7 @@
                   </Pane>
                </children>
             </AnchorPane>
-            <Pane fx:id="pneProgramarVuelo" layoutX="250.0" prefHeight="500.0" prefWidth="551.0">
+            <Pane fx:id="pneProgramarVuelo" layoutX="250.0" prefHeight="500.0" prefWidth="551.0" visible="false">
                <children>
                   <Pane layoutX="75.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
                      <children>
@@ -1575,7 +1585,7 @@
                   </Pane>
                </children>
             </Pane>
-            <AnchorPane fx:id="anpMenusVuelos" layoutX="250.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
+            <AnchorPane fx:id="anpMenusVuelos" layoutX="250.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;">
                <children>
                   <Pane fx:id="paneAerolineaAgendarVuelo" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
@@ -1694,7 +1704,7 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneSolicitudesAerolinea" prefHeight="500.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneSolicitudesAerolinea" prefHeight="500.0" prefWidth="551.0">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="474.0" prefWidth="513.0" spacing="10.0" style="-fx-background-color: #2F2B43;">
                            <children>
