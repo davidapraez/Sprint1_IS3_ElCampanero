@@ -1280,23 +1280,23 @@ public class controlador {
 
 				} else {
 					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setTitle("Error ");
+					alert.setTitle("Error");
 					alert.setHeaderText("Registro no guardado");
-					alert.setContentText("Los campos no deben estar vacios");
+					alert.setContentText("Los campos no deben estar vacíos");
 					alert.showAndWait();
 				}
 
 			} else {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Error ");
-				alert.setHeaderText("Debe seleccionar un tipó de avion");
-				alert.setContentText("Elija una opcion correcta en tipo de avion");
+				alert.setTitle("Error");
+				alert.setHeaderText("Debe seleccionar un tipo de avión.");
+				alert.setContentText("Elija una opcion correcta en Tipo de avión.");
 				alert.showAndWait();
 			}
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
+			alert.setTitle("Error");
 			alert.setHeaderText("No se encontro a la aerolinea");
 			alert.setContentText("Debe estar logeado con el id valido de una aerolinea");
 			alert.showAndWait();
@@ -1333,9 +1333,9 @@ public class controlador {
 			
 		}else {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Error ");
+			alert.setTitle("Error.");
 			alert.setHeaderText("Debe seleccionar el tipo de avion");
-			alert.setContentText("Debe llenar toda la informacion y no dejar campos vacios");
+			alert.setContentText("Debe diligenciar toda la informacion sin dejar campos vacios");
 			alert.showAndWait();
 		}
 		
@@ -3139,4 +3139,3 @@ public class controlador {
 
 	}
 }
-dasd
