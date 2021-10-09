@@ -2323,9 +2323,9 @@ public class controlador {
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
-			alert.setHeaderText("No se encontraron los datos del usuario");
-			alert.setContentText("Verifique la informacion");
+			alert.setTitle("Error.");
+			alert.setHeaderText("No se encontraron los datos del usuario.");
+			alert.setContentText("Verifique la informacion e inténtelo de nuevo.");
 			alert.showAndWait();
 		}
 
