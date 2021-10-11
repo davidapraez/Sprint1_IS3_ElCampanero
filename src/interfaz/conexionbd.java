@@ -652,39 +652,39 @@ public class conexionbd {
 		}
 
 	}
-	
+
 	public boolean verificarvuelo(String id) {
-		boolean validado=false;
+		boolean validado = false;
 		java.sql.Statement st = conexionbasededatos();
 		String sql = "SELECT * from vuelo ;";
-			
+
 		ResultSet resultSet;
 		try {
 			resultSet = st.executeQuery(sql);
 			while (resultSet.next()) {
 				String idavion_bd = resultSet.getString("idvuelo");
-				
+
 				if (idavion_bd.equals(id)) {
 					validado = true;
 				}
-			
-			}} catch (SQLException e) {
+
+			}
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return validado;
 
-		}
-	
+	}
+
 	public vueloAL retornarvuelo(String id) {
 
-		
 		java.sql.Statement st = conexionbasededatos();
 		String sql = "SELECT * from vuelo ;";
 		ResultSet resultSet;
-		
-		vueloAL vuelo=null;
+
+		vueloAL vuelo = null;
 		try {
 			resultSet = st.executeQuery(sql);
 			while (resultSet.next()) {
@@ -692,13 +692,13 @@ public class conexionbd {
 				if (idvuelo.equals(id)) {
 					Date fecha = resultSet.getDate("fecha");
 					String hora = resultSet.getString("hora");
-					String minutos=resultSet.getString("minutos");
+					String minutos = resultSet.getString("minutos");
 					String tipovuelo = resultSet.getString("tipo_de_vuelo");
-					String piloto=resultSet.getString("piloto_cedula");
-					String copiloto= resultSet.getString("copiloto");
-					String avion= resultSet.getString("id_avion");
-					
-					vuelo=new vueloAL(idvuelo,fecha,hora,tipovuelo,minutos,avion,piloto,copiloto);
+					String piloto = resultSet.getString("piloto_cedula");
+					String copiloto = resultSet.getString("copiloto");
+					String avion = resultSet.getString("id_avion");
+
+					vuelo = new vueloAL(idvuelo, fecha, hora, tipovuelo, minutos, avion, piloto, copiloto);
 				}
 			}
 
@@ -706,19 +706,18 @@ public class conexionbd {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return vuelo;
 
-		
 	}
-	
-	public boolean modificarvuelo(String id, LocalDate fecha,int hora, int minutos) {
-		boolean validar=false;
+
+	public boolean modificarvuelo(String id, LocalDate fecha, int hora, int minutos) {
+		boolean validar = false;
 		java.sql.Statement st = conexionbasededatos();
-		String sql = "update vuelo set fecha='"+fecha+"',hora='"+hora+"',minutos='"+minutos+"' where "
-				+ "idvuelo='"+id+"';";
-		//update vuelo set fecha='20-05-2021',hora='5',minutos='55'
-		//where idvuelo='20';
+		String sql = "update vuelo set fecha='" + fecha + "',hora='" + hora + "',minutos='" + minutos + "' where "
+				+ "idvuelo='" + id + "';";
+		// update vuelo set fecha='20-05-2021',hora='5',minutos='55'
+		// where idvuelo='20';
 		try {
 			st.execute(sql);
 			st.close();
@@ -726,15 +725,32 @@ public class conexionbd {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		return validar;
-		
+
 	}
-	
-	
-	
+
+	public boolean modificarvueloaerolinea(String id, LocalDate fecha, int hora, int minutos, String tipodevuelo,
+			String idavion, String piloto, String copiloto) {
+		boolean validar = false;
+		java.sql.Statement st = conexionbasededatos();
+		
+		String sql = "update vuelo set fecha='"+fecha+ "',hora='" + hora + "',minutos='" + minutos
+				+ "',tipo_de_vuelo='" + tipodevuelo + "',id_avion='" + idavion + "',piloto_cedula='" + piloto
+				+ "',copiloto='" + copiloto + "' where" + " idvuelo='" + id + "';";
+
+
+		try {
+			st.execute(sql);
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return validar;
+
+	}
 
 	public String getIdaerolinea(String usuarioaerolinea) {
 		String idaerolinea = "";
@@ -806,11 +822,11 @@ public class conexionbd {
 		return avion;
 
 	}
-	
+
 	public void eliminarvuelo(String idvuelo) {
 		java.sql.Statement st = conexionbasededatos();
 		String sql = "delete from vuelo where idvuelo='" + idvuelo + "';";
-		
+
 		try {
 			st.execute(sql);
 			st.close();
@@ -819,48 +835,41 @@ public class conexionbd {
 			alert.setHeaderText("Registro Eliminado");
 			alert.setContentText("Se elimino satisfactoriamente el vuelo");
 			alert.showAndWait();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
-	
+
 	public ArrayList<vueloAL> cargarsolicitudesvuelos() {
 		ArrayList<vueloAL> solicitudes = new ArrayList<>();
 		java.sql.Statement st = conexionbasededatos();
 		String sql = "SELECT * FROM vuelo ;";
-		
+
 		try {
 			ResultSet resultSet = st.executeQuery(sql);
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				String idvuelo = resultSet.getString("idvuelo");
 				String tipovuelo = resultSet.getString("tipo_de_vuelo");
 				Date fecha = resultSet.getDate("fecha");
 				String hora = resultSet.getString("hora");
 				String minutos = resultSet.getString("minutos");
-				
-				String horas=hora+":"+minutos;
-				solicitudes.add(new vueloAL(idvuelo,fecha,horas,tipovuelo));
-				
-				
-				
-				
+
+				String horas = hora + ":" + minutos;
+				solicitudes.add(new vueloAL(idvuelo, fecha, horas, tipovuelo));
+
 			}
-			
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return solicitudes;
-		
+
 	}
-	
 
 	public ArrayList<avionAL> cargaraviones(String usuarioaerolinea) {
 		ArrayList<avionAL> aviones = new ArrayList<>();
@@ -974,7 +983,7 @@ public class conexionbd {
 			try {
 				st.execute(sql);
 				st.close();
-				
+
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Informacion ");
 				alert.setHeaderText("Registro eliminado");
@@ -993,41 +1002,41 @@ public class conexionbd {
 			alert.showAndWait();
 		}
 
-
 	}
-	
+
 	public int buscaridvuelo() {
-		int numeromayor=0;
+		int numeromayor = 0;
 		java.sql.Statement st = conexionbasededatos();
-		String sql="select * from vuelo";
+		String sql = "select * from vuelo";
 		try {
 			ResultSet resultSet = st.executeQuery(sql);
-			while(resultSet.next()) {
-				int numero=Integer.parseInt(resultSet.getString("idvuelo"));
-				if (numero>numeromayor) {
-					numeromayor=numero;
+			while (resultSet.next()) {
+				int numero = Integer.parseInt(resultSet.getString("idvuelo"));
+				if (numero > numeromayor) {
+					numeromayor = numero;
 				}
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return numeromayor;
 	}
-	
+
 	public boolean validarhoravuelo(String fecha1, int hora, int minutos) {
-		boolean disponible=false;
-		//LocalDate fecha = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(fecha1));
+		boolean disponible = false;
+		// LocalDate fecha = LocalDate.parse(new
+		// SimpleDateFormat("yyyy-MM-dd").format(fecha1));
 		try {
 			java.sql.Statement st = conexionbasededatos();
-			String sql="SELECT * FROM vuelo WHERE hora ="+"'"+hora+"'"+" AND fecha ="+"'"+fecha1+"'";
-			ResultSet result=st.executeQuery(sql);
-			while(result.next()) {
+			String sql = "SELECT * FROM vuelo WHERE hora =" + "'" + hora + "'" + " AND fecha =" + "'" + fecha1 + "'";
+			ResultSet result = st.executeQuery(sql);
+			while (result.next()) {
 				disponible = true;
-}
-	
+			}
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1035,32 +1044,31 @@ public class conexionbd {
 		return disponible;
 	}
 
-	
-	public boolean programarvueloaerolinea(String tipovuelo,String idavion,String idpiloo, String copiloto,LocalDate fecha
-			,int hora, int minutos) {
-		boolean programado=false;
+	public boolean programarvueloaerolinea(String tipovuelo, String idavion, String idpiloo, String copiloto,
+			LocalDate fecha, int hora, int minutos) {
+		boolean programado = false;
 		java.sql.Statement st = conexionbasededatos();
-		if(!validarhoravuelo(fecha.toString(),hora,minutos)) {
-			int idvuelo=buscaridvuelo()+1;
-			String sql="insert into vuelo (idvuelo,tipo_de_vuelo,fecha,hora,minutos,piloto_cedula,copiloto,id_avion)"+
-			  "values ('"+idvuelo+"','"+tipovuelo+"','"+fecha+"',"+hora+","+minutos+",'"+idpiloo+"','"+copiloto+"','"+idavion+"');";
-			
+		if (!validarhoravuelo(fecha.toString(), hora, minutos)) {
+			int idvuelo = buscaridvuelo() + 1;
+			String sql = "insert into vuelo (idvuelo,tipo_de_vuelo,fecha,hora,minutos,piloto_cedula,copiloto,id_avion)"
+					+ "values ('" + idvuelo + "','" + tipovuelo + "','" + fecha + "'," + hora + "," + minutos + ",'"
+					+ idpiloo + "','" + copiloto + "','" + idavion + "');";
+
 			try {
 				st.execute(sql);
 				st.close();
-				programado=true;
+				programado = true;
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Informacion ");
 				alert.setHeaderText("Vuelo programado exitosamente");
 				alert.setContentText("Se registro el vuelo satisfactoriamente");
 				alert.showAndWait();
-				
-				
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else {
+		} else {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Informacion ");
 			alert.setHeaderText("no se pudo programar el vuelo");
@@ -1070,7 +1078,6 @@ public class conexionbd {
 
 		return programado;
 	}
-	
 
 	public void eliminarpiloto(String cedula) {
 		java.sql.Statement st = conexionbasededatos();

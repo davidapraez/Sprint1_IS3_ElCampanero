@@ -16,25 +16,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			System.out.println("holaa");
-			System.out.println("holaa");
-			System.out.println("holaa");
-			System.out.println("holaa");
-			System.out.println("holaa");
-			System.out.println("David");
-			System.out.println("Juan");
-			System.out.println("Pablo");
-			
-			
-			System.out.println("1");
-			System.out.println("2");
-			System.out.println("3");
-			System.out.println("4");
-			System.out.println("5");
-			System.out.println("6");
-
-			
-			
+	
 			
 		} catch (Exception e) {
 			e.printStackTrace();

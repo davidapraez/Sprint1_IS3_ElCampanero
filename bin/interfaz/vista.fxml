@@ -29,7 +29,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.controlador">
 	<children>
-		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;" visible="false">
+		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;">
          <children>
             <ImageView fitHeight="507.0" fitWidth="800.0" pickOnBounds="true">
                <image>
@@ -1248,7 +1248,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anpMenuAerolinea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;">
+      <AnchorPane fx:id="anpMenuAerolinea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;" visible="false">
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #393351;" stylesheets="@../Estilos/estilos_menuaerolinea.css">
                <children>
@@ -1585,7 +1585,7 @@
                   </Pane>
                </children>
             </Pane>
-            <AnchorPane fx:id="anpMenusVuelos" layoutX="250.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;">
+            <AnchorPane fx:id="anpMenusVuelos" layoutX="250.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
                <children>
                   <Pane fx:id="paneAerolineaAgendarVuelo" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
@@ -1704,7 +1704,7 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneSolicitudesAerolinea" prefHeight="500.0" prefWidth="551.0">
+                  <Pane fx:id="paneSolicitudesAerolinea" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="474.0" prefWidth="513.0" spacing="10.0" style="-fx-background-color: #2F2B43;">
                            <children>
@@ -1839,7 +1839,7 @@
                                     <Spinner fx:id="spinnerHoraagendavuelo21" editable="true" prefHeight="25.0" prefWidth="165.0" />
                                  </children>
                               </HBox>
-                              <Button fx:id="btnSolicitaragendamientoAgendavuelo1" mnemonicParsing="false" onAction="#solicitaragendaaerolinea" prefHeight="30.0" prefWidth="165.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Solicitar agendamiento">
+                              <Button fx:id="btnSolicitaragendamientoAgendavuelo1" mnemonicParsing="false" onAction="#solicitaragendaaerolinea2" prefHeight="30.0" prefWidth="165.0" styleClass="button_menu_aeropuerto2" stylesheets="@../Estilos/estilos_menuaerolinea.css" text="Solicitar agendamiento">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
