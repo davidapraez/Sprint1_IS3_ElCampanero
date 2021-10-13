@@ -896,7 +896,7 @@ public class controlador {
 
 	@FXML
 	void eliminarvuelosaprobadas(ActionEvent event) {
-
+		
 		String idvuelo = txfvueloSolicitudesAprobadas.getText();
 		conexionbd conexion = new conexionbd();
 
@@ -1598,6 +1598,7 @@ public class controlador {
 		limpiarvueloaeropuerto();
 		cargarvueloscomoaeropuerto();
 
+
 	}
 
 	@FXML
@@ -1690,25 +1691,17 @@ public class controlador {
 				paneAgendaVuelos.setVisible(false);
 				paneModificarAgenda.setVisible(true);
 				paneSolicitudesCambio.setVisible(false);
-				//
 				txfVueloSeleccionadoModificar.setText(txfAgendaVuelos1.getText());
 				vueloAL vuelo = conexion.retornarvuelo(txfAgendaVuelos1.getText());
 				Date fecha = vuelo.getFecha();
-				//String hora = vuelo.getHora();
 				txfVueloSeleccionadoModificar.setText(txfAgendaVuelos1.getText());
 				// pasar la fecha a localdate
-				// LocalDate fechaNueva =
-				// fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-				// datepickFechaModificarVuelos.setValue(fechaNueva);
 				LocalDate date = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(fecha));
 				datepickFechaModificarVuelos.setValue(date);
 				int hora=Integer.parseInt(vuelo.getHora());
 				int minutos=Integer.parseInt(vuelo.getMinutos());
-				//String[] parts = hora.split(",");
-				//String part1 = parts[0];
-				//String part2 = parts[1];
-				///int horas = Integer.parseInt(part1);
-				//int minutos = Integer.parseInt(part2);
+
+				
 
 				SpinnerValueFactory<Integer> value = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
 				spinnerHoraModificaVuelo1.setValueFactory(value);
@@ -1717,8 +1710,6 @@ public class controlador {
 				SpinnerValueFactory<Integer> value2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
 				spinnerHoraModificaVuelo11.setValueFactory(value2);
 				value2.setValue(minutos);
-				// por corregir
-				// construccion
 
 				limpiarmodificarvueloaero();
 				cargarvuelomodificarvueloaero();
@@ -1807,19 +1798,24 @@ public class controlador {
 	@FXML
 	void btnAeropuertoModificarVuelos(ActionEvent event) {
 
-		LocalDate fechadatepicker = datepickFechaModificarVuelos.getValue();
-		String fecha = fechadatepicker.toString();
-		if(spinnerHoraModificaVuelo1.getValue()!=null && spinnerHoraModificaVuelo11.getValue()!=null ) {
+		
+		
+		if(spinnerHoraModificaVuelo1.getValue()!=null && spinnerHoraModificaVuelo11.getValue()!=null && datepickFechaModificarVuelos.getValue()!=null ) {
+			LocalDate fechadatepicker = datepickFechaModificarVuelos.getValue();
+			String fecha = fechadatepicker.toString();
 			int hora = spinnerHoraModificaVuelo1.getValue();
 			int minutos = spinnerHoraModificaVuelo11.getValue();
 			conexionbd conexion = new conexionbd();
 			String tipovuelo = txfVueloSeleccionadoModificar.getText();
+			System.out.println("paso 1");
+			
 			
 			if (tipovuelo != "" && datepickFechaModificarVuelos.getValue() != null
 					&& spinnerHoraModificaVuelo1.getValue() !=null && spinnerHoraModificaVuelo11.getValue() !=null) 
 			{
+				System.out.println("paso 2");
 				if (!conexion.validarhoravuelo(fecha, hora, minutos)) {
-
+					System.out.println("paso 3");
 					conexion.modificarvuelo(tipovuelo, datepickFechaModificarVuelos.getValue(),
 							spinnerHoraModificaVuelo1.getValue(), spinnerHoraModificaVuelo11.getValue());
 					
@@ -1850,14 +1846,13 @@ public class controlador {
 			alert.showAndWait();
 			
 		}
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error ");
+			alert.setHeaderText("Campos vacios");
+			alert.setContentText("Debe digitar toda la informacion");
+			alert.showAndWait();
 		}
-		
-
-		
-			
-		
-			
-		
 
 	}
 
@@ -1868,6 +1863,24 @@ public class controlador {
 	@FXML
 	void btnEliminarAgendaVuelos(ActionEvent event) {
 		
+		
+		
+		
+		String idvuelo = txfAgendaVuelos1.getText();
+		conexionbd conexion = new conexionbd();
+
+		if (idvuelo !="") {
+			conexion.eliminarvuelo(idvuelo);
+			limpiarvueloaeropuerto();
+			cargarvueloscomoaeropuerto();
+			txfAgendaVuelos1.clear();
+		} else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error ");
+			alert.setHeaderText("No digito ningun ID de vuelo");
+			alert.setContentText("Haga clic en Aceptar para volver a la agenda de vuelos.");
+			alert.showAndWait();
+		}
 		
 		
 

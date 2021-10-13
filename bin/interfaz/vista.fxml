@@ -29,7 +29,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.controlador">
 	<children>
-		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;" visible="false">
+		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;">
          <children>
             <ImageView fitHeight="507.0" fitWidth="800.0" pickOnBounds="true">
                <image>
@@ -79,7 +79,7 @@
             </AnchorPane>
          </children>
 		</AnchorPane>
-      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;">
+      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;" visible="false">
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #393351;">
                <children>
@@ -522,7 +522,7 @@
             </Pane>
       		<AnchorPane fx:id="anpMenusAgenda" layoutX="249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
                <children>
-                  <Pane fx:id="paneAgendaVuelos" prefHeight="500.0" prefWidth="551.0">
+                  <Pane fx:id="paneAgendaVuelos" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="474.0" prefWidth="513.0" spacing="10.0" style="-fx-background-color: #2F2B43;">
                            <children>
@@ -602,9 +602,9 @@
                               <HBox layoutX="10.0" layoutY="391.0" prefHeight="63.0" prefWidth="513.0" spacing="10.0">
                                  <children>
                                     <TextField editable="false" promptText="Hora" />
-                                    <Spinner fx:id="spinnerHoraModificaVuelo1" editable="true" prefHeight="25.0" prefWidth="123.0" />
+                                    <Spinner fx:id="spinnerHoraModificaVuelo1" prefHeight="25.0" prefWidth="123.0" />
                                     <TextField editable="false" promptText="Minutos" />
-                                    <Spinner fx:id="spinnerHoraModificaVuelo11" editable="true" layoutX="20.0" layoutY="25.0" prefHeight="25.0" prefWidth="118.0" />
+                                    <Spinner fx:id="spinnerHoraModificaVuelo11" layoutX="20.0" layoutY="25.0" prefHeight="25.0" prefWidth="118.0" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" right="10.0" top="5.0" />
@@ -877,9 +877,9 @@
                   				</VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneModificarEmpleado" prefHeight="500.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneModificarEmpleado" prefHeight="500.0" prefWidth="551.0">
                      <children>
-                        <VBox fx:id="vbxModificarUsuarioTableView" alignment="CENTER" layoutX="22.0" layoutY="24.0" prefHeight="452.0" prefWidth="507.0" spacing="10.0" visible="false">
+                        <VBox fx:id="vbxModificarUsuarioTableView" alignment="CENTER" layoutX="22.0" layoutY="24.0" prefHeight="452.0" prefWidth="507.0" spacing="10.0">
                            <children>
                               <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
                                  <children>
@@ -1705,7 +1705,7 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneSolicitudesAerolinea" prefHeight="500.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneSolicitudesAerolinea" prefHeight="500.0" prefWidth="551.0">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="474.0" prefWidth="513.0" spacing="10.0" style="-fx-background-color: #2F2B43;">
                            <children>
