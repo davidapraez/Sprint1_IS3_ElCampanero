@@ -87,9 +87,9 @@ public class conexionbd {
 			if (!buscarusuarioaeropuerto(usuario)) {
 				st.execute(sql);
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Guardado ");
-				alert.setHeaderText("Registro Exitoso");
-				alert.setContentText("Se registro satisfactoriamente el usuario");
+				alert.setTitle("Guardado");
+				alert.setHeaderText("Registro exitoso");
+				alert.setContentText("Se registró satisfactoriamente el usuario.");
 				alert.showAndWait();
 
 			} else {
@@ -480,8 +480,8 @@ public class conexionbd {
 			} else {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Error");
-				alert.setHeaderText("No se encuentra registrado el hangar");
-				alert.setContentText("Verifique la informacion ");
+				alert.setHeaderText("El hangar digitado no se encuentra registrado.");
+				alert.setContentText("Verifique la información.");
 				alert.showAndWait();
 			}
 
@@ -517,8 +517,8 @@ public class conexionbd {
 
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Error ");
-				alert.setHeaderText("Registro no guardado");
-				alert.setContentText("El id aerolinea o el usuario ya se encuentran registrados");
+				alert.setHeaderText("Registro no guardado.");
+				alert.setContentText("El ID aerolinea o el usuario ya se encuentran registrados");
 				alert.showAndWait();
 			}
 		} catch (SQLException e) {
@@ -578,8 +578,8 @@ public class conexionbd {
 			} else {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Error");
-				alert.setHeaderText("No se encuentra registrado la aerolinea");
-				alert.setContentText("Verifique la informacion ");
+				alert.setHeaderText("La aerolínea no se encuentra registrada.");
+				alert.setContentText("Verifique la información.");
 				alert.showAndWait();
 			}
 
@@ -625,17 +625,17 @@ public class conexionbd {
 				if (!buscaravion(idavion)) {
 					st.execute(sql);
 					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setTitle("Guardado ");
-					alert.setHeaderText("Registro Exitoso");
-					alert.setContentText("Se registro satisfactoriamente el avion");
+					alert.setTitle("Guardado");
+					alert.setHeaderText("Registro exitoso");
+					alert.setContentText("El avión se registró satisfactoriamente.");
 					alert.showAndWait();
 
 				} else {
 
 					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setTitle("Error ");
-					alert.setHeaderText("Registro no guardado");
-					alert.setContentText("El id del avion ya se encuentra registrado");
+					alert.setTitle("Error");
+					alert.setHeaderText("Registro no guardado.");
+					alert.setContentText("El ID del avion ya se encuentra registrado.");
 					alert.showAndWait();
 				}
 			} catch (SQLException e) {
@@ -644,9 +644,9 @@ public class conexionbd {
 			}
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
+			alert.setTitle("Error");
 			alert.setHeaderText("No se pudo registrar el avion");
-			alert.setContentText("No se encontro a la aerolinea del avion");
+			alert.setContentText("No se encontró a la aerolínea del avión");
 			alert.showAndWait();
 		}
 
@@ -831,9 +831,9 @@ public class conexionbd {
 				st.execute(sql);
 				st.close();
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
-				alert.setTitle("Eliminado ");
-				alert.setHeaderText("Registro Eliminado");
-				alert.setContentText("Se elimino satisfactoriamente el vuelo");
+				alert.setTitle("Eliminado");
+				alert.setHeaderText("Registro eliminado");
+				alert.setContentText("El vuelo se eliminó satisfactoriamente.");
 				alert.showAndWait();
 
 			} catch (SQLException e) {
@@ -843,9 +843,9 @@ public class conexionbd {
 
 		}else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Registro no encontrado ");
-			alert.setHeaderText("No se encontro el id del vuelo");
-			alert.setContentText("Dele clic en aceptar e intentelo nuevamente");
+			alert.setTitle("Registro no encontrado");
+			alert.setHeaderText("No se encontro el ID del vuelo");
+			alert.setContentText("Haga clic en Aceptar e inténtelo nuevamente");
 			alert.showAndWait();
 		}
 		
@@ -941,17 +941,17 @@ public class conexionbd {
 			if (buscarpiloto(cedula)) {
 				st.execute(sql);
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Guardado ");
-				alert.setHeaderText("Registro Exitoso");
-				alert.setContentText("Se registro satisfactoriamente al piloto");
+				alert.setTitle("Guardado");
+				alert.setHeaderText("Registro exitoso.");
+				alert.setContentText("Se registro satisfactoriamente al piloto.");
 				alert.showAndWait();
 
 			} else {
 
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Error ");
-				alert.setHeaderText("Registro no guardado");
-				alert.setContentText("No se encontro el piloto");
+				alert.setTitle("Error");
+				alert.setHeaderText("Registro no guardado.");
+				alert.setContentText("No se encontro el piloto.");
 				alert.showAndWait();
 			}
 		} catch (SQLException e) {
@@ -973,9 +973,9 @@ public class conexionbd {
 			st.close();
 
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Informacion ");
-			alert.setHeaderText("Se guardo el registro");
-			alert.setContentText("Se actualizo satisfactoriamente al avion");
+			alert.setTitle("Información");
+			alert.setHeaderText("Se guardó el registro");
+			alert.setContentText("Los datos del avión se ha actualizado satisfactoriamente.");
 			alert.showAndWait();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -994,9 +994,9 @@ public class conexionbd {
 				st.close();
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
-				alert.setTitle("Informacion ");
+				alert.setTitle("Información");
 				alert.setHeaderText("Registro eliminado");
-				alert.setContentText("Se elimino satisfactoriamente al avion");
+				alert.setContentText("El avión se ha eliminado satisfactoriamente.");
 				alert.showAndWait();
 
 			} catch (SQLException e) {
@@ -1005,7 +1005,7 @@ public class conexionbd {
 			}
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Informacion ");
+			alert.setTitle("Información");
 			alert.setHeaderText("Registro no encontrado");
 			alert.setContentText("No se encontro el id del avion a eliminar");
 			alert.showAndWait();
@@ -1092,9 +1092,9 @@ public class conexionbd {
 				st.close();
 				programado = true;
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
-				alert.setTitle("Informacion ");
+				alert.setTitle("Información");
 				alert.setHeaderText("Vuelo programado exitosamente");
-				alert.setContentText("Se registro el vuelo satisfactoriamente");
+				alert.setContentText("El vuelo se ha registrado satisfactoriamente.");
 				alert.showAndWait();
 
 			} catch (SQLException e) {
@@ -1103,9 +1103,9 @@ public class conexionbd {
 			}
 		} else {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Informacion ");
-			alert.setHeaderText("no se pudo programar el vuelo");
-			alert.setContentText("ya se encuentra registrado otro vuelo a la misma hora");
+			alert.setTitle("Informacion");
+			alert.setHeaderText("No se pudo programar el vuelo.");
+			alert.setContentText("Otro vuelo ya se encuentra registrado a la misma hora. Por favor seleccione otra fecha u hora.");
 			alert.showAndWait();
 		}
 
@@ -1120,9 +1120,9 @@ public class conexionbd {
 				st.execute(sql);
 				st.close();
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
-				alert.setTitle("Informacion ");
-				alert.setHeaderText("Registro eliminado");
-				alert.setContentText("Se elimino satisfactoriamente al piloto");
+				alert.setTitle("Información");
+				alert.setHeaderText("Registro eliminado.");
+				alert.setContentText("El piloto se ha eliminado satisfactoriamente.");
 				alert.showAndWait();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -1130,9 +1130,9 @@ public class conexionbd {
 			}
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
-			alert.setHeaderText("No se encontro al piloto");
-			alert.setContentText("Digite una cedula valida para eliminar el registro");
+			alert.setTitle("Error");
+			alert.setHeaderText("No se encontró al piloto");
+			alert.setContentText("Digite una cédula válida para eliminar el registro");
 			alert.showAndWait();
 		}
 
@@ -1153,7 +1153,7 @@ public class conexionbd {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Guardado ");
 				alert.setHeaderText("Registro Exitoso");
-				alert.setContentText("Se registro satisfactoriamente el usuario");
+				alert.setContentText("El usuario se ha registrado satisfactoriamente.");
 				alert.showAndWait();
 
 			} else {
