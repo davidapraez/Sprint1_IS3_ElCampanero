@@ -720,7 +720,7 @@ public class controlador {
 					idaerolinealogin = txfNomusuario.getText();
 				} else {
 					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setTitle("Error ");
+					alert.setTitle("Error");
 					alert.setHeaderText("Usuario invalido");
 					alert.setContentText("Por favor ingresa un usuario y contraseña validos");
 					alert.showAndWait();
@@ -746,7 +746,7 @@ public class controlador {
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
+			alert.setTitle("Error");
 			alert.setHeaderText("Debe elegir un tipo de usuario");
 			alert.setContentText("Selecciona un usuario");
 			alert.showAndWait();
@@ -908,8 +908,8 @@ public class controlador {
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error ");
-			alert.setHeaderText("No digito ningun id de vuelo");
-			alert.setContentText("Haga clic en aceptar para volver a la agenda de vuelos.");
+			alert.setHeaderText("No digito ningun ID de vuelo");
+			alert.setContentText("Haga clic en Aceptar para volver a la agenda de vuelos.");
 			alert.showAndWait();
 		}
 
@@ -937,9 +937,9 @@ public class controlador {
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
-			alert.setHeaderText("no se pudo programar el vuelo");
-			alert.setContentText("Debe diligenciar todos los campos correspondientes");
+			alert.setTitle("Error");
+			alert.setHeaderText("No se pudo programar el vuelo.");
+			alert.setContentText("Debe diligenciar todos los campos correspondientes.");
 			alert.showAndWait();
 		}
 	}
@@ -970,7 +970,7 @@ public class controlador {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error ");
 			alert.setHeaderText("Fecha no disponible");
-			alert.setContentText("Debe escoger otra fecha ");
+			alert.setContentText("Debe escoger otra fecha");
 			alert.showAndWait();
 		}
 
@@ -1181,9 +1181,9 @@ public class controlador {
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
-			alert.setHeaderText("Campo vacio");
-			alert.setContentText("Digite un id para poder eliminar al avion");
+			alert.setTitle("Error");
+			alert.setHeaderText("Campo vacío");
+			alert.setContentText("Digite un id para eliminar al avion.");
 			alert.showAndWait();
 		}
 	}
@@ -1201,9 +1201,9 @@ public class controlador {
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
-			alert.setHeaderText("Campo vacio");
-			alert.setContentText("Digite un id para poder eliminar al piloto");
+			alert.setTitle("Error");
+			alert.setHeaderText("Campo vacío");
+			alert.setContentText("Digite un ID para poder eliminar al piloto.");
 			alert.showAndWait();
 		}
 
@@ -1489,10 +1489,10 @@ public class controlador {
 			txfHorasVueloAcum.clear();
 
 		} else {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Error ");
-			alert.setHeaderText("Registro invalido");
-			alert.setContentText("Debe llenar toda la informacion y no dejar campos vacios");
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Registro invalido.");
+			alert.setContentText("Debe ingresar toda la informacion sin dejar campos vacios.");
 			alert.showAndWait();
 		}
 
@@ -1725,7 +1725,7 @@ public class controlador {
 
 			} else {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Errr");
+				alert.setTitle("Error");
 				alert.setHeaderText("No se encontro informacion del vuelo digitado");
 				alert.setContentText("Ingrese la informacion correspondiente y luego pulse modificar");
 				alert.showAndWait();
@@ -1734,8 +1734,8 @@ public class controlador {
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Campos vacios");
-			alert.setHeaderText("Debe digitar el Id del vuelo");
-			alert.setContentText("Ingrese la informacion correspondiente y luego pulse modificar");
+			alert.setHeaderText("Debe digitar el ID del vuelo");
+			alert.setContentText("Ingrese la información correspondiente y luego pulse en Modificar");
 			alert.showAndWait();
 		}
 
@@ -1827,7 +1827,7 @@ public class controlador {
 					cargarvuelomodificarvueloaero();
 
 					Alert alert = new Alert(Alert.AlertType.INFORMATION);
-					alert.setTitle("Guardado ");
+					alert.setTitle("Guardado");
 					alert.setHeaderText("Registro modificado");
 					alert.setContentText("Se guardaron los cambios correctamente");
 					alert.showAndWait();
@@ -1836,7 +1836,7 @@ public class controlador {
 			}else {
 
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Error ");
+				alert.setTitle("Error");
 				alert.setHeaderText("Fecha y hora no disponible");
 				alert.setContentText("Debe escoger otra fecha u otra hora");
 				alert.showAndWait();
@@ -2265,7 +2265,7 @@ public class controlador {
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error ");
-			alert.setHeaderText("Campo vacio");
+			alert.setHeaderText("Campo vacío");
 			alert.setContentText("Debe escribir el id de la aerolinea para eliminar la aerolinea");
 			alert.showAndWait();
 		}
@@ -2335,7 +2335,7 @@ public class controlador {
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
+			alert.setTitle("Error");
 			alert.setHeaderText("Registro no guardado");
 			alert.setContentText("Debe completar los campos vacios");
 			alert.showAndWait();
@@ -2472,7 +2472,7 @@ public class controlador {
 			
 			
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Guardado ");
+			alert.setTitle("Guardado");
 			alert.setHeaderText("Registro guardado");
 			alert.setContentText("Se actualizaron satisfactoriamente los datos");
 			alert.showAndWait();
@@ -2487,9 +2487,9 @@ public class controlador {
 			txfAdministraraerolinea1.clear();
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
-			alert.setHeaderText("Campos vacios");
-			alert.setContentText("Clic en aceptar para continuar");
+			alert.setTitle("Error");
+			alert.setHeaderText("Campos vacíos");
+			alert.setContentText("Verifique que todos los campos estén diligenciados y vuelva a intentarlo.");
 			alert.showAndWait();
 		}
 	}
@@ -2554,7 +2554,7 @@ public class controlador {
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
+			alert.setTitle("Error");
 			alert.setHeaderText("Registro no guardado");
 			alert.setContentText("Los campos deben estar llenos");
 			alert.showAndWait();
@@ -2614,7 +2614,7 @@ public class controlador {
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
+			alert.setTitle("Error");
 			alert.setHeaderText("No ha digitado ningun campo");
 			alert.setContentText("Por favor ingresa un idhangar valido");
 			alert.showAndWait();
@@ -2681,9 +2681,9 @@ public class controlador {
 			txfIdpiloto.clear();
 		}else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
-			alert.setHeaderText("Campos vacios");
-			alert.setContentText("Por favor ingresa toda la informacion.");
+			alert.setTitle("Error");
+			alert.setHeaderText("Campos vacíos");
+			alert.setContentText("Por favor ingrese toda la información.");
 			alert.showAndWait();
 		}
 
