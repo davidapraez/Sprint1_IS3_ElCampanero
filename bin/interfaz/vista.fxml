@@ -29,7 +29,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.controlador">
 	<children>
-		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;">
+		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;" visible="false">
          <children>
             <ImageView fitHeight="507.0" fitWidth="800.0" pickOnBounds="true">
                <image>
@@ -79,7 +79,7 @@
             </AnchorPane>
          </children>
 		</AnchorPane>
-      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;" visible="false">
+      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;">
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #393351;">
                <children>
@@ -522,7 +522,7 @@
             </Pane>
       		<AnchorPane fx:id="anpMenusAgenda" layoutX="249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
                <children>
-                  <Pane fx:id="paneAgendaVuelos" prefHeight="500.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneAgendaVuelos" prefHeight="500.0" prefWidth="551.0">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="474.0" prefWidth="513.0" spacing="10.0" style="-fx-background-color: #2F2B43;">
                            <children>
@@ -796,7 +796,7 @@
                   </Pane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anprMenusRegistros" layoutX="250.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
+            <AnchorPane fx:id="anprMenusRegistros" layoutX="249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
                <children>
                   <Pane fx:id="paneRegistrarEmpleado" prefHeight="500.0" prefWidth="551.0" stylesheets="@application.css" visible="false">
                      <children>
@@ -898,7 +898,8 @@
                                     <TableColumn fx:id="nombre_usuarios_aeropuerto" prefWidth="72.0" text="Nombre" />
                                     <TableColumn fx:id="apellido_usuarios_aeropuerto" prefWidth="107.0" text="Apellido" />
                                     <TableColumn fx:id="correo_usuarios_aeropuerto" prefWidth="161.0" text="Correo" />
-                                 </columns></TableView>
+                                 </columns>
+                              </TableView>
                               <HBox prefHeight="35.0" prefWidth="507.0" spacing="30.0">
                                  <children>
                                     <TextField fx:id="txfAdministrarUsuariosCedula" prefHeight="30.0" prefWidth="264.0" promptText="Cedula" />
@@ -1932,9 +1933,9 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneAerolineaModificarPiloto" prefHeight="500.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneAerolineaModificarPiloto" prefHeight="500.0" prefWidth="551.0">
                      <children>
-                        <VBox fx:id="vbxListaPilotos" alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="458.0" prefWidth="513.0" spacing="10.0" stylesheets="@../Estilos/estilos_menuaerolinea.css" visible="false">
+                        <VBox fx:id="vbxListaPilotos" alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="458.0" prefWidth="513.0" spacing="10.0" stylesheets="@../Estilos/estilos_menuaerolinea.css">
                            <children>
                               <Pane prefHeight="29.0" prefWidth="513.0" styleClass="color_predeterminado_pane" stylesheets="@../Estilos/estilos_menuaerolinea.css">
                                  <children>
@@ -1974,7 +1975,7 @@
                               </Hyperlink>
                            </children>
                         </VBox>
-                        <VBox fx:id="vbxModificarPiloto" alignment="TOP_CENTER" layoutX="54.0" layoutY="34.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="449.0" spacing="20.0" styleClass="panemoradofondo" stylesheets="@../Estilos/estilos_menuaerolinea.css">
+                        <VBox fx:id="vbxModificarPiloto" alignment="TOP_CENTER" layoutX="54.0" layoutY="34.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="449.0" spacing="20.0" styleClass="panemoradofondo" stylesheets="@../Estilos/estilos_menuaerolinea.css" visible="false">
                            <children>
                               <Text fill="WHITE" fontSmoothingType="LCD" strokeType="INSIDE" strokeWidth="0.0" text="Modificar Piloto" textAlignment="CENTER" wrappingWidth="214.779296875">
                                  <font>

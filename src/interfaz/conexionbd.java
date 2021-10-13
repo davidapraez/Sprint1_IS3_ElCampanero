@@ -32,7 +32,7 @@ public class conexionbd {
 			conexion = DriverManager.getConnection(BD, usuario, contrasena);
 			st = conexion.createStatement();
 		} catch (Exception e) {
-			System.out.print(e.getMessage());
+			e.getMessage();
 		}
 		return st;
 	}
@@ -45,8 +45,7 @@ public class conexionbd {
 			while (resultSet.next()) {
 				String usuario = resultSet.getString("usuario");
 				String password = resultSet.getString("password");
-				System.out.println(usuario);
-				System.out.println(password);
+				
 			}
 		} catch (Exception e) {
 
@@ -177,7 +176,7 @@ public class conexionbd {
 		} catch (SQLException e) {
 			// TODO Bloque catch generado automáticamente
 			e.printStackTrace();
-			System.out.print("si paso por aqu2i");
+			
 		}
 
 		return encontrado;
@@ -332,13 +331,13 @@ public class conexionbd {
 				String usuario = resultSet.getString("id_usuario_sistema_aeropuerto");
 				if (usuario.equals(idusuario)) {
 					encontrado = true;
-					System.out.print("si paso por aqui");
+					
 				}
 			}
 		} catch (SQLException e) {
 			// TODO Bloque catch generado automáticamente
 			e.printStackTrace();
-			System.out.print("si paso por aqu2i");
+			
 		}
 
 		return encontrado;
@@ -393,7 +392,7 @@ public class conexionbd {
 		} catch (SQLException e) {
 			// TODO Bloque catch generado automáticamente
 			e.printStackTrace();
-			System.out.print("si paso por aqu2i");
+			
 		}
 		return aerolinea;
 
@@ -826,20 +825,30 @@ public class conexionbd {
 	public void eliminarvuelo(String idvuelo) {
 		java.sql.Statement st = conexionbasededatos();
 		String sql = "delete from vuelo where idvuelo='" + idvuelo + "';";
+		
+		if(buscaridvuelo(idvuelo)) {
+			try {
+				st.execute(sql);
+				st.close();
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Eliminado ");
+				alert.setHeaderText("Registro Eliminado");
+				alert.setContentText("Se elimino satisfactoriamente el vuelo");
+				alert.showAndWait();
 
-		try {
-			st.execute(sql);
-			st.close();
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Eliminado ");
-			alert.setHeaderText("Registro Eliminado");
-			alert.setContentText("Se elimino satisfactoriamente el vuelo");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Registro no encontrado ");
+			alert.setHeaderText("No se encontro el id del vuelo");
+			alert.setContentText("Dele clic en aceptar e intentelo nuevamente");
 			alert.showAndWait();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		
 
 	}
 
@@ -1004,6 +1013,30 @@ public class conexionbd {
 
 	}
 
+	public boolean buscaridvuelo(String idvuelo) {
+		boolean encontrado=false;
+		java.sql.Statement st = conexionbasededatos();
+		String sql = "select * from vuelo";
+		
+		ResultSet resultSet;
+		try {
+			resultSet = st.executeQuery(sql);
+			while (resultSet.next()) {
+				String id=resultSet.getString("idvuelo");
+				if(id.equalsIgnoreCase(idvuelo)) {
+					encontrado=true;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return encontrado;
+	}
+	
+	
 	public int buscaridvuelo() {
 		int numeromayor = 0;
 		java.sql.Statement st = conexionbasededatos();

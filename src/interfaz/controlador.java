@@ -866,6 +866,9 @@ public class controlador {
 		limpiar_agenda_vuelos_aerolinea();
 		cargarvuelos();
 		
+		
+		
+		
 	}
 
 	
@@ -897,7 +900,7 @@ public class controlador {
 		String idvuelo = txfvueloSolicitudesAprobadas.getText();
 		conexionbd conexion = new conexionbd();
 
-		if (idvuelo != null) {
+		if (idvuelo !="") {
 			conexion.eliminarvuelo(idvuelo);
 			limpiarvuelos();
 			cargarvuelos();
@@ -905,8 +908,8 @@ public class controlador {
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error ");
-			alert.setHeaderText("Debe escribir el id del vuelo");
-			alert.setContentText("Ingrese un Id");
+			alert.setHeaderText("No digito ningun id de vuelo");
+			alert.setContentText("Haga clic en aceptar para volver a la agenda de vuelos.");
 			alert.showAndWait();
 		}
 
@@ -1290,21 +1293,54 @@ public class controlador {
 		String peso = txfPesonominalavion1128.getText();
 
 		conexionbd conexion = new conexionbd();
-		if (tipoavion != null) {
-			conexion.guardarmodificaravion(tipoavion, idavion, capacidad, modelo, propulsion, motores, peso);
+		if (tipoavion != "") {
+			if(idavion!="" && capacidad!="" && modelo!="" && propulsion!=""&& motores!="" && peso!=""){
+				// limpiar pantalla
 
-			// limpiar pantalla
+				cbxTipoavionmodificar.setPromptText("Tipo de avion");
+				txfIdavionmodificar.clear();
+				txfCpacidadcargapuestos.clear();
+				txfModeloavion129.clear();
+				txfTipopropulsion116.clear();
+				txfNumeromotoresmodifcaarvion.clear();
+				txfPesonominalavion1128.clear();
+				//
+				txfIdpilotorlistaaviones.clear();
+				
+				//cambiar a la vista anterior
+				pneProgramarVuelo.setVisible(false);
+				pneConsultas.setVisible(false);
+				pneRegistros.setVisible(false);
+				anpMenusVuelos.setVisible(false);
+				anpMenuRegistros.setVisible(true);
+				// 2 capa
+				paneAerolineaRegistrarPiloto.setVisible(false);
+				paneAerolineaModificarPiloto.setVisible(false);
+				paneRegistrarAvion.setVisible(false);
+				paneModificaravion.setVisible(true);
+				// 3 capa
+				vbxAdministrarAviones.setVisible(true);
+				vbxModificaravion.setVisible(false);
 
-			cbxTipoavionmodificar.setPromptText("Tipo de avion");
-			txfIdavionmodificar.clear();
-			txfCpacidadcargapuestos.clear();
-			txfModeloavion129.clear();
-			txfTipopropulsion116.clear();
-			txfNumeromotoresmodifcaarvion.clear();
-			txfPesonominalavion1128.clear();
+				// cargar losd datos
 
-			//
-			txfIdpilotorlistaaviones.clear();
+				tbleviewListaaviones.getItems().clear();
+				cargaraviones();
+				
+				
+				
+				conexion.guardarmodificaravion(tipoavion, idavion, capacidad, modelo, propulsion, motores, peso);
+			}else {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Error.");
+				alert.setHeaderText("Campos vacios");
+				alert.setContentText("Verifique los datos e intentelo de nuevo");
+				alert.showAndWait();
+			}
+			
+
+
+			
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -1336,29 +1372,41 @@ public class controlador {
 
 		tbleviewListaaviones.getItems().clear();
 		cargaraviones();
+		
+		
+		
 	}
 
 	@FXML
 	void modificaravion(ActionEvent event) {
-		pneProgramarVuelo.setVisible(false);
-		pneConsultas.setVisible(false);
-		pneRegistros.setVisible(false);
-		anpMenusVuelos.setVisible(false);
-		anpMenuRegistros.setVisible(true);
-		// 2 capa
-		paneAerolineaRegistrarPiloto.setVisible(false);
-		paneAerolineaModificarPiloto.setVisible(false);
-		paneRegistrarAvion.setVisible(false);
-		paneModificaravion.setVisible(true);
-		// 3 capa
-		vbxAdministrarAviones.setVisible(false);
-		vbxModificaravion.setVisible(true);
+
 
 		// MODIFICAR DATOS
 		conexionbd conexion = new conexionbd();
-		if (idaerolinealogin != null && txfIdpilotorlistaaviones.getText() != null) {
+		
+		if (idaerolinealogin != "" && txfIdpilotorlistaaviones.getText() !="") {
 			avionAL avion = conexion.retornaavionamodificar(idaerolinealogin, txfIdpilotorlistaaviones.getText());
-
+			
+			//***********************************
+			pneProgramarVuelo.setVisible(false);
+			pneConsultas.setVisible(false);
+			pneRegistros.setVisible(false);
+			anpMenusVuelos.setVisible(false);
+			anpMenuRegistros.setVisible(true);
+			// 2 capa
+			paneAerolineaRegistrarPiloto.setVisible(false);
+			paneAerolineaModificarPiloto.setVisible(false);
+			paneRegistrarAvion.setVisible(false);
+			paneModificaravion.setVisible(true);
+			// 3 capa
+			vbxAdministrarAviones.setVisible(false);
+			vbxModificaravion.setVisible(true);
+			
+			//**************************************
+			
+			
+			
+			
 			txfIdavionmodificar.setText(avion.getIdavion());
 			txfCpacidadcargapuestos.setText(avion.getCapacidad());
 			txfModeloavion129.setText(avion.getModelo());
@@ -1366,6 +1414,12 @@ public class controlador {
 			txfNumeromotoresmodifcaarvion.setText(avion.getNumeromotores());
 			txfPesonominalavion1128.setText(avion.getPesonominal());
 
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error ");
+			alert.setHeaderText("Campo vacio ");
+			alert.setContentText("Debe digitar un id de avion valido");
+			alert.showAndWait();
 		}
 
 	}
@@ -1648,7 +1702,8 @@ public class controlador {
 				// datepickFechaModificarVuelos.setValue(fechaNueva);
 				LocalDate date = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(fecha));
 				datepickFechaModificarVuelos.setValue(date);
-
+				int hora=Integer.parseInt(vuelo.getHora());
+				int minutos=Integer.parseInt(vuelo.getMinutos());
 				//String[] parts = hora.split(",");
 				//String part1 = parts[0];
 				//String part2 = parts[1];
@@ -1657,11 +1712,11 @@ public class controlador {
 
 				SpinnerValueFactory<Integer> value = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
 				spinnerHoraModificaVuelo1.setValueFactory(value);
-				//value.setValue(horas);
+				value.setValue(hora);
 				
 				SpinnerValueFactory<Integer> value2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
 				spinnerHoraModificaVuelo11.setValueFactory(value2);
-				//value2.setValue(minutos);
+				value2.setValue(minutos);
 				// por corregir
 				// construccion
 
@@ -1701,16 +1756,47 @@ public class controlador {
 		if (idavion != "" && piloto != "" && fecha != null) {
 			conexionbd conexion = new conexionbd();
 			if (!conexion.validarhoravuelo(fecha.toString(), horas, minutos)) {
-				System.out.println(idvuelo);
+				
 				conexion.modificarvueloaerolinea(idvuelo, fecha, horas, minutos, tipodevuelo, idavion, piloto,
 						copiloto);
-			} else {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Fecha no disponible");
-				alert.setHeaderText("Selecciona otra fecha");
-				alert.setContentText("La fecha digitada ya se encuentra asignada");
+				
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Registro guardado");
+				alert.setHeaderText("La solicitud de agendamiento se ha guardado con exito.");
+				alert.setContentText("Haga clic en aceptar para regresar al menu de modificar vuelos");
 				alert.showAndWait();
+				
+				//Cambiar vista
+				pneProgramarVuelo.setVisible(false);
+				pneConsultas.setVisible(false);
+				pneRegistros.setVisible(false);
+				anpMenusVuelos.setVisible(true);
+				anpMenuRegistros.setVisible(false);
+				// 2 capa
+				paneAerolineaAgendarVuelo.setVisible(false);
+				paneSolicitudesAerolinea.setVisible(true);
+				paneModificarVueloAerolinea.setVisible(false);
+				
+				//metodos
+				txfvueloSolicitudesAprobadas.clear();
+				limpiar_agenda_vuelos_aerolinea();
+				cargarvuelos();
+				
+				
+			} else {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Registro no modificado");
+				alert.setHeaderText("La solicitud de agendamiento no se modifico");
+				alert.setContentText("Haga clic en aceptar para regresar al menu de modificar vuelos");
+				alert.showAndWait();
+				
 			}
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Campos vacios");
+			alert.setHeaderText("Solicitud no completada");
+			alert.setContentText("Revise los datos ingresados e intentelo de nuevo");
+			alert.showAndWait();
 		}
 
 	}
@@ -1723,34 +1809,55 @@ public class controlador {
 
 		LocalDate fechadatepicker = datepickFechaModificarVuelos.getValue();
 		String fecha = fechadatepicker.toString();
-		int hora = spinnerHoraModificaVuelo1.getValue();
-		int minutos = spinnerHoraModificaVuelo11.getValue();
-
-		conexionbd conexion = new conexionbd();
-		if (!conexion.validarhoravuelo(fecha, hora, minutos)) {
+		if(spinnerHoraModificaVuelo1.getValue()!=null && spinnerHoraModificaVuelo11.getValue()!=null ) {
+			int hora = spinnerHoraModificaVuelo1.getValue();
+			int minutos = spinnerHoraModificaVuelo11.getValue();
+			conexionbd conexion = new conexionbd();
 			String tipovuelo = txfVueloSeleccionadoModificar.getText();
+			
 			if (tipovuelo != "" && datepickFechaModificarVuelos.getValue() != null
-					&& spinnerHoraModificaVuelo1.getValue() != null && spinnerHoraModificaVuelo11.getValue() != null) {
+					&& spinnerHoraModificaVuelo1.getValue() !=null && spinnerHoraModificaVuelo11.getValue() !=null) 
+			{
+				if (!conexion.validarhoravuelo(fecha, hora, minutos)) {
 
-				if (conexion.modificarvuelo(tipovuelo, datepickFechaModificarVuelos.getValue(),
-						spinnerHoraModificaVuelo1.getValue(), spinnerHoraModificaVuelo11.getValue())) {
 					conexion.modificarvuelo(tipovuelo, datepickFechaModificarVuelos.getValue(),
 							spinnerHoraModificaVuelo1.getValue(), spinnerHoraModificaVuelo11.getValue());
-				}
-				;
+					
+					limpiarmodificarvueloaero();
+					cargarvuelomodificarvueloaero();
 
-				limpiarmodificarvueloaero();
-				cargarvuelomodificarvueloaero();
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Guardado ");
+					alert.setHeaderText("Registro modificado");
+					alert.setContentText("Se guardaron los cambios correctamente");
+					alert.showAndWait();
+					
+				//}
+			}else {
 
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error ");
+				alert.setHeaderText("Fecha y hora no disponible");
+				alert.setContentText("Debe escoger otra fecha u otra hora");
+				alert.showAndWait();
 			}
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error ");
-			alert.setHeaderText("Fecha no disponible");
-			alert.setContentText("Debe escoger otra fecha ");
+			alert.setHeaderText("Campos vacios");
+			alert.setContentText("Debe digitar toda la informacion");
 			alert.showAndWait();
+			
 		}
+		}
+		
+
+		
+			
+		
+			
+		
 
 	}
 
@@ -1760,6 +1867,9 @@ public class controlador {
 
 	@FXML
 	void btnEliminarAgendaVuelos(ActionEvent event) {
+		
+		
+		
 
 	}
 
@@ -2052,6 +2162,14 @@ public class controlador {
 			limpiar_tabla_usuario_aeropuerto();
 			cargar_usuario_aeropuerto();
 			txfAdministrarUsuariosCedula.clear();
+			
+			//mensaje
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Registro eliminado");
+			alert.setHeaderText("Se elimino al empleado");
+			alert.setContentText("Clic en aceptar para continuar ");
+			alert.showAndWait();
+			
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -2134,6 +2252,12 @@ public class controlador {
 		if (idaerolinea != "") {
 			conexionbd conexion = new conexionbd();
 			conexion.eliminar_aerolinea(idaerolinea);
+			
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Eliminado ");
+			alert.setHeaderText("Registro eliminado");
+			alert.setContentText("Se elimino satisfactoriamente la aerolinea");
+			alert.showAndWait();
 
 			limpiar_tabla_aerolineas();
 			cargar_aerolineas_aeropuerto();
@@ -2345,6 +2469,13 @@ public class controlador {
 			conexionbd conexion = new conexionbd();
 			conexion.guardar_modificaraerolinea(usuario_aerolinea, stridaerolineas, strnombres_aerolinea, strpassword,
 					correo);
+			
+			
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Guardado ");
+			alert.setHeaderText("Registro guardado");
+			alert.setContentText("Se actualizaron satisfactoriamente los datos");
+			alert.showAndWait();
 
 			// LImpieza de pantalla
 			txfModificarUsuarioAerolinea.clear();
@@ -2355,7 +2486,11 @@ public class controlador {
 
 			txfAdministraraerolinea1.clear();
 		} else {
-			System.out.println("campos vacios");
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error ");
+			alert.setHeaderText("Campos vacios");
+			alert.setContentText("Clic en aceptar para continuar");
+			alert.showAndWait();
 		}
 	}
 
@@ -2544,6 +2679,12 @@ public class controlador {
 			datepickerModificarVuelo.setValue(null);
 
 			txfIdpiloto.clear();
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error ");
+			alert.setHeaderText("Campos vacios");
+			alert.setContentText("Por favor ingresa toda la informacion.");
+			alert.showAndWait();
 		}
 
 	}
