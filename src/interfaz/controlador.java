@@ -1,9 +1,11 @@
 package interfaz;
 
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.chrono.Chronology;
@@ -13,11 +15,11 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
-import clases_AL.aerolineaAL;
-import clases_AL.avionAL;
-import clases_AL.pilotoAL;
-import clases_AL.usuario_aeropuertoAL;
-import clases_AL.vueloAL;
+import clases.aerolineaAL;
+import clases.avionAL;
+import clases.pilotoAL;
+import clases.usuario_aeropuertoAL;
+import clases.vueloAL;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -28,6 +30,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
@@ -51,6 +54,10 @@ import javafx.scene.control.TableColumn;
 //Importacion de clases complementarias
 
 public class controlador {
+	
+	//Variables constantes
+	conexionbd conexion=new conexionbd();
+	
 
 	@FXML
 	private ResourceBundle resources;
@@ -74,12 +81,7 @@ public class controlador {
 	private Button btnSalirAerolinea;
 
 	@FXML
-	private TextField txfIdaerolinea;
-
-	@FXML
-	private TextField txfidaerolineaeste;
-	@FXML
-	private TextField txfAdministrarUsuariosCedula;
+	private TextField txfIdaerolinea, txfIdhangar, txfidaerolineaeste, txfAdministrarUsuariosCedula;
 
 	@FXML
 	private Button btnAdministrarUsuarioModificar;
@@ -242,7 +244,8 @@ public class controlador {
 	@FXML
 	private AnchorPane anpLogin;
 	@FXML
-	private ComboBox<String> cmbxLogin;
+	private ComboBox<String> cmbxLogin, cmbIdavionHangar;
+
 	@FXML
 	private TextField txfNomusuario;
 	@FXML
@@ -591,26 +594,9 @@ public class controlador {
 
 	@FXML
 	private Pane paneRegistrarLlegada;
-	@FXML
-	private TableView<?> tbleviewGestionarhangares1;
-
-	@FXML
-	private TextField idAvionHangar1;
-
-	@FXML
-	private TextField idHangarLlegada1;
-
-	@FXML
-	private DatePicker datepickRegistroHangar1;
-
-	@FXML
-	private Spinner<?> spinnerHoraHangares1;
 
 	@FXML
 	private Spinner<Integer> spinnerHoraagendavuelo21;
-
-	@FXML
-	private Button idRegistrarAvionHangar;
 
 	@FXML
 	private Hyperlink hiperlinkAeropuertoMenuRegistrosRegresar1;
@@ -618,8 +604,7 @@ public class controlador {
 	// REGISTRAR FACTURA HANGAR
 	@FXML
 	private Pane paneRegistrarFacturaHangar;
-	@FXML
-	private TableView<?> tbleViewFacturaHangares;
+
 	@FXML
 	private TextField txfHangarFacturar;
 
@@ -634,8 +619,7 @@ public class controlador {
 	@FXML
 	private Pane paneFacturasRealizadasHnagar;
 
-	@FXML
-	private TableView<?> tbleViewVisualizarFacturasHangar;
+
 
 	@FXML
 	private Hyperlink hiperlinkAeropuertoMenuRegistrosRegresar5;
@@ -687,6 +671,7 @@ public class controlador {
 
 	@FXML
 	private Button button223111;
+
 	@FXML
 	private Pane pneAgenda;
 
@@ -713,7 +698,6 @@ public class controlador {
 			String tipousuario = cmbxLogin.getValue();
 			if (tipousuario == "Aerolinea") {
 
-				conexionbd conexion = new conexionbd();
 				if (conexion.validarusuarioaerolinea(txfNomusuario.getText(), psfContras.getText())) {
 					anpLogin.setVisible(false);
 					anpMenuAerolinea.setVisible(true);
@@ -729,7 +713,6 @@ public class controlador {
 			}
 			if (tipousuario == "Administrador de aeropuerto") {
 
-				conexionbd conexion = new conexionbd();
 				if (conexion.validarusuarioaeropuerto(txfNomusuario.getText(), psfContras.getText())) {
 					anpLogin.setVisible(false);
 					anpMenuAeropuerto.setVisible(true);
@@ -860,18 +843,14 @@ public class controlador {
 		paneAerolineaAgendarVuelo.setVisible(false);
 		paneSolicitudesAerolinea.setVisible(true);
 		paneModificarVueloAerolinea.setVisible(false);
-		
-		//metodos
+
+		// metodos
 		txfvueloSolicitudesAprobadas.clear();
 		limpiar_agenda_vuelos_aerolinea();
 		cargarvuelos();
-		
-		
-		
-		
+
 	}
 
-	
 	@FXML
 	void Regresar2(ActionEvent event) {
 		pneProgramarVuelo.setVisible(false);
@@ -896,11 +875,11 @@ public class controlador {
 
 	@FXML
 	void eliminarvuelosaprobadas(ActionEvent event) {
-		
+
 		String idvuelo = txfvueloSolicitudesAprobadas.getText();
 		conexionbd conexion = new conexionbd();
 
-		if (idvuelo !="") {
+		if (idvuelo != "") {
 			conexion.eliminarvuelo(idvuelo);
 			limpiarvuelos();
 			cargarvuelos();
@@ -987,7 +966,7 @@ public class controlador {
 		// 2 capa
 		paneAerolineaAgendarVuelo.setVisible(false);
 		paneSolicitudesAerolinea.setVisible(true);
-		
+
 		paneModificarVueloAerolinea.setVisible(false);
 
 		// Cargar los datos
@@ -1254,7 +1233,6 @@ public class controlador {
 					txfNumeromotores1222.clear();
 					txfPesonominalavion1222.clear();
 					cbxTipoavionRegistroAvion.setPromptText("tipo de avion");
-
 					txfIdpilotorlistaaviones.clear();
 
 				} else {
@@ -1294,7 +1272,7 @@ public class controlador {
 
 		conexionbd conexion = new conexionbd();
 		if (tipoavion != "") {
-			if(idavion!="" && capacidad!="" && modelo!="" && propulsion!=""&& motores!="" && peso!=""){
+			if (idavion != "" && capacidad != "" && modelo != "" && propulsion != "" && motores != "" && peso != "") {
 				// limpiar pantalla
 
 				cbxTipoavionmodificar.setPromptText("Tipo de avion");
@@ -1306,8 +1284,8 @@ public class controlador {
 				txfPesonominalavion1128.clear();
 				//
 				txfIdpilotorlistaaviones.clear();
-				
-				//cambiar a la vista anterior
+
+				// cambiar a la vista anterior
 				pneProgramarVuelo.setVisible(false);
 				pneConsultas.setVisible(false);
 				pneRegistros.setVisible(false);
@@ -1326,21 +1304,15 @@ public class controlador {
 
 				tbleviewListaaviones.getItems().clear();
 				cargaraviones();
-				
-				
-				
+
 				conexion.guardarmodificaravion(tipoavion, idavion, capacidad, modelo, propulsion, motores, peso);
-			}else {
+			} else {
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Error.");
 				alert.setHeaderText("Campos vacios");
 				alert.setContentText("Verifique los datos e intentelo de nuevo");
 				alert.showAndWait();
 			}
-			
-
-
-			
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -1372,22 +1344,19 @@ public class controlador {
 
 		tbleviewListaaviones.getItems().clear();
 		cargaraviones();
-		
-		
-		
+
 	}
 
 	@FXML
 	void modificaravion(ActionEvent event) {
 
-
 		// MODIFICAR DATOS
 		conexionbd conexion = new conexionbd();
-		
-		if (idaerolinealogin != "" && txfIdpilotorlistaaviones.getText() !="") {
+
+		if (idaerolinealogin != "" && txfIdpilotorlistaaviones.getText() != "") {
 			avionAL avion = conexion.retornaavionamodificar(idaerolinealogin, txfIdpilotorlistaaviones.getText());
-			
-			//***********************************
+
+			// ***********************************
 			pneProgramarVuelo.setVisible(false);
 			pneConsultas.setVisible(false);
 			pneRegistros.setVisible(false);
@@ -1401,12 +1370,9 @@ public class controlador {
 			// 3 capa
 			vbxAdministrarAviones.setVisible(false);
 			vbxModificaravion.setVisible(true);
-			
-			//**************************************
-			
-			
-			
-			
+
+			// **************************************
+
 			txfIdavionmodificar.setText(avion.getIdavion());
 			txfCpacidadcargapuestos.setText(avion.getCapacidad());
 			txfModeloavion129.setText(avion.getModelo());
@@ -1414,7 +1380,7 @@ public class controlador {
 			txfNumeromotoresmodifcaarvion.setText(avion.getNumeromotores());
 			txfPesonominalavion1128.setText(avion.getPesonominal());
 
-		}else {
+		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error ");
 			alert.setHeaderText("Campo vacio ");
@@ -1503,9 +1469,7 @@ public class controlador {
 // *************************************************************************************************************
 
 	@FXML
-	private Button btnCerrrarSesionAeropuerto;
-	@FXML
-	private Button btnSalirAeropuerto;
+	private Button btnSalirAeropuerto,btnCerrrarSesionAeropuerto;
 	@FXML
 	private TextField txfModificarNombreAerolineaeste;
 
@@ -1531,6 +1495,28 @@ public class controlador {
 	void btnModificarVueloGuardarEmpleado(ActionEvent event) {
 
 	}
+	
+	@FXML
+	void btnRegistrarAvionEnHangar(ActionEvent event) {
+		
+		String idhangar=txfIdhangar.getText();
+		String idavion=cmbIdavionHangar.getValue();
+		
+
+		Date date = new Date();
+		DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+		String horaentrada= hourFormat.format(date);
+		
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");		
+		String fechaentrada=dateFormat.format(date);
+		
+		conexion.asignaravionahangar(idhangar, idavion, horaentrada, fechaentrada);
+		
+		
+		
+		
+		
+	}
 
 	@FXML
 	void btnModificarEmpleadobtnAeropuertoRegistrosModificarEmpleadoAeropuerto(ActionEvent event) {
@@ -1549,6 +1535,7 @@ public class controlador {
 		paneModificarHangar.setVisible(false);
 		// terciario
 		vbxModificarUsuarioTableView.setVisible(true);
+
 		vbxMenus_aeropuerto_ModificarEmpleado.setVisible(false);
 
 		// Limpiar datos antes
@@ -1598,7 +1585,6 @@ public class controlador {
 		limpiarvueloaeropuerto();
 		cargarvueloscomoaeropuerto();
 
-
 	}
 
 	@FXML
@@ -1630,7 +1616,6 @@ public class controlador {
 		// Metodos
 		String idvuelo = txfvueloSolicitudesAprobadas.getText();
 		if (idvuelo != "") {
-			conexionbd conexion = new conexionbd();
 			if (conexion.verificarvuelo(idvuelo)) {
 				// Cambiar de vista
 				// 1 capa
@@ -1644,7 +1629,7 @@ public class controlador {
 				paneSolicitudesAerolinea.setVisible(false);
 				paneModificarVueloAerolinea.setVisible(true);
 				paneSolicitudesAerolinea.setVisible(false);
-				
+
 				//
 				// darle valor al combo box
 				vueloAL vuelo = conexion.retornarvuelo(idvuelo);
@@ -1686,7 +1671,6 @@ public class controlador {
 	void btnModificarAgendaVuelos(ActionEvent event) {
 
 		if (txfAgendaVuelos1.getText() != "") {
-			conexionbd conexion = new conexionbd();
 			if (conexion.verificarvuelo(txfAgendaVuelos1.getText())) {
 				paneAgendaVuelos.setVisible(false);
 				paneModificarAgenda.setVisible(true);
@@ -1698,15 +1682,13 @@ public class controlador {
 				// pasar la fecha a localdate
 				LocalDate date = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(fecha));
 				datepickFechaModificarVuelos.setValue(date);
-				int hora=Integer.parseInt(vuelo.getHora());
-				int minutos=Integer.parseInt(vuelo.getMinutos());
-
-				
+				int hora = Integer.parseInt(vuelo.getHora());
+				int minutos = Integer.parseInt(vuelo.getMinutos());
 
 				SpinnerValueFactory<Integer> value = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
 				spinnerHoraModificaVuelo1.setValueFactory(value);
 				value.setValue(hora);
-				
+
 				SpinnerValueFactory<Integer> value2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
 				spinnerHoraModificaVuelo11.setValueFactory(value2);
 				value2.setValue(minutos);
@@ -1734,7 +1716,7 @@ public class controlador {
 
 	@FXML
 	void solicitaragendaaerolinea2(ActionEvent event) {
-		String idvuelo=txfvueloSolicitudesAprobadas.getText();
+		String idvuelo = txfvueloSolicitudesAprobadas.getText();
 
 		String tipodevuelo = cbxTipodevueloModificarVuelo.getValue();
 		String idavion = txfIdavionagendarvuelo1.getText();
@@ -1745,19 +1727,19 @@ public class controlador {
 		int minutos = spinnerHoraagendavuelo21.getValue();
 
 		if (idavion != "" && piloto != "" && fecha != null) {
-			conexionbd conexion = new conexionbd();
+			
 			if (!conexion.validarhoravuelo(fecha.toString(), horas, minutos)) {
-				
+
 				conexion.modificarvueloaerolinea(idvuelo, fecha, horas, minutos, tipodevuelo, idavion, piloto,
 						copiloto);
-				
+
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Registro guardado");
 				alert.setHeaderText("La solicitud de agendamiento se ha guardado con exito.");
 				alert.setContentText("Haga clic en aceptar para regresar al menu de modificar vuelos");
 				alert.showAndWait();
-				
-				//Cambiar vista
+
+				// Cambiar vista
 				pneProgramarVuelo.setVisible(false);
 				pneConsultas.setVisible(false);
 				pneRegistros.setVisible(false);
@@ -1767,22 +1749,21 @@ public class controlador {
 				paneAerolineaAgendarVuelo.setVisible(false);
 				paneSolicitudesAerolinea.setVisible(true);
 				paneModificarVueloAerolinea.setVisible(false);
-				
-				//metodos
+
+				// metodos
 				txfvueloSolicitudesAprobadas.clear();
 				limpiar_agenda_vuelos_aerolinea();
 				cargarvuelos();
-				
-				
+
 			} else {
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Registro no modificado");
 				alert.setHeaderText("La solicitud de agendamiento no se modifico");
 				alert.setContentText("Haga clic en aceptar para regresar al menu de modificar vuelos");
 				alert.showAndWait();
-				
+
 			}
-		}else {
+		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Campos vacios");
 			alert.setHeaderText("Solicitud no completada");
@@ -1791,34 +1772,26 @@ public class controlador {
 		}
 
 	}
-	
-
-	
 
 	@FXML
 	void btnAeropuertoModificarVuelos(ActionEvent event) {
 
-		
-		
-		if(spinnerHoraModificaVuelo1.getValue()!=null && spinnerHoraModificaVuelo11.getValue()!=null && datepickFechaModificarVuelos.getValue()!=null ) {
+		if (spinnerHoraModificaVuelo1.getValue() != null && spinnerHoraModificaVuelo11.getValue() != null
+				&& datepickFechaModificarVuelos.getValue() != null) {
 			LocalDate fechadatepicker = datepickFechaModificarVuelos.getValue();
 			String fecha = fechadatepicker.toString();
 			int hora = spinnerHoraModificaVuelo1.getValue();
 			int minutos = spinnerHoraModificaVuelo11.getValue();
-			conexionbd conexion = new conexionbd();
 			String tipovuelo = txfVueloSeleccionadoModificar.getText();
-			System.out.println("paso 1");
-			
-			
+
 			if (tipovuelo != "" && datepickFechaModificarVuelos.getValue() != null
-					&& spinnerHoraModificaVuelo1.getValue() !=null && spinnerHoraModificaVuelo11.getValue() !=null) 
-			{
-				System.out.println("paso 2");
+					&& spinnerHoraModificaVuelo1.getValue() != null && spinnerHoraModificaVuelo11.getValue() != null) {
+
 				if (!conexion.validarhoravuelo(fecha, hora, minutos)) {
-					System.out.println("paso 3");
+
 					conexion.modificarvuelo(tipovuelo, datepickFechaModificarVuelos.getValue(),
 							spinnerHoraModificaVuelo1.getValue(), spinnerHoraModificaVuelo11.getValue());
-					
+
 					limpiarmodificarvueloaero();
 					cargarvuelomodificarvueloaero();
 
@@ -1827,26 +1800,26 @@ public class controlador {
 					alert.setHeaderText("Registro modificado");
 					alert.setContentText("Se guardaron los cambios correctamente");
 					alert.showAndWait();
-					
-				//}
-			}else {
 
+					// }
+				} else {
+
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText("Fecha y hora no disponible");
+					alert.setContentText("Debe escoger otra fecha u otra hora");
+					alert.showAndWait();
+				}
+
+			} else {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Error");
-				alert.setHeaderText("Fecha y hora no disponible");
-				alert.setContentText("Debe escoger otra fecha u otra hora");
+				alert.setTitle("Error ");
+				alert.setHeaderText("Campos vacios");
+				alert.setContentText("Debe digitar toda la informacion");
 				alert.showAndWait();
-			}
 
+			}
 		} else {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setTitle("Error ");
-			alert.setHeaderText("Campos vacios");
-			alert.setContentText("Debe digitar toda la informacion");
-			alert.showAndWait();
-			
-		}
-		}else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error ");
 			alert.setHeaderText("Campos vacios");
@@ -1862,14 +1835,8 @@ public class controlador {
 
 	@FXML
 	void btnEliminarAgendaVuelos(ActionEvent event) {
-		
-		
-		
-		
 		String idvuelo = txfAgendaVuelos1.getText();
-		conexionbd conexion = new conexionbd();
-
-		if (idvuelo !="") {
+		if (idvuelo != "") {
 			conexion.eliminarvuelo(idvuelo);
 			limpiarvueloaeropuerto();
 			cargarvueloscomoaeropuerto();
@@ -1881,8 +1848,6 @@ public class controlador {
 			alert.setContentText("Haga clic en Aceptar para volver a la agenda de vuelos.");
 			alert.showAndWait();
 		}
-		
-		
 
 	}
 
@@ -1970,10 +1935,15 @@ public class controlador {
 		paneRegistrarFacturaHangar.setVisible(false);
 		paneFacturasRealizadasHnagar.setVisible(false);
 
-	}
-
-	@FXML
-	void btnRegistrarHangar1(ActionEvent event) {
+		// -----------------------------------------------------------------
+		
+		limpiarhangaresvacios();
+		limpiar_avionescombohangar();
+		cargaraviones_comboboxhangar();
+		cargarhangaresaeropuerto();
+		
+		
+		// conexio.cargarHangaresDesocupados(tbleviewGestionarhangares1);
 
 	}
 
@@ -2003,13 +1973,28 @@ public class controlador {
 		paneRegistrarLlegada.setVisible(false);
 		paneRegistrarFacturaHangar.setVisible(true);
 		paneFacturasRealizadasHnagar.setVisible(false);
+		
+		
+		//AA
+		limpiarhangaresocupados();
+		cargarhangaresocupadoss();
+		
 
 	}
 
 	@FXML
 	void btnFacturarVueloEnHangares(ActionEvent event) {
+		
+		String idhangar=txfHangarFacturar.getText();
+		conexion.facturahangar_yregistrar(idhangar);
+		txfHangarFacturar.clear();
+		
+		
 
 	}
+	
+
+	
 
 	@FXML
 	void hiperlinkRegresarFacturarHangar(ActionEvent event) {
@@ -2037,6 +2022,11 @@ public class controlador {
 		paneRegistrarLlegada.setVisible(false);
 		paneRegistrarFacturaHangar.setVisible(false);
 		paneFacturasRealizadasHnagar.setVisible(true);
+		
+		//metodos
+		limpiar_registroshangar();
+		cargar_registros();
+		
 	}
 
 	@FXML
@@ -2082,7 +2072,6 @@ public class controlador {
 		String password = passwordfRegistrarEmpleadoContrasena.getText();
 
 		if (nombre != "" && apellido != "" && usuario != "" && correo != "" && password != "" && cedula != "") {
-			conexionbd conexion = new conexionbd();
 			conexion.guardarusuarioaeropuerto(nombre, apellido, cedula, usuario, password, correo);
 			conexion.guardarusuarioaeropuertosistema(usuario, cedula, password);
 
@@ -2153,7 +2142,6 @@ public class controlador {
 		txfModificarEmpleadoCorreo.clear();
 
 		// cargar datos
-		conexionbd conexion = new conexionbd();
 		usuario_aeropuertoAL persona = conexion.cargar_usuarioaeropuerto(cedula);
 		if (persona != null) {
 			txfModificarEmpleadoNombre.setText(persona.getNombre());
@@ -2168,21 +2156,26 @@ public class controlador {
 
 	@FXML
 	void btnEliminarUsuarioAeropuerto(ActionEvent event) {
-		conexionbd conexion = new conexionbd();
 		String cedula = txfAdministrarUsuariosCedula.getText();
 		if (cedula != null) {
-			conexion.eliminarusuarioaeropuerto(cedula);
+			if (conexion.eliminarusuarioaeropuerto(cedula)) {
+				// mensaje
+				conexion.eliminarusuarioaeropuerto(cedula);
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Registro eliminado");
+				alert.setHeaderText("Se elimino al empleado");
+				alert.setContentText("Clic en aceptar para continuar ");
+				alert.showAndWait();
+			} else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText("No se pudo eliminar el empleado");
+				alert.setContentText("Clic en aceptar para continuar ");
+				alert.showAndWait();
+			}
 			limpiar_tabla_usuario_aeropuerto();
 			cargar_usuario_aeropuerto();
 			txfAdministrarUsuariosCedula.clear();
-			
-			//mensaje
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setTitle("Registro eliminado");
-			alert.setHeaderText("Se elimino al empleado");
-			alert.setContentText("Clic en aceptar para continuar ");
-			alert.showAndWait();
-			
 
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -2229,7 +2222,6 @@ public class controlador {
 		String password = txfModificarEmpleadoContrasena.getText();
 		String correo = txfModificarEmpleadoCorreo.getText();
 		if (nombre != "" && apellido != "" && usuario != "" && correo != "" && password != "" && cedula != "") {
-			conexionbd conexion = new conexionbd();
 			conexion.modificar_usuario_aeropuerto(nombre, apellido, cedula, usuario, password, correo);
 			// Limpiar pantalla
 
@@ -2263,9 +2255,8 @@ public class controlador {
 		String idaerolinea = txfAdministraraerolinea1.getText();
 
 		if (idaerolinea != "") {
-			conexionbd conexion = new conexionbd();
 			conexion.eliminar_aerolinea(idaerolinea);
-			
+
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Eliminado ");
 			alert.setHeaderText("Registro eliminado");
@@ -2336,7 +2327,6 @@ public class controlador {
 		String password = txfRegistrarAerolineaContrasena.getText();
 		String correo = txfCorreoRegistrarAerolinea.getText();
 
-		conexionbd conexion = new conexionbd();
 		if (idaerolinea != "" && nombre != "" && usuario != "" && password != "" && correo != "") {
 			conexion.guardaraerolinea(idaerolinea, nombre, correo, usuario, password);
 
@@ -2427,7 +2417,6 @@ public class controlador {
 		txfModificaraeroCorreo.clear();
 
 		// cargar datos
-		conexionbd conexion = new conexionbd();
 		aerolineaAL aerolinea = conexion.cargar_aerolineas(idaerolinea);
 		if (aerolinea.getid_aerolinea() != null && aerolinea.getNombre() != null && aerolinea.getUsuario() != null
 				&& aerolinea.getPassword() != null && aerolinea.getCorreo() != null) {
@@ -2479,11 +2468,9 @@ public class controlador {
 		String correo = txfModificaraeroCorreo.getText();
 		if (stridaerolineas != "" && strnombres_aerolinea != "" && usuario_aerolinea != "" && strpassword != ""
 				&& correo != "") {
-			conexionbd conexion = new conexionbd();
 			conexion.guardar_modificaraerolinea(usuario_aerolinea, stridaerolineas, strnombres_aerolinea, strpassword,
 					correo);
-			
-			
+
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Guardado");
 			alert.setHeaderText("Registro guardado");
@@ -2558,7 +2545,6 @@ public class controlador {
 		String capacidadhangar = txfCpacidadMetrosHangar.getText();
 
 		if (idhangar != "" && ubicaciobnhangar != "" && capacidadhangar != "") {
-			conexionbd conexion = new conexionbd();
 			conexion.guardarhangar(idhangar, ubicaciobnhangar, capacidadhangar);
 
 			txfidhangar.clear();
@@ -2569,7 +2555,7 @@ public class controlador {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Registro no guardado");
-			alert.setContentText("Los campos deben estar llenos");
+			alert.setContentText("Los campos estan vacios");
 			alert.showAndWait();
 		}
 
@@ -2618,7 +2604,6 @@ public class controlador {
 	void eliminarhangar(ActionEvent event) {
 		String idhangar = idhangarAdministrarhangar.getText();
 		if (idhangar != "") {
-			conexionbd conexion = new conexionbd();
 			conexion.eliminar_hangar(idhangar);
 
 			limpiar_tabla_hangares();
@@ -2680,7 +2665,6 @@ public class controlador {
 		LocalDate fecha = datepickerModificarVuelo.getValue();
 
 		if (nombre != "" && apellido != "" && cedula != "" && licencia != "" && horas != "" && fecha != null) {
-			conexionbd conexion = new conexionbd();
 			conexion.guardarmodificarpiloto(nombre, apellido, cedula, licencia, horas, fecha);
 
 			// limpiar pantalla
@@ -2692,7 +2676,7 @@ public class controlador {
 			datepickerModificarVuelo.setValue(null);
 
 			txfIdpiloto.clear();
-		}else {
+		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Campos vacíos");
@@ -2748,14 +2732,11 @@ public class controlador {
 	@FXML
 	private TableColumn numeroavion, columidavion, columntipoavion, columnmodeloavion, columnpropulsion;
 
-	// construccion
 	@FXML
 	private TableView<vuelo> tbleviewModificarVuelos1;
 	@FXML
 	private TableColumn numero_vueloma, columdvuelo, columfecha, columhoraaero, columtipodevuelo;
 
-	// construccion
-	// TIME SPINNER
 	@FXML
 	private Spinner<Integer> spinnerHoraagendavuelo, spinnerHoraagendavuelo2, spinnerHoraModificaVuelo1,
 			spinnerHoraModificaVuelo11;
@@ -2769,8 +2750,32 @@ public class controlador {
 	@FXML
 	private TableColumn nroIdvuelo, colidvuelo, colfechavuelo, colhoravuelo, coltipovuelo;
 
+	
+	
 	@FXML
-	void initialize() {
+	private TableView<hangaresasignaravion> tbleviewGestionarhangares1;
+	@FXML
+	private TableColumn nroHangarreservar,idHangarReservar, costoHoraHangar;
+	
+	//Hangares ocupados
+	@FXML
+	private TableView<hangaresocupados> tbleViewFacturaHangares;
+	
+	@FXML
+	private TableColumn nroHangarFactura,idhangarfacturar, idavionfacturar,horaentradahangar,fechaentradahangar,valoractualhangar;
+
+	@FXML
+	private TableView<facturas> tbleViewVisualizarFacturasHangar;
+	
+	@FXML
+	private TableColumn id_factura,tablecolum_idhangar,tablecolum_idavion,tablecolum_aerolinea,tablecolum_facturado;
+	
+	@FXML
+	void initialize() throws Exception {
+		cmbIdavionHangar.setPromptText("Selecciona Id Avion");
+		
+		
+		
 
 		// Spinner modificar vuelo
 		SpinnerValueFactory<Integer> value3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
@@ -2778,7 +2783,6 @@ public class controlador {
 		SpinnerValueFactory<Integer> value4 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
 		spinnerHoraagendavuelo21.setValueFactory(value4);
 
-		// area de trabajo
 		SpinnerValueFactory<Integer> value = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
 		spinnerHoraagendavuelo.setValueFactory(value);
 
@@ -2819,6 +2823,8 @@ public class controlador {
 		apellido_usuarios_aeropuerto.setCellValueFactory(new PropertyValueFactory<>("primerApellido"));
 		correo_usuarios_aeropuerto.setCellValueFactory(new PropertyValueFactory<>("correo"));
 
+		//
+
 		// TABLEVIEW AEROLINEAS
 		tblevModificaraero.setEditable(true);
 		numero_aerolinea.setCellValueFactory(new PropertyValueFactory<>("numero"));
@@ -2828,6 +2834,7 @@ public class controlador {
 		column_correo_aerolinea.setCellValueFactory(new PropertyValueFactory<>("correo"));
 
 		// Table view hangares
+
 		tbleviewAdministrarHangar.setEditable(true);
 		numeroHangar.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		idhangar.setCellValueFactory(new PropertyValueFactory<>("idhangares"));
@@ -2875,13 +2882,89 @@ public class controlador {
 		columhoraaero.setCellValueFactory(new PropertyValueFactory<>("hora"));
 		columtipodevuelo.setCellValueFactory(new PropertyValueFactory<>("tipovuelo"));
 
+		// Tabla gestionar hangares
+		tbleviewGestionarhangares1.setEditable(true);
+		nroHangarreservar.setCellValueFactory(new PropertyValueFactory<>("numero"));
+		idHangarReservar.setCellValueFactory(new PropertyValueFactory<>("idhangar"));
+		costoHoraHangar.setCellValueFactory(new PropertyValueFactory<>("costos"));
+		
+		//tabla gesstionar hangares ocupados
+		tbleViewFacturaHangares.setEditable(true);
+		nroHangarFactura.setCellValueFactory(new PropertyValueFactory<>("numero"));
+		idhangarfacturar.setCellValueFactory(new PropertyValueFactory<>("idhangar"));
+		idavionfacturar.setCellValueFactory(new PropertyValueFactory<>("idavion"));
+		horaentradahangar.setCellValueFactory(new PropertyValueFactory<>("horaentrada"));
+		fechaentradahangar.setCellValueFactory(new PropertyValueFactory<>("fechaentrada"));
+		valoractualhangar.setCellValueFactory(new PropertyValueFactory<>("valoractual"));
+
+		//espacio de trabajo
+		
+		tbleViewVisualizarFacturasHangar.setEditable(true);
+		id_factura.setCellValueFactory(new PropertyValueFactory<>("idfacturas"));
+		tablecolum_idhangar.setCellValueFactory(new PropertyValueFactory<>("idhangars"));
+		tablecolum_idavion.setCellValueFactory(new PropertyValueFactory<>("idavions"));
+		tablecolum_aerolinea.setCellValueFactory(new PropertyValueFactory<>("aerolineas"));
+		tablecolum_facturado.setCellValueFactory(new PropertyValueFactory<>("facturados"));
+		
 	}
 
 	// METODOS COMPLEMENTARIOS MENU AEROPUERTO
 	// METODOS PARA CARGAR DATOS AEROPUERTO
+	
+	public void cargar_registros() {
+		for (int i = 0; i < conexion.cargarfacturas().size(); i++) {
+			tbleViewVisualizarFacturasHangar.getItems().add(new facturas(
+					conexion.cargarfacturas().get(i).getIdfactura(),
+					conexion.cargarfacturas().get(i).getIdhangar(),
+					conexion.cargarfacturas().get(i).getIdavion(),
+					conexion.cargarfacturas().get(i).getAerolinea(),
+					conexion.cargarfacturas().get(i).getFacturado()
+					));
+
+			
+		}
+		
+	}
+	
+	public void limpiar_registroshangar() {
+		tbleViewVisualizarFacturasHangar.getItems().clear();
+	}
+	
+	
+	
+	public void cargarhangaresaeropuerto() {
+		for (int i = 0; i < conexion.cargarhangares_desocupados().size(); i++) {
+			tbleviewGestionarhangares1.getItems().add(new hangaresasignaravion(
+					(i + 1),
+					conexion.cargarhangares_desocupados().get(i).getIdhangar(),
+					conexion.cargarhangares_desocupados().get(i).getCosto()));
+			
+		}
+	}
+	
+	public void cargarhangaresocupadoss() {
+		for (int i = 0; i < conexion.cargarhangares_ocupados().size(); i++) {
+			tbleViewFacturaHangares.getItems().add(new hangaresocupados(
+					(i+1),
+					conexion.cargarhangares_ocupados().get(i).getIdhangar(),
+					conexion.cargarhangares_ocupados().get(i).getIdavion(),
+					conexion.cargarhangares_ocupados().get(i).getHoraentrada(),
+					conexion.cargarhangares_ocupados().get(i).getFechaentrada(),
+					conexion.cargarhangares_ocupados().get(i).getValoractual()));
+
+			
+		}
+	}
+	
+	public void limpiarhangaresocupados() {
+		tbleViewFacturaHangares.getItems().clear();
+	}
+	
+	
+	
+	
 
 	public void cargarvueloscomoaeropuerto() {
-		conexionbd conexion = new conexionbd();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		for (int i = 0; i < conexion.cargarsolicitudesvuelos().size(); i++) {
 			tbleviewAgendaVuelos.getItems()
@@ -2895,7 +2978,6 @@ public class controlador {
 	}
 
 	public void cargarvuelomodificarvueloaero() {
-		conexionbd conexion = new conexionbd();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		for (int i = 0; i < conexion.cargarsolicitudesvuelos().size(); i++) {
 			tbleviewModificarVuelos1.getItems()
@@ -2913,7 +2995,6 @@ public class controlador {
 	}
 
 	public void cargarvuelos() {
-		conexionbd conexion = new conexionbd();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		for (int i = 0; i < conexion.cargarsolicitudesvuelos().size(); i++) {
 			tblevieSolicitudesaprobados.getItems()
@@ -2926,7 +3007,6 @@ public class controlador {
 	}
 
 	public void cargar_pilotos() {
-		conexionbd conexion = new conexionbd();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		for (int i = 0; i < conexion.cargarpilotoaerolinea().size(); i++) {
 			tblecolumListapilotos.getItems()
@@ -2938,8 +3018,20 @@ public class controlador {
 		}
 	}
 
+	public void cargaraviones_comboboxhangar() {
+		for (int i = 0; i < conexion.cargaraviones_hangar().size(); i++) {
+			cmbIdavionHangar.getItems().add(conexion.cargaraviones_hangar().get(i).getIdavion());
+			
+
+		}
+
+	}
+
+	public void limpiar_avionescombohangar() {
+		cmbIdavionHangar.getItems().clear();
+	}
+
 	public void cargaraviones() {
-		conexionbd conexion = new conexionbd();
 		for (int i = 0; i < conexion.cargaraviones(idaerolinealogin).size(); i++) {
 			tbleviewListaaviones.getItems()
 					.add(new avion((i + 1), conexion.cargaraviones(idaerolinealogin).get(i).getIdavion(),
@@ -2950,7 +3042,6 @@ public class controlador {
 	}
 
 	public void cargar_usuario_aeropuerto() {
-		conexionbd conexion = new conexionbd();
 		for (int i = 0; i < conexion.cargarusuariosaeropuerto().size(); i++) {
 			tableviewModificarEmpleadosAeropuerto.getItems()
 					.add(new usuario_aeropuerto((i + 1), conexion.cargarusuariosaeropuerto().get(i).getUsuario(),
@@ -2962,7 +3053,6 @@ public class controlador {
 	}
 
 	public void cargar_aerolineas_aeropuerto() {
-		conexionbd conexion = new conexionbd();
 		for (int i = 0; i < conexion.cargaraerolineas().size(); i++) {
 			tblevModificaraero.getItems()
 					.add(new aerolineas((i + 1), conexion.cargaraerolineas().get(i).getid_aerolinea(),
@@ -2975,7 +3065,6 @@ public class controlador {
 	}
 
 	public void cargar_hangares() {
-		conexionbd conexion = new conexionbd();
 		for (int i = 0; i < conexion.cargarhangares().size(); i++) {
 			tbleviewAdministrarHangar.getItems()
 					.add(new hangares((i + 1), conexion.cargarhangares().get(i).getIdhangar(),
@@ -2986,34 +3075,7 @@ public class controlador {
 
 	}
 
-	public void limpiarvuelos() {
-		tblevieSolicitudesaprobados.getItems().clear();
-	}
 
-	public void limpiarvueloaeropuerto() {
-		tbleviewAgendaVuelos.getItems().clear();
-
-	}
-
-	public void limpiar_tabla_hangares() {
-		tbleviewAdministrarHangar.getItems().clear();
-	}
-
-	public void limpiar_tabla_aerolineas() {
-		tblevModificaraero.getItems().clear();
-	}
-
-	public void limpiar_tabla_usuario_aeropuerto() {
-		tableviewModificarEmpleadosAeropuerto.getItems().clear();
-	}
-
-	public void limpiar_pantalla_pilotos() {
-		tblecolumListapilotos.getItems().clear();
-	}
-
-	public void limpiar_agenda_vuelos_aerolinea() {
-		tblevieSolicitudesaprobados.getItems().clear();
-	}
 
 	// CLASES SIMPLE STRING PARA MENU AEROPUERTO
 
@@ -3174,6 +3236,81 @@ public class controlador {
 		}
 
 	}
+	public class hangaresasignaravion {
+		private final SimpleIntegerProperty numero;
+		private final SimpleStringProperty idhangar;
+		private final SimpleStringProperty costos;
+
+		private hangaresasignaravion(int numero, String idhangar, String costos) {
+			this.numero = new SimpleIntegerProperty(numero);
+			this.idhangar = new SimpleStringProperty(idhangar);
+			this.costos = new SimpleStringProperty(costos);
+			
+		}
+
+		public int getNumero() {
+			return numero.get();
+		}
+
+		public String getIdhangar() {
+			return idhangar.get();
+		}
+
+		public String getCostos() {
+			return costos.get();
+		}
+
+
+	}
+	public class hangaresocupados {
+		private final SimpleIntegerProperty numero;
+		private final SimpleStringProperty idhangar;
+		private final SimpleStringProperty idavion;
+		private final SimpleStringProperty horaentrada;
+		private final SimpleStringProperty fechaentrada;
+		private final SimpleStringProperty valoractual;
+
+		private hangaresocupados(int numero, String idhangar, String idavion,String horaentrada, String fechaentrada,
+				String valoractual){
+			this.numero = new SimpleIntegerProperty(numero);
+			this.idhangar = new SimpleStringProperty(idhangar);
+			this.idavion = new SimpleStringProperty(idavion);
+			this.horaentrada= new SimpleStringProperty(horaentrada);
+			this.fechaentrada = new SimpleStringProperty(fechaentrada);
+			this.valoractual = new SimpleStringProperty(valoractual);
+			
+		}
+
+		public int getNumero() {
+			return numero.get();
+		}
+
+		public String getIdhangar() {
+			return idhangar.get();
+		}
+
+		public String getIdavion() {
+			return idavion.get();
+		}
+		public String getHoraentrada() {
+			return horaentrada.get();
+		}
+
+		public String getFechaentrada() {
+			return fechaentrada.get();
+		}
+
+		public String getValoractual() {
+			return valoractual.get();
+		}
+
+
+
+	}
+	
+	
+	
+	
 
 	public class aerolineas {
 		private final SimpleIntegerProperty numero;
@@ -3243,8 +3380,80 @@ public class controlador {
 		}
 
 	}
+	
+	
+	
+	public class facturas {
+		private final SimpleStringProperty idfacturas;
+		private final SimpleStringProperty idhangars;
+		private final SimpleStringProperty idavions;
+		private final SimpleStringProperty aerolineas;
+		private final SimpleStringProperty facturados;
 
-	// METODOS COMPLEMENTARIOS LOGIN
+		private facturas(String idfacturas, String idhangars, String idavions, String aerolineas,String facturados) {
+			this.idfacturas= new SimpleStringProperty(idfacturas);
+			this.idhangars = new SimpleStringProperty(idhangars);
+			this.idavions= new SimpleStringProperty(idavions);
+			this.aerolineas = new SimpleStringProperty(aerolineas);
+			this.facturados = new SimpleStringProperty(facturados);
+		}
+
+
+
+		public String getIdfacturas() {
+			return idfacturas.get();
+		}
+
+		public String getIdhangars() {
+			return idhangars.get();
+		}
+
+		public String getIdavions() {
+			return idavions.get();
+		}
+		
+		public String getAerolineas() {
+			return aerolineas.get();
+		}
+		public String getFacturados() {
+			return facturados.get();
+		}
+	}
+
+	
+	
+
+	// METODOS DE LIMPIEZA
+	
+	public void limpiarvuelos() {
+		tblevieSolicitudesaprobados.getItems().clear();
+	}
+
+	public void limpiarvueloaeropuerto() {
+		tbleviewAgendaVuelos.getItems().clear();
+
+	}
+
+	public void limpiar_tabla_hangares() {
+		tbleviewAdministrarHangar.getItems().clear();
+	}
+
+	public void limpiar_tabla_aerolineas() {
+		tblevModificaraero.getItems().clear();
+	}
+
+	public void limpiar_tabla_usuario_aeropuerto() {
+		tableviewModificarEmpleadosAeropuerto.getItems().clear();
+	}
+
+	public void limpiar_pantalla_pilotos() {
+		tblecolumListapilotos.getItems().clear();
+	}
+
+	public void limpiar_agenda_vuelos_aerolinea() {
+		tblevieSolicitudesaprobados.getItems().clear();
+	}
+	
 
 	public void limpiarlogin() {
 		txfNomusuario.clear();
@@ -3252,4 +3461,10 @@ public class controlador {
 		cmbxLogin.setPromptText("Elige un tipo de usuario");
 
 	}
+	
+	public void limpiarhangaresvacios() {
+		tbleviewGestionarhangares1.getItems().clear();
+	}
+	
+
 }

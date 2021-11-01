@@ -29,7 +29,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.controlador">
 	<children>
-		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;">
+		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;" visible="false">
          <children>
             <ImageView fitHeight="507.0" fitWidth="800.0" pickOnBounds="true">
                <image>
@@ -79,7 +79,7 @@
             </AnchorPane>
          </children>
 		</AnchorPane>
-      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;" visible="false">
+      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;">
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #393351;">
                <children>
@@ -234,7 +234,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pneHangar" layoutX="250.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+            <Pane fx:id="pneHangar" layoutX="250.0" prefHeight="500.0" prefWidth="551.0">
                <children>
                   <Pane layoutX="85.0" layoutY="80.0" prefHeight="170.0" prefWidth="169.0">
                      <children>
@@ -683,11 +683,9 @@
                               </Pane>
                               <TableView fx:id="tbleviewGestionarhangares1" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="299.0" prefWidth="507.0">
                                 <columns>
-                                  <TableColumn prefWidth="65.0" text="ID-Hangar" />
-                                    <TableColumn prefWidth="107.0" text="Disponibilidad" />
-                                    <TableColumn prefWidth="121.0" text="Id-Avion" />
-                                    <TableColumn prefWidth="132.0" text="Id-Aerolinea" />
-                                    <TableColumn prefWidth="99.0" text="Fecha Entrada" />
+                                    <TableColumn fx:id="nroHangarreservar" prefWidth="75.0" text="N°" />
+                                  <TableColumn fx:id="idHangarReservar" prefWidth="150.0" text="ID-Hangar" />
+                                    <TableColumn fx:id="costoHoraHangar" prefWidth="281.0" text="Costo por hora" />
                                 </columns>
                                  <VBox.margin>
                                     <Insets />
@@ -695,19 +693,13 @@
                               </TableView>
                               <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="507.0" spacing="20.0">
                                  <children>
-                                    <TextField fx:id="idAvionHangar1" prefHeight="25.0" prefWidth="250.0" promptText="Id-Avion" />
-                                    <TextField fx:id="idHangarLlegada1" prefHeight="25.0" prefWidth="250.0" promptText="ID-Hangar" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="507.0" spacing="20.0">
-                                 <children>
-                                    <DatePicker fx:id="datepickRegistroHangar1" prefHeight="25.0" prefWidth="250.0" promptText="dd/mm/yyyy" />
-                                    <Spinner fx:id="spinnerHoraHangares1" prefHeight="25.0" prefWidth="250.0" />
+                                    <TextField fx:id="txfIdhangar" prefHeight="25.0" prefWidth="241.0" promptText="Digita el Id del Hangar" />
+                                    <ComboBox fx:id="cmbIdavionHangar" editable="true" prefHeight="35.0" prefWidth="152.0" promptText="Id del Avion" />
+                                    <Button mnemonicParsing="false" onAction="#btnRegistrarAvionEnHangar" prefHeight="25.0" prefWidth="77.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Registrar" />
                                  </children>
                               </HBox>
                               <HBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="507.0" spacing="80.0">
                                  <children>
-                                    <Button fx:id="idRegistrarAvionHangar" mnemonicParsing="false" onAction="#btnRegistrarHangar1" prefHeight="27.0" prefWidth="89.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Registrar" />
                                     <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar1" onAction="#hiperlinkRegresarHangar" prefHeight="30.0" prefWidth="64.0" text="Regresar">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
@@ -737,12 +729,12 @@
                               </Pane>
                               <TableView fx:id="tbleViewFacturaHangares" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="507.0">
                                  <columns>
-                                    <TableColumn prefWidth="65.0" text="ID-Hangar" />
-                                    <TableColumn prefWidth="99.0" text="Disponibilidad" />
-                                    <TableColumn prefWidth="79.0" text="Id-Avion" />
-                                    <TableColumn prefWidth="89.0" text="Id-Aerolinea" />
-                                    <TableColumn prefWidth="93.0" text="Fecha Entrada" />
-                                    <TableColumn prefWidth="99.0" text="Costo-Hora" />
+                                    <TableColumn fx:id="nroHangarFactura" prefWidth="65.0" text="N°" />
+                                    <TableColumn fx:id="idhangarfacturar" prefWidth="75.0" text="Id-Hangar" />
+                                    <TableColumn fx:id="idavionfacturar" prefWidth="90.0" text="Id-Avion" />
+                                    <TableColumn fx:id="horaentradahangar" prefWidth="103.0" text="Hora entrada" />
+                                    <TableColumn fx:id="fechaentradahangar" prefWidth="87.0" text="Fecha Entrada" />
+                                    <TableColumn fx:id="valoractualhangar" prefWidth="86.0" text="Valor Actual" />
                                  </columns>
                                  <VBox.margin>
                                     <Insets />
@@ -778,11 +770,11 @@
                               </Pane>
                               <TableView fx:id="tbleViewVisualizarFacturasHangar" prefHeight="383.0" prefWidth="507.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="N° Factura" />
-                                  <TableColumn prefWidth="87.0" text="Id-Hangar" />
-                                    <TableColumn prefWidth="142.0" text="Id-Aerolinea" />
-                                    <TableColumn prefWidth="86.0" text="Id-Avion" />
-                                    <TableColumn prefWidth="116.0" text="Facturado" />
+                                  <TableColumn fx:id="id_factura" prefWidth="65.0" text="Id-factura" />
+                                  <TableColumn fx:id="tablecolum_idhangar" prefWidth="111.0" text="Id-Hangar" />
+                                    <TableColumn fx:id="tablecolum_idavion" prefWidth="114.0" text="Id-avion" />
+                                    <TableColumn fx:id="tablecolum_aerolinea" prefWidth="116.0" text="Aerolinea" />
+                                    <TableColumn fx:id="tablecolum_facturado" prefWidth="100.0" text="Facturado" />
                                 </columns>
                               </TableView>
                               <Hyperlink fx:id="hiperlinkAeropuertoMenuRegistrosRegresar5" onAction="#hiperlinkRegresarVisualizarFacturasHangares" text="Regresar">
@@ -877,7 +869,7 @@
                   				</VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneModificarEmpleado" prefHeight="500.0" prefWidth="551.0">
+                  <Pane fx:id="paneModificarEmpleado" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
                         <VBox fx:id="vbxModificarUsuarioTableView" alignment="CENTER" layoutX="22.0" layoutY="24.0" prefHeight="452.0" prefWidth="507.0" spacing="10.0">
                            <children>

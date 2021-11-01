@@ -1,4 +1,4 @@
-package clases_AL;
+package clases;
 
 import java.util.Date;
 
@@ -35,15 +35,18 @@ public class vueloAL {
 
 
 
+	public Date getFecha() {
+		return fecha;
+	}
+
+
 	public String getIdvuelo() {
 		return idvuelo;
 	}
 	public void setIdvuelo(String idvuelo) {
 		this.idvuelo = idvuelo;
 	}
-	public Date getFecha() {
-		return fecha;
-	}
+
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}

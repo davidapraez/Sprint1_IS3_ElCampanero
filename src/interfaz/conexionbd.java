@@ -1,22 +1,31 @@
 package interfaz;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
+import clases.Factura;
+import clases.aerolineaAL;
+import clases.avionAL;
+import clases.hangarAL;
+import clases.pilotoAL;
+import clases.usuario_aeropuertoAL;
+import clases.vueloAL;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Alert;
-
-//Import complementarios
-import clases_AL.aerolineaAL;
-import clases_AL.avionAL;
-import clases_AL.hangarAL;
-import clases_AL.pilotoAL;
-import clases_AL.usuario_aeropuertoAL;
-import clases_AL.vueloAL;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 
 public class conexionbd {
 
@@ -139,13 +148,15 @@ public class conexionbd {
 
 	}
 
-	public void eliminarusuarioaeropuerto(String cedula) {
+	public boolean eliminarusuarioaeropuerto(String cedula) {
 		java.sql.Statement st = conexionbasededatos();
+		boolean eliminado=false;
 		String sql = "delete from usuario_aeropuerto where cedula='" + cedula + "';";
 		try {
 			if (buscarusuarioaeropuerto_cedula(cedula)) {
 				st.execute(sql);
 				st.close();
+				eliminado=true;
 			} else {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Error");
@@ -158,6 +169,7 @@ public class conexionbd {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return eliminado;
 
 	}
 
@@ -311,7 +323,6 @@ public class conexionbd {
 
 				arrayhangares.add(new hangarAL(idhangar, ubicacion, password));
 			}
-
 		} catch (SQLException e) {
 			// TODO Bloque catch generado automáticamente
 			e.printStackTrace();
@@ -443,6 +454,17 @@ public class conexionbd {
 		try {
 			if (!buscaridhangar(idhangar)) {
 				st.execute(sql2);
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Registro exitoso");
+				alert.setHeaderText("El hangar se registro satisfactoriamente");
+				alert.setContentText("Dele clic en aceptar para continuar");
+				alert.showAndWait();
+			}else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText("El hangar digitado ya se encuentra registrado.");
+				alert.setContentText("Verifique la información.");
+				alert.showAndWait();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -477,6 +499,13 @@ public class conexionbd {
 			if (buscaridhangar(idhangar)) {
 				st.execute(sql);
 				st.close();
+				
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Informacion");
+				alert.setHeaderText("El hangar digitado se elimino satisfactoriamente.");
+				alert.setContentText("Clic en aceptar para continuar.");
+				alert.showAndWait();
+				
 			} else {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Error");
@@ -909,6 +938,37 @@ public class conexionbd {
 
 	}
 
+	public ArrayList<avionAL> cargaraviones_hangar() {
+		ArrayList<avionAL> aviones = new ArrayList<>();
+		java.sql.Statement st = conexionbasededatos();
+		String sql = "select * from avion ;";
+		try {
+			ResultSet resultSet = st.executeQuery(sql);
+			while (resultSet.next()) {
+				String idavion = resultSet.getString("id_avion");
+				String tipoavion = resultSet.getString("tipo_avion");
+				String capacidad = resultSet.getString("capacidad");
+				String modelo = resultSet.getString("modelo");
+				String propulsion = resultSet.getString("tipo_propulsion");
+				String numero_motores = resultSet.getString("numero_motores");
+				String peso = resultSet.getString("peso_nominal");
+				String idaerolinea = resultSet.getString("idaerolinea");
+				aviones.add(new avionAL(idavion, tipoavion, capacidad, modelo, propulsion, numero_motores, peso,
+						idaerolinea));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return aviones;
+
+	}
+	
+	
+	
+	
 	// PILOTO
 
 	public boolean buscarpiloto(String cedula) {
@@ -1170,5 +1230,345 @@ public class conexionbd {
 		}
 
 	}
+	
+	/*public void cargarHangaresDesocupados(TableView<Hangar> tablaHangarAgendar ) throws Exception {
+	
+		java.sql.Statement st = conexionbasededatos();
+		String sql = "select * from hangares";
+		ResultSet result = st.executeQuery(sql);
+		System.out.println("se ejecuta sql");
+		
+		while (result.next()) {
+			System.out.println("si hay");
+			
+			String idhangar = result.getString("id_hangar");
+			String capacidad = result.getString("capacidad");
+			String ubicacion = result.getString("ubicacion");
+			String horaentrada = result.getString("horaentrada");
+			String fechaentrada= result.getString("fechaentrada");
+			String horasalida = result.getString("horasalida");
+			String fechasalida = result.getString("fechasalida");
+			String estado =  result.getString("estado");	
+		    Hangar hangar = new Hangar(idhangar, capacidad, ubicacion, horaentrada, fechaentrada, 
+		    		horasalida, fechasalida, estado, new Button("Reservar"));
 
+			
+			tablaHangarAgendar.getItems().add(hangar);	    
+	     }
+	}*/
+	
+	public ArrayList<hangarAL> cargarhangares_ocupados() {
+		java.sql.Statement st = conexionbasededatos();
+		ArrayList<hangarAL> arrayhangaresocupados = new ArrayList<>();
+		String sql = "select * from hangares where estado='Activo';";
+		ResultSet result;
+		try {
+			result = st.executeQuery(sql);
+		
+			while (result.next()) {
+				String idhangar = result.getString("id_hangar");
+				String horaentrada = result.getString("horaentrada");
+				String fechaentrada= result.getString("fechaentrada");
+				String idavion= result.getString("id_avion");
+				
+				
+				
+				String valoractual=calcularvaloractualhangar(fechaentrada,horaentrada);
+				
+				    arrayhangaresocupados.add(new hangarAL(idhangar, horaentrada, fechaentrada, 
+				    		 idavion,valoractual));
+		}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arrayhangaresocupados;
+
+		}
+	
+	public void facturahangar_yregistrar(String idhangar) {
+		java.sql.Statement st = conexionbasededatos();
+		
+		String sql = "select * from hangares where estado='Activo' and id_hangar='"+idhangar+"';";
+		ResultSet result;
+		try {
+			result=st.executeQuery(sql);
+			while (result.next()) {
+				String horaentrada = result.getString("horaentrada");
+				String fechaentrada= result.getString("fechaentrada");
+				String idavion= result.getString("id_avion");
+				String aerolinea="";
+				if(buscaraerolinea(idavion)!="") {
+					aerolinea=buscaraerolinea(idavion);
+				}
+				String facturado=calcularvaloractualhangar(fechaentrada,horaentrada);
+				String idfactura=String.valueOf((tamañoregistrofacturas())+1);
+				
+				if(idfactura!="" && idhangar!="" && idavion!="" && aerolinea!="" && facturado!="") {
+					registrarfactura(idfactura,idhangar,idavion,aerolinea,facturado);
+					cambiarestadohangar(idhangar);
+					
+				}else {
+					
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	public ArrayList<Factura> cargarfacturas() {
+		java.sql.Statement st = conexionbasededatos();
+		ArrayList<Factura> arrayhangares = new ArrayList<>();
+		String sql = "select * from registros_facturas";
+		try {
+			ResultSet result = st.executeQuery(sql);
+			while(result.next()) {
+					String idfactura = result.getString("idfactura");
+					String idhangar = result.getString("id_hangar");
+					String idavion= result.getString("id_avion");
+					String aerolinea = result.getString("aerolinea");
+					String facturado = result.getString("valor_facturado");
+					arrayhangares.add(new Factura(idfactura,idhangar,idavion,aerolinea,facturado)); 
+					
+					
+			
+				
+
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arrayhangares;
+		
+	}
+	
+	
+	public void cambiarestadohangar(String idhangar) {
+		java.sql.Statement st = conexionbasededatos();
+		String sql2 = "update hangares set horaentrada=" +null + ",fechaentrada=" + null
+				+ ",estado=" + null + ",id_avion="+null + " where (id_hangar='" + idhangar + "');";
+		try {
+			st.execute(sql2);
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void registrarfactura(String idfactura, String idhangar,String idavion, String aerolinea, String valor_facturado) {
+		java.sql.Statement st = conexionbasededatos();
+		String sql = "insert into registros_facturas (idfactura, id_hangar, id_avion,aerolinea,valor_facturado) ";
+		sql += "values ('" + idfactura + "','" + idhangar + "','" + idavion + "','" + aerolinea + "','"+valor_facturado+"');";
+		try {
+			st.execute(sql);
+			st.close();
+			
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Guardado ");
+			alert.setHeaderText("Factura guardada");
+			alert.setContentText("Se registro satisfactoriamente la factura");
+			alert.showAndWait();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	public int tamañoregistrofacturas() {
+		int tamaño=0;
+		;
+		java.sql.Statement st = conexionbasededatos();
+		
+		String sql = "SELECT count(*) from registros_facturas;";
+		ResultSet result;
+		try {
+			result=st.executeQuery(sql);
+			while (result.next()) {
+				tamaño= result.getInt("count");
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return tamaño;
+	}
+	
+	public String buscaraerolinea(String idavion) {
+		String idaerolinea="";
+		java.sql.Statement st = conexionbasededatos();
+		String sql = "select * from avion,aerolineas where avion.idaerolinea=aerolineas.idaerolinea and avion.id_avion='"+idavion+"';";
+		ResultSet result;
+		try {
+			result=st.executeQuery(sql);
+			while (result.next()) {
+				idaerolinea = result.getString("nombre_aerolinea");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return idaerolinea;
+		
+	}
+	
+	
+	
+	public String calcularvaloractualhangar(String fechaentrada, String horaentrada) {
+		String valoractual="";
+		long valorhangar=200000;
+		long total=0;
+
+		//Fecha inicio
+		 LocalDate localDate1 = LocalDate.parse(fechaentrada, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		 String sDate2 = localDate1.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		 DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		 //DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		 
+		 //Fecha fin
+		 Date date = new Date();
+			
+			DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+			String horaactual= hourFormat.format(date);
+			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");		
+			String fechaactual=dateFormat.format(date);
+		 
+ 
+		 try
+		 {
+			 Date fechainicio = df.parse(sDate2+" "+horaentrada);
+			 Date fechafin = df.parse(fechaactual+" "+horaactual );
+			 long l=fechafin.getTime()-fechainicio.getTime();
+			 long day=l/(24*60*60*1000);
+			 long hour=(l/(60*60*1000)-day*24);
+			 
+			 total=(((day*24)+(hour)))*valorhangar;
+			 NumberFormat formatoNumero = NumberFormat.getNumberInstance();
+			 valoractual="$"+formatoNumero.format(total);
+			 
+			 
+		 }
+		 catch (Exception e)
+		 	{
+			 e.printStackTrace();
+		 	}
+		 
+		 
+		return valoractual;
+		
+	}
+	
+
+	public ArrayList<hangarAL> cargarhangares_desocupados() {
+		java.sql.Statement st = conexionbasededatos();
+		ArrayList<hangarAL> arrayhangares = new ArrayList<>();
+		String sql = "select * from hangares";
+		try {
+			ResultSet result = st.executeQuery(sql);
+			while(result.next()) {
+				String estado= result.getString("estado");
+				if(estado==null) {
+					String idhangar = result.getString("id_hangar");
+					arrayhangares.add(new hangarAL(idhangar,"200000")); 
+				}
+				
+
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arrayhangares;
+		
+	}
+	
+	public boolean asignaravionahangar(String idhangar, String idavion,String horaentrada,String fechaentrada) {
+		boolean asignado=false;
+		
+		java.sql.Statement st = conexionbasededatos();
+		//String sql = "select * from hangares where id_hangar='"+idhangar+"' and estado is null";
+		String sql="update hangares set id_avion='" + idavion + "',horaentrada='" + horaentrada
+		+ "',fechaentrada='" + fechaentrada +"',estado='Activo' where (id_hangar='" + idhangar + "');";
+		try {
+			st.execute(sql);
+			st.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return asignado;
+	}
+	
+	
+	public void facturarhangar(String idhangar) {
+		java.sql.Statement st = conexionbasededatos();
+		if(comprobardisponibilidadhangar(idhangar)) {
+			
+		}
+		
+		
+	}
+	
+	
+	public boolean comprobardisponibilidadhangar(String idhangar) {
+		boolean disponible=true;
+		java.sql.Statement st = conexionbasededatos();
+		String sql="select * from hangares where id_hangar='"+idhangar+"';";
+		try {
+			ResultSet result = st.executeQuery(sql);
+			while(result.next()) {
+				String estadohangar=result.getString("estado");
+				if(estadohangar.equalsIgnoreCase("Activo")) {
+					disponible=false;
+				}
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return disponible;
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 }

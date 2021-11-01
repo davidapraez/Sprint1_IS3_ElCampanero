@@ -1,4 +1,4 @@
-package clases_AL;
+package clases;
 
 public class aerolineaAL {
 	String usuario;

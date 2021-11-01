@@ -1,4 +1,4 @@
-package clases_AL;
+package clases;
 
 public class avionAL {
 	String idavion,topoavion,capacidad, modelo, tipopropulsion,numeromotores, pesonominal,idaerolinea;
