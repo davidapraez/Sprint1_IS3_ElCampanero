@@ -1502,15 +1502,31 @@ public class controlador {
 		String idhangar=txfIdhangar.getText();
 		String idavion=cmbIdavionHangar.getValue();
 		
-
 		Date date = new Date();
 		DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
 		String horaentrada= hourFormat.format(date);
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");		
 		String fechaentrada=dateFormat.format(date);
+		if(idhangar!="" && idavion!=null) {
+			conexion.asignaravionahangar(idhangar, idavion, horaentrada, fechaentrada);
+			txfIdhangar.clear();
+			cmbIdavionHangar.getSelectionModel().clearSelection();
+			//*****
+			limpiarhangaresvacios();
+			limpiar_avionescombohangar();
+			cargaraviones_comboboxhangar();
+			cargarhangaresaeropuerto();
+			
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Debe digitar el id del hangar y seleccionar el id del avion");
+			alert.setContentText("Dele clic en aceptar para continuar");
+			alert.showAndWait();
+		}
 		
-		conexion.asignaravionahangar(idhangar, idavion, horaentrada, fechaentrada);
+		
 		
 		
 		
@@ -1986,8 +2002,17 @@ public class controlador {
 	void btnFacturarVueloEnHangares(ActionEvent event) {
 		
 		String idhangar=txfHangarFacturar.getText();
-		conexion.facturahangar_yregistrar(idhangar);
-		txfHangarFacturar.clear();
+		if(idhangar!=""){
+			conexion.facturahangar_yregistrar(idhangar);
+			txfHangarFacturar.clear();
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Campos vacios");
+			alert.setHeaderText("Debe digitar el Id del hangar");
+			alert.setContentText("Delec click en aceptar para continuar");
+			alert.showAndWait();
+		}
+		
 		
 		
 
