@@ -1569,15 +1569,20 @@ public class conexionbd {
 	public boolean comprobardisponibilidadhangar(String idhangar) {
 		boolean disponible = true;
 		java.sql.Statement st = conexionbasededatos();
-		String sql = "select * from hangares where id_hangar='" + idhangar + "';";
+		String sql = "select * from hangares;";
 		try {
 			ResultSet result = st.executeQuery(sql);
 			while (result.next()) {
 				String estadohangar = result.getString("estado");
-				if (estadohangar.equalsIgnoreCase("Activo")) {
-					disponible = false;
+				String idhangarsql=result.getString("id_hangar");
+				if(estadohangar!=null && idhangarsql.equalsIgnoreCase(idhangar)) {
+					
+						disponible = false;
+					
 				}
+				
 			}
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

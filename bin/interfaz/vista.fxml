@@ -668,7 +668,7 @@
       		</AnchorPane>
             <AnchorPane fx:id="anpMenusHangar" layoutX="250.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;">
                <children>
-                  <Pane fx:id="paneRegistrarLlegada" prefHeight="500.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneRegistrarLlegada" prefHeight="500.0" prefWidth="551.0">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="474.0" prefWidth="525.0" spacing="15.0">
                            <children>
@@ -711,7 +711,7 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneRegistrarFacturaHangar" layoutX="-1.0" layoutY="1.0" prefHeight="500.0" prefWidth="551.0">
+                  <Pane fx:id="paneRegistrarFacturaHangar" layoutX="-1.0" layoutY="1.0" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="474.0" prefWidth="525.0" spacing="15.0">
                            <children>
