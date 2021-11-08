@@ -54,10 +54,9 @@ import javafx.scene.control.TableColumn;
 //Importacion de clases complementarias
 
 public class controlador {
-	
-	//Variables constantes
-	conexionbd conexion=new conexionbd();
-	
+
+	// Variables constantes
+	conexionbd conexion = new conexionbd();
 
 	@FXML
 	private ResourceBundle resources;
@@ -619,8 +618,6 @@ public class controlador {
 	@FXML
 	private Pane paneFacturasRealizadasHnagar;
 
-
-
 	@FXML
 	private Hyperlink hiperlinkAeropuertoMenuRegistrosRegresar5;
 
@@ -694,7 +691,7 @@ public class controlador {
 
 	@FXML
 	void iniciarsesion(ActionEvent event) {
-		if (cmbxLogin.getValue() != null && txfNomusuario.getText()!="" && psfContras.getText()!="") {
+		if (cmbxLogin.getValue() != null && txfNomusuario.getText() != "" && psfContras.getText() != "") {
 			String tipousuario = cmbxLogin.getValue();
 			if (tipousuario == "Aerolinea") {
 
@@ -717,7 +714,7 @@ public class controlador {
 					anpLogin.setVisible(false);
 					anpMenuAeropuerto.setVisible(true);
 					idaeropuertologin = txfNomusuario.getText();
-					
+
 				} else {
 					Alert alert = new Alert(Alert.AlertType.ERROR);
 					alert.setTitle("Error ");
@@ -1470,7 +1467,7 @@ public class controlador {
 // *************************************************************************************************************
 
 	@FXML
-	private Button btnSalirAeropuerto,btnCerrrarSesionAeropuerto;
+	private Button btnSalirAeropuerto, btnCerrrarSesionAeropuerto;
 	@FXML
 	private TextField txfModificarNombreAerolineaeste;
 
@@ -1496,43 +1493,45 @@ public class controlador {
 	void btnModificarVueloGuardarEmpleado(ActionEvent event) {
 
 	}
-	
+
 	@FXML
 	void btnRegistrarAvionEnHangar(ActionEvent event) {
-		
-		String idhangar=txfIdhangar.getText();
-		String idavion=cmbIdavionHangar.getValue();
-		
+
+		String idhangar = txfIdhangar.getText();
+		String idavion = cmbIdavionHangar.getValue();
+
 		Date date = new Date();
 		DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
-		String horaentrada= hourFormat.format(date);
-		
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");		
-		String fechaentrada=dateFormat.format(date);
-		if(idhangar!="" && idavion!=null) {
-			conexion.asignaravionahangar(idhangar, idavion, horaentrada, fechaentrada);
-			txfIdhangar.clear();
-			cmbIdavionHangar.getSelectionModel().clearSelection();
-			//*****
-			limpiarhangaresvacios();
-			limpiar_avionescombohangar();
-			cargaraviones_comboboxhangar();
-			cargarhangaresaeropuerto();
-			
-		}else {
+		String horaentrada = hourFormat.format(date);
+
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String fechaentrada = dateFormat.format(date);
+		if (idhangar != "" && idavion != null) {
+			if (conexion.comprobardisponibilidadhangar(idhangar)) {
+				conexion.asignaravionahangar(idhangar, idavion, horaentrada, fechaentrada);
+				txfIdhangar.clear();
+				cmbIdavionHangar.getSelectionModel().clearSelection();
+				// *****
+				limpiarhangaresvacios();
+				limpiar_avionescombohangar();
+				cargaraviones_comboboxhangar();
+				cargarhangaresaeropuerto();
+			} else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText("El id del hangar no esta disponible o no esta registrado");
+				alert.setContentText("Dele clic en aceptar para continuar");
+				alert.showAndWait();
+			}
+
+		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Debe digitar el id del hangar y seleccionar el id del avion");
 			alert.setContentText("Dele clic en aceptar para continuar");
 			alert.showAndWait();
 		}
-		
-		
-		
-		
-		
-		
-		
+
 	}
 
 	@FXML
@@ -1577,8 +1576,8 @@ public class controlador {
 		paneAgendaVuelos.setVisible(true);
 		paneModificarAgenda.setVisible(false);
 		paneSolicitudesCambio.setVisible(false);
-		
-		//metodos
+
+		// metodos
 		limpiarvueloaeropuerto();
 		cargarvueloscomoaeropuerto();
 
@@ -1586,7 +1585,7 @@ public class controlador {
 
 	@FXML
 	void AgendaAeropuerto(ActionEvent event) {
-		 
+
 		pneAgenda.setVisible(false);
 		pneHangar.setVisible(false);
 		pneAeropuertoRegistros.setVisible(false);
@@ -1601,7 +1600,7 @@ public class controlador {
 
 		limpiarvueloaeropuerto();
 		cargarvueloscomoaeropuerto();
-		
+
 	}
 
 	@FXML
@@ -1744,7 +1743,7 @@ public class controlador {
 		int minutos = spinnerHoraagendavuelo21.getValue();
 
 		if (idavion != "" && piloto != "" && fecha != null) {
-			
+
 			if (!conexion.validarhoravuelo(fecha.toString(), horas, minutos)) {
 
 				conexion.modificarvueloaerolinea(idvuelo, fecha, horas, minutos, tipodevuelo, idavion, piloto,
@@ -1953,13 +1952,12 @@ public class controlador {
 		paneFacturasRealizadasHnagar.setVisible(false);
 
 		// -----------------------------------------------------------------
-		
+
 		limpiarhangaresvacios();
 		limpiar_avionescombohangar();
 		cargaraviones_comboboxhangar();
 		cargarhangaresaeropuerto();
-		
-		
+
 		// conexio.cargarHangaresDesocupados(tbleviewGestionarhangares1);
 
 	}
@@ -1990,39 +1988,32 @@ public class controlador {
 		paneRegistrarLlegada.setVisible(false);
 		paneRegistrarFacturaHangar.setVisible(true);
 		paneFacturasRealizadasHnagar.setVisible(false);
-		
-		
-		//AA
+
+		// AA
 		limpiarhangaresocupados();
 		cargarhangaresocupadoss();
-		
 
 	}
 
 	@FXML
 	void btnFacturarVueloEnHangares(ActionEvent event) {
-		
-		String idhangar=txfHangarFacturar.getText();
-		if(idhangar!=""){
+
+		String idhangar = txfHangarFacturar.getText();
+		// conexion.cambiarestadohangar(idhangar);
+		if (idhangar != "") {
 			conexion.facturahangar_yregistrar(idhangar);
 			txfHangarFacturar.clear();
 			limpiarhangaresocupados();
 			cargarhangaresocupadoss();
-		}else {
+		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Campos vacios");
 			alert.setHeaderText("Debe digitar el Id del hangar");
 			alert.setContentText("Delec click en aceptar para continuar");
 			alert.showAndWait();
 		}
-		
-		
-		
 
 	}
-	
-
-	
 
 	@FXML
 	void hiperlinkRegresarFacturarHangar(ActionEvent event) {
@@ -2050,11 +2041,11 @@ public class controlador {
 		paneRegistrarLlegada.setVisible(false);
 		paneRegistrarFacturaHangar.setVisible(false);
 		paneFacturasRealizadasHnagar.setVisible(true);
-		
-		//metodos
+
+		// metodos
 		limpiar_registroshangar();
 		cargar_registros();
-		
+
 	}
 
 	@FXML
@@ -2778,32 +2769,28 @@ public class controlador {
 	@FXML
 	private TableColumn nroIdvuelo, colidvuelo, colfechavuelo, colhoravuelo, coltipovuelo;
 
-	
-	
 	@FXML
 	private TableView<hangaresasignaravion> tbleviewGestionarhangares1;
 	@FXML
-	private TableColumn nroHangarreservar,idHangarReservar, costoHoraHangar;
-	
-	//Hangares ocupados
+	private TableColumn nroHangarreservar, idHangarReservar, costoHoraHangar;
+
+	// Hangares ocupados
 	@FXML
 	private TableView<hangaresocupados> tbleViewFacturaHangares;
-	
+
 	@FXML
-	private TableColumn nroHangarFactura,idhangarfacturar, idavionfacturar,horaentradahangar,fechaentradahangar,valoractualhangar;
+	private TableColumn nroHangarFactura, idhangarfacturar, idavionfacturar, horaentradahangar, fechaentradahangar,
+			valoractualhangar;
 
 	@FXML
 	private TableView<facturas> tbleViewVisualizarFacturasHangar;
-	
+
 	@FXML
-	private TableColumn id_factura,tablecolum_idhangar,tablecolum_idavion,tablecolum_aerolinea,tablecolum_facturado;
-	
+	private TableColumn id_factura, tablecolum_idhangar, tablecolum_idavion, tablecolum_aerolinea, tablecolum_facturado;
+
 	@FXML
 	void initialize() throws Exception {
 		cmbIdavionHangar.setPromptText("Selecciona Id Avion");
-		
-		
-		
 
 		// Spinner modificar vuelo
 		SpinnerValueFactory<Integer> value3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
@@ -2915,8 +2902,8 @@ public class controlador {
 		nroHangarreservar.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		idHangarReservar.setCellValueFactory(new PropertyValueFactory<>("idhangar"));
 		costoHoraHangar.setCellValueFactory(new PropertyValueFactory<>("costos"));
-		
-		//tabla gesstionar hangares ocupados
+
+		// tabla gesstionar hangares ocupados
 		tbleViewFacturaHangares.setEditable(true);
 		nroHangarFactura.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		idhangarfacturar.setCellValueFactory(new PropertyValueFactory<>("idhangar"));
@@ -2925,72 +2912,59 @@ public class controlador {
 		fechaentradahangar.setCellValueFactory(new PropertyValueFactory<>("fechaentrada"));
 		valoractualhangar.setCellValueFactory(new PropertyValueFactory<>("valoractual"));
 
-		//espacio de trabajo
-		
+		// espacio de trabajo
+
 		tbleViewVisualizarFacturasHangar.setEditable(true);
 		id_factura.setCellValueFactory(new PropertyValueFactory<>("idfacturas"));
 		tablecolum_idhangar.setCellValueFactory(new PropertyValueFactory<>("idhangars"));
 		tablecolum_idavion.setCellValueFactory(new PropertyValueFactory<>("idavions"));
 		tablecolum_aerolinea.setCellValueFactory(new PropertyValueFactory<>("aerolineas"));
 		tablecolum_facturado.setCellValueFactory(new PropertyValueFactory<>("facturados"));
-		
+
 	}
 
 	// METODOS COMPLEMENTARIOS MENU AEROPUERTO
 	// METODOS PARA CARGAR DATOS AEROPUERTO
-	
+
 	public void cargar_registros() {
 		for (int i = 0; i < conexion.cargarfacturas().size(); i++) {
 			tbleViewVisualizarFacturasHangar.getItems().add(new facturas(
-					conexion.cargarfacturas().get(i).getIdfactura(),
-					conexion.cargarfacturas().get(i).getIdhangar(),
-					conexion.cargarfacturas().get(i).getIdavion(),
-					conexion.cargarfacturas().get(i).getAerolinea(),
-					conexion.cargarfacturas().get(i).getFacturado()
-					));
+					conexion.cargarfacturas().get(i).getIdfactura(), conexion.cargarfacturas().get(i).getIdhangar(),
+					conexion.cargarfacturas().get(i).getIdavion(), conexion.cargarfacturas().get(i).getAerolinea(),
+					conexion.cargarfacturas().get(i).getFacturado()));
 
-			
 		}
-		
+
 	}
-	
+
 	public void limpiar_registroshangar() {
 		tbleViewVisualizarFacturasHangar.getItems().clear();
 	}
-	
-	
-	
+
 	public void cargarhangaresaeropuerto() {
 		for (int i = 0; i < conexion.cargarhangares_desocupados().size(); i++) {
-			tbleviewGestionarhangares1.getItems().add(new hangaresasignaravion(
-					(i + 1),
-					conexion.cargarhangares_desocupados().get(i).getIdhangar(),
-					conexion.cargarhangares_desocupados().get(i).getCosto()));
-			
+			tbleviewGestionarhangares1.getItems()
+					.add(new hangaresasignaravion((i + 1), conexion.cargarhangares_desocupados().get(i).getIdhangar(),
+							conexion.cargarhangares_desocupados().get(i).getCosto()));
+
 		}
 	}
-	
+
 	public void cargarhangaresocupadoss() {
 		for (int i = 0; i < conexion.cargarhangares_ocupados().size(); i++) {
-			tbleViewFacturaHangares.getItems().add(new hangaresocupados(
-					(i+1),
-					conexion.cargarhangares_ocupados().get(i).getIdhangar(),
-					conexion.cargarhangares_ocupados().get(i).getIdavion(),
-					conexion.cargarhangares_ocupados().get(i).getHoraentrada(),
-					conexion.cargarhangares_ocupados().get(i).getFechaentrada(),
-					conexion.cargarhangares_ocupados().get(i).getValoractual()));
+			tbleViewFacturaHangares.getItems()
+					.add(new hangaresocupados((i + 1), conexion.cargarhangares_ocupados().get(i).getIdhangar(),
+							conexion.cargarhangares_ocupados().get(i).getIdavion(),
+							conexion.cargarhangares_ocupados().get(i).getHoraentrada(),
+							conexion.cargarhangares_ocupados().get(i).getFechaentrada(),
+							conexion.cargarhangares_ocupados().get(i).getValoractual()));
 
-			
 		}
 	}
-	
+
 	public void limpiarhangaresocupados() {
 		tbleViewFacturaHangares.getItems().clear();
 	}
-	
-	
-	
-	
 
 	public void cargarvueloscomoaeropuerto() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -3049,7 +3023,6 @@ public class controlador {
 	public void cargaraviones_comboboxhangar() {
 		for (int i = 0; i < conexion.cargaraviones_hangar().size(); i++) {
 			cmbIdavionHangar.getItems().add(conexion.cargaraviones_hangar().get(i).getIdavion());
-			
 
 		}
 
@@ -3102,8 +3075,6 @@ public class controlador {
 		}
 
 	}
-
-
 
 	// CLASES SIMPLE STRING PARA MENU AEROPUERTO
 
@@ -3264,6 +3235,7 @@ public class controlador {
 		}
 
 	}
+
 	public class hangaresasignaravion {
 		private final SimpleIntegerProperty numero;
 		private final SimpleStringProperty idhangar;
@@ -3273,7 +3245,7 @@ public class controlador {
 			this.numero = new SimpleIntegerProperty(numero);
 			this.idhangar = new SimpleStringProperty(idhangar);
 			this.costos = new SimpleStringProperty(costos);
-			
+
 		}
 
 		public int getNumero() {
@@ -3288,8 +3260,8 @@ public class controlador {
 			return costos.get();
 		}
 
-
 	}
+
 	public class hangaresocupados {
 		private final SimpleIntegerProperty numero;
 		private final SimpleStringProperty idhangar;
@@ -3298,15 +3270,15 @@ public class controlador {
 		private final SimpleStringProperty fechaentrada;
 		private final SimpleStringProperty valoractual;
 
-		private hangaresocupados(int numero, String idhangar, String idavion,String horaentrada, String fechaentrada,
-				String valoractual){
+		private hangaresocupados(int numero, String idhangar, String idavion, String horaentrada, String fechaentrada,
+				String valoractual) {
 			this.numero = new SimpleIntegerProperty(numero);
 			this.idhangar = new SimpleStringProperty(idhangar);
 			this.idavion = new SimpleStringProperty(idavion);
-			this.horaentrada= new SimpleStringProperty(horaentrada);
+			this.horaentrada = new SimpleStringProperty(horaentrada);
 			this.fechaentrada = new SimpleStringProperty(fechaentrada);
 			this.valoractual = new SimpleStringProperty(valoractual);
-			
+
 		}
 
 		public int getNumero() {
@@ -3320,6 +3292,7 @@ public class controlador {
 		public String getIdavion() {
 			return idavion.get();
 		}
+
 		public String getHoraentrada() {
 			return horaentrada.get();
 		}
@@ -3332,13 +3305,7 @@ public class controlador {
 			return valoractual.get();
 		}
 
-
-
 	}
-	
-	
-	
-	
 
 	public class aerolineas {
 		private final SimpleIntegerProperty numero;
@@ -3408,9 +3375,7 @@ public class controlador {
 		}
 
 	}
-	
-	
-	
+
 	public class facturas {
 		private final SimpleStringProperty idfacturas;
 		private final SimpleStringProperty idhangars;
@@ -3418,15 +3383,13 @@ public class controlador {
 		private final SimpleStringProperty aerolineas;
 		private final SimpleStringProperty facturados;
 
-		private facturas(String idfacturas, String idhangars, String idavions, String aerolineas,String facturados) {
-			this.idfacturas= new SimpleStringProperty(idfacturas);
+		private facturas(String idfacturas, String idhangars, String idavions, String aerolineas, String facturados) {
+			this.idfacturas = new SimpleStringProperty(idfacturas);
 			this.idhangars = new SimpleStringProperty(idhangars);
-			this.idavions= new SimpleStringProperty(idavions);
+			this.idavions = new SimpleStringProperty(idavions);
 			this.aerolineas = new SimpleStringProperty(aerolineas);
 			this.facturados = new SimpleStringProperty(facturados);
 		}
-
-
 
 		public String getIdfacturas() {
 			return idfacturas.get();
@@ -3439,20 +3402,18 @@ public class controlador {
 		public String getIdavions() {
 			return idavions.get();
 		}
-		
+
 		public String getAerolineas() {
 			return aerolineas.get();
 		}
+
 		public String getFacturados() {
 			return facturados.get();
 		}
 	}
 
-	
-	
-
 	// METODOS DE LIMPIEZA
-	
+
 	public void limpiarvuelos() {
 		tblevieSolicitudesaprobados.getItems().clear();
 	}
@@ -3481,7 +3442,6 @@ public class controlador {
 	public void limpiar_agenda_vuelos_aerolinea() {
 		tblevieSolicitudesaprobados.getItems().clear();
 	}
-	
 
 	public void limpiarlogin() {
 		txfNomusuario.clear();
@@ -3489,10 +3449,9 @@ public class controlador {
 		cmbxLogin.setPromptText("Elige un tipo de usuario");
 
 	}
-	
+
 	public void limpiarhangaresvacios() {
 		tbleviewGestionarhangares1.getItems().clear();
 	}
-	
 
 }

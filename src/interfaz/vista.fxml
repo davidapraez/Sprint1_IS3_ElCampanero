@@ -29,7 +29,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.controlador">
 	<children>
-		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;">
+		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;" visible="false">
          <children>
             <ImageView fitHeight="507.0" fitWidth="800.0" pickOnBounds="true">
                <image>
@@ -79,7 +79,7 @@
             </AnchorPane>
          </children>
 		</AnchorPane>
-      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;" visible="false">
+      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;">
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #393351;">
                <children>
@@ -666,7 +666,7 @@
                      </children></Pane>
                </children>
       		</AnchorPane>
-            <AnchorPane fx:id="anpMenusHangar" layoutX="250.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
+            <AnchorPane fx:id="anpMenusHangar" layoutX="250.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;">
                <children>
                   <Pane fx:id="paneRegistrarLlegada" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
@@ -711,7 +711,7 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneRegistrarFacturaHangar" layoutX="-1.0" layoutY="1.0" prefHeight="500.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneRegistrarFacturaHangar" layoutX="-1.0" layoutY="1.0" prefHeight="500.0" prefWidth="551.0">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="474.0" prefWidth="525.0" spacing="15.0">
                            <children>
