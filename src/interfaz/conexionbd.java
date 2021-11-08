@@ -941,7 +941,7 @@ public class conexionbd {
 	public ArrayList<avionAL> cargaraviones_hangar() {
 		ArrayList<avionAL> aviones = new ArrayList<>();
 		java.sql.Statement st = conexionbasededatos();
-		String sql = "select distinct * from avion left join hangares on hangares.id_avion=avion.id_avion;";
+		String sql = "select * from avion;";
 		try {
 			ResultSet resultSet = st.executeQuery(sql);
 			while (resultSet.next()) {
@@ -953,12 +953,13 @@ public class conexionbd {
 				String numero_motores = resultSet.getString("numero_motores");
 				String peso = resultSet.getString("peso_nominal");
 				String idaerolinea = resultSet.getString("idaerolinea");
-				aviones.add(new avionAL(idavion, tipoavion, capacidad, modelo, propulsion, numero_motores, peso,
-						idaerolinea));
+				if(!buscaridavionenhangar(idavion)) {
+					aviones.add(new avionAL(idavion, tipoavion, capacidad, modelo, propulsion, numero_motores, peso,
+							idaerolinea));
+				}
+				
+				
 			}
-			
-			
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -966,6 +967,32 @@ public class conexionbd {
 
 		return aviones;
 
+	}
+	
+	public boolean buscaridavionenhangar(String idavion) {
+		boolean encontrado=false;
+		java.sql.Statement st = conexionbasededatos();
+		String sql = "select * from Hangares;";
+		try {
+			ResultSet resultSet = st.executeQuery(sql);
+			while (resultSet.next()) {
+				String idavionsql=resultSet.getString("id_avion");
+				if(idavionsql!=null) {
+					if(idavionsql.equalsIgnoreCase(idavion)) {
+						encontrado=true;
+					}
+				}
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return encontrado;
 	}
 	
 	
@@ -1533,14 +1560,14 @@ public class conexionbd {
 				
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setTitle("Registro exitoso");
-				alert.setHeaderText("Se registro satisfactoriamente el avion en el hangar");
+				alert.setHeaderText("Se asigno satisfactoriamente el avion a el hangar seleccionado");
 				alert.setContentText("Dele clic en aceptar para continuar");
 				alert.showAndWait();
 				
 			}else {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Error ");
-				alert.setHeaderText("No se encontro el id del avion");
+				alert.setHeaderText("No se encontro el id del hangar");
 				alert.setContentText("Dele clic en aceptar para continuar");
 				alert.showAndWait();
 			}

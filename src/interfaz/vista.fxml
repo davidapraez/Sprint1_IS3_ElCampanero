@@ -29,7 +29,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.controlador">
 	<children>
-		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;" visible="false">
+		<AnchorPane fx:id="anpLogin" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #20120f;">
          <children>
             <ImageView fitHeight="507.0" fitWidth="800.0" pickOnBounds="true">
                <image>
@@ -79,7 +79,7 @@
             </AnchorPane>
          </children>
 		</AnchorPane>
-      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;">
+      <AnchorPane fx:id="anpMenuAeropuerto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #2F2B43;" visible="false">
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #393351;">
                <children>
@@ -285,7 +285,7 @@
                               <Image url="@../Imagenes_menuaeropuerto/refund_48px.png" />
                            </image>
                         </ImageView>
-                        <Text fill="#1ca2d7" layoutX="33.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar salida" wrappingWidth="96.99999999999989">
+                        <Text fill="#1ca2d7" layoutX="33.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Facturar salida" wrappingWidth="96.99999999999989">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -666,15 +666,15 @@
                      </children></Pane>
                </children>
       		</AnchorPane>
-            <AnchorPane fx:id="anpMenusHangar" layoutX="250.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;">
+            <AnchorPane fx:id="anpMenusHangar" layoutX="250.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
                <children>
-                  <Pane fx:id="paneRegistrarLlegada" prefHeight="500.0" prefWidth="551.0">
+                  <Pane fx:id="paneRegistrarLlegada" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="474.0" prefWidth="525.0" spacing="15.0">
                            <children>
                               <Pane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #6BD5EC; -fx-background-radius: 5;">
                                  <children>
-                                    <Label layoutX="107.0" layoutY="5.0" prefHeight="30.0" prefWidth="186.0" text="Gestionar Hangares" textFill="WHITE">
+                                    <Label layoutX="107.0" layoutY="5.0" prefHeight="30.0" prefWidth="186.0" text="Asignar Hangar" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -695,7 +695,7 @@
                                  <children>
                                     <TextField fx:id="txfIdhangar" prefHeight="25.0" prefWidth="241.0" promptText="Digita el Id del Hangar" />
                                     <ComboBox fx:id="cmbIdavionHangar" editable="true" prefHeight="123.0" prefWidth="150.0" promptText="Id del Avion" />
-                                    <Button mnemonicParsing="false" onAction="#btnRegistrarAvionEnHangar" prefHeight="25.0" prefWidth="77.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Registrar" />
+                                    <Button mnemonicParsing="false" onAction="#btnRegistrarAvionEnHangar" prefHeight="25.0" prefWidth="77.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Asignar" />
                                  </children>
                               </HBox>
                               <HBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="507.0" spacing="80.0">

@@ -694,7 +694,7 @@ public class controlador {
 
 	@FXML
 	void iniciarsesion(ActionEvent event) {
-		if (cmbxLogin.getValue() != null) {
+		if (cmbxLogin.getValue() != null && txfNomusuario.getText()!="" && psfContras.getText()!="") {
 			String tipousuario = cmbxLogin.getValue();
 			if (tipousuario == "Aerolinea") {
 
@@ -705,8 +705,8 @@ public class controlador {
 				} else {
 					Alert alert = new Alert(Alert.AlertType.ERROR);
 					alert.setTitle("Error");
-					alert.setHeaderText("Usuario invalido");
-					alert.setContentText("Por favor ingresa un usuario y contraseña validos");
+					alert.setHeaderText("Usuario o Contraseña incorrectos");
+					alert.setContentText("Click en aceptar para continuar");
 					alert.showAndWait();
 				}
 
@@ -717,11 +717,12 @@ public class controlador {
 					anpLogin.setVisible(false);
 					anpMenuAeropuerto.setVisible(true);
 					idaeropuertologin = txfNomusuario.getText();
+					
 				} else {
 					Alert alert = new Alert(Alert.AlertType.ERROR);
 					alert.setTitle("Error ");
-					alert.setHeaderText("Usuario invalido");
-					alert.setContentText("Por favor ingresa un usuario y contraseña validos");
+					alert.setHeaderText("Usuario o Contraseña incorrectos\"");
+					alert.setContentText("Click en aceptar para continuar");
 					alert.showAndWait();
 				}
 
@@ -730,8 +731,8 @@ public class controlador {
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("Debe elegir un tipo de usuario");
-			alert.setContentText("Selecciona un usuario");
+			alert.setHeaderText("Campos vacios");
+			alert.setContentText("Selecciona un usuario e ingresa un usuario y contraseña validos");
 			alert.showAndWait();
 		}
 
@@ -2005,6 +2006,8 @@ public class controlador {
 		if(idhangar!=""){
 			conexion.facturahangar_yregistrar(idhangar);
 			txfHangarFacturar.clear();
+			limpiarhangaresocupados();
+			cargarhangaresocupadoss();
 		}else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Campos vacios");
