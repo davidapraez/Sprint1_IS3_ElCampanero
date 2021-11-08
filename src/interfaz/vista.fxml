@@ -216,7 +216,7 @@
                               <Image url="@../Imagenes_menuaeropuerto/request_service_48px.png" />
                            </image>
                         </ImageView>
-                        <Text fill="#1ca2d7" layoutX="41.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solicitudes" wrappingWidth="80.0">
+                        <Text fill="#1ca2d7" layoutX="9.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N. de agendamiento" wrappingWidth="144.0">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -522,7 +522,7 @@
             </Pane>
       		<AnchorPane fx:id="anpMenusAgenda" layoutX="249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;" visible="false">
                <children>
-                  <Pane fx:id="paneAgendaVuelos" prefHeight="500.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneAgendaVuelos" prefHeight="500.0" prefWidth="551.0">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="22.0" layoutY="18.0" prefHeight="474.0" prefWidth="513.0" spacing="10.0" style="-fx-background-color: #2F2B43;">
                            <children>
@@ -549,9 +549,9 @@
                               </TableView>
                               <HBox maxWidth="-Infinity" prefHeight="34.0" prefWidth="500.0" spacing="20.0">
                                  <children>
-                                    <TextField fx:id="txfAgendaVuelos1" prefHeight="30.0" prefWidth="338.0" promptText="ID-Vuelo" />
-                                    <Button fx:id="btnModificarAgendaVuelos1" mnemonicParsing="false" onAction="#btnModificarAgendaVuelos" prefHeight="20.0" prefWidth="71.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" />
-                                    <Button fx:id="btnEliminarAgendaVuelos1" mnemonicParsing="false" onAction="#btnEliminarAgendaVuelos" prefHeight="20.0" prefWidth="63.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Eliminar" />
+                                    <TextField fx:id="txfAgendaVuelos1" prefHeight="25.0" prefWidth="308.0" promptText="ID-Vuelo" />
+                                    <Button fx:id="btnModificarAgendaVuelos1" mnemonicParsing="false" onAction="#btnModificarAgendaVuelos" prefHeight="25.0" prefWidth="83.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Modificar" />
+                                    <Button fx:id="btnEliminarAgendaVuelos1" mnemonicParsing="false" onAction="#btnEliminarAgendaVuelos" prefHeight="25.0" prefWidth="85.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Eliminar" />
                                  </children>
                                  <padding>
                                     <Insets top="10.0" />
@@ -668,7 +668,7 @@
       		</AnchorPane>
             <AnchorPane fx:id="anpMenusHangar" layoutX="250.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="551.0" style="-fx-background-color: #2F2B43;">
                <children>
-                  <Pane fx:id="paneRegistrarLlegada" prefHeight="500.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneRegistrarLlegada" prefHeight="500.0" prefWidth="551.0">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="474.0" prefWidth="525.0" spacing="15.0">
                            <children>
@@ -694,7 +694,7 @@
                               <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="507.0" spacing="20.0">
                                  <children>
                                     <TextField fx:id="txfIdhangar" prefHeight="25.0" prefWidth="241.0" promptText="Digita el Id del Hangar" />
-                                    <ComboBox fx:id="cmbIdavionHangar" editable="true" prefHeight="35.0" prefWidth="152.0" promptText="Id del Avion" />
+                                    <ComboBox fx:id="cmbIdavionHangar" editable="true" prefHeight="123.0" prefWidth="150.0" promptText="Id del Avion" />
                                     <Button mnemonicParsing="false" onAction="#btnRegistrarAvionEnHangar" prefHeight="25.0" prefWidth="77.0" styleClass="button_menu_aeropuerto2" stylesheets="@application.css" text="Registrar" />
                                  </children>
                               </HBox>
@@ -711,7 +711,7 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneRegistrarFacturaHangar" layoutX="-1.0" layoutY="1.0" prefHeight="500.0" prefWidth="551.0">
+                  <Pane fx:id="paneRegistrarFacturaHangar" layoutX="-1.0" layoutY="1.0" prefHeight="500.0" prefWidth="551.0" visible="false">
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="474.0" prefWidth="525.0" spacing="15.0">
                            <children>
@@ -1198,7 +1198,7 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneModificarHangar" layoutY="1.0" prefHeight="474.0" prefWidth="551.0" visible="false">
+                  <Pane fx:id="paneModificarHangar" layoutY="1.0" prefHeight="474.0" prefWidth="551.0">
                      <children>
                         <VBox fx:id="vbxModificarUsuarioTableView11" alignment="CENTER" layoutX="22.0" layoutY="24.0" prefHeight="474.0" prefWidth="507.0" spacing="10.0">
                            <children>
@@ -1216,7 +1216,7 @@
                                     <TableColumn fx:id="numeroHangar" prefWidth="41.0" text="#" />
                                     <TableColumn fx:id="idhangar" prefWidth="164.0" text="Id-Hangar" />
                                     <TableColumn fx:id="ubicacionhangar" prefWidth="174.0" text="Ubicacion" />
-                                    <TableColumn fx:id="capacidadhangar" prefWidth="127.0" text="Cpacidad mts^2" />
+                                    <TableColumn fx:id="capacidadhangar" prefWidth="127.0" text="Capacidad mts^2" />
                                  </columns>
                               </TableView>
                               <HBox prefHeight="37.0" prefWidth="507.0" spacing="40.0">

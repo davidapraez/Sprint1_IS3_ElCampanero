@@ -1576,16 +1576,16 @@ public class controlador {
 		paneAgendaVuelos.setVisible(true);
 		paneModificarAgenda.setVisible(false);
 		paneSolicitudesCambio.setVisible(false);
+		
+		//metodos
+		limpiarvueloaeropuerto();
+		cargarvueloscomoaeropuerto();
 
 	}
 
 	@FXML
 	void AgendaAeropuerto(ActionEvent event) {
-		/*
-		 * pneAgenda.setVisible(true); pneHangar.setVisible(false);
-		 * pneAeropuertoRegistros.setVisible(false); anpMenusAgenda.setVisible(false);
-		 * anpMenusHangar.setVisible(false); anprMenusRegistros.setVisible(false);
-		 */
+		 
 		pneAgenda.setVisible(false);
 		pneHangar.setVisible(false);
 		pneAeropuertoRegistros.setVisible(false);
@@ -1600,7 +1600,7 @@ public class controlador {
 
 		limpiarvueloaeropuerto();
 		cargarvueloscomoaeropuerto();
-
+		
 	}
 
 	@FXML
@@ -2580,7 +2580,7 @@ public class controlador {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Registro no guardado");
-			alert.setContentText("Los campos estan vacios");
+			alert.setContentText("Uno o mas campos estan vacios");
 			alert.showAndWait();
 		}
 
@@ -2638,7 +2638,7 @@ public class controlador {
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("No ha digitado ningun campo");
+			alert.setHeaderText("No ha digitado ningun 	id de hangar");
 			alert.setContentText("Por favor ingresa un idhangar valido");
 			alert.showAndWait();
 		}

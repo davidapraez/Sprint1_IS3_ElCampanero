@@ -941,7 +941,7 @@ public class conexionbd {
 	public ArrayList<avionAL> cargaraviones_hangar() {
 		ArrayList<avionAL> aviones = new ArrayList<>();
 		java.sql.Statement st = conexionbasededatos();
-		String sql = "select * from avion, hangares where  hangares.id_avion<>avion.id_avion;";
+		String sql = "select distinct * from avion left join hangares on hangares.id_avion=avion.id_avion;";
 		try {
 			ResultSet resultSet = st.executeQuery(sql);
 			while (resultSet.next()) {
